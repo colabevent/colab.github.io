@@ -1,1 +1,180 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COLAB - Tworzymy przestrzeń dla sukcesu</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #071e26;
+      color: white;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 20px 0;
+    }
+
+    button {
+      background-color: #f4c542;
+      border: none;
+      padding: 12px 24px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('your-hero-image.jpg') center/cover no-repeat;
+      text-align: center;
+    }
+
+    .columns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .column {
+      flex: 1 1 0;
+      background-color: #0e2d3a;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .colab-marquee-container {
+      overflow: hidden;
+      background: #071e26;
+      padding: 40px 0;
+      position: relative;
+    }
+
+    .colab-marquee {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marquee 20s linear infinite;
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .speakers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .speaker {
+      background-color: #0e2d3a;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .speaker img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .agenda-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .agenda-item {
+      background-color: #0e2d3a;
+      padding: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <h1>TWORZYMY PRZESTRZEŃ DLA SUKCESU</h1>
+    <button>ZOBACZ NADCHODZĄCE WYDARZENIA</button>
+  </section>
+
+  <section>
+    <div class="columns">
+      <div class="column">
+        <h3>Największe centrum networkingowe</h3>
+        <p>Dla Młodych Przedsiębiorców w Polsce</p>
+      </div>
+      <div class="column">
+        <h3>Przedsiębiorcze mindsety</h3>
+        <p>Wierzymy, że przedsiębiorczość zaczyna się od sposobu myślenia.</p>
+      </div>
+      <div class="column">
+        <h3>Co oferujemy?</h3>
+        <p>Dostęp do wydarzeń, kontaktów, inspiracji i mentoringu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>ZDERZENIE UMYSŁÓW</h2>
+    <h1>Siła twórcza jako usługa</h1>
+    <button>ZOBACZ NADCHODZĄCE WYDARZENIA</button>
+  </section>
+
+  <section class="colab-marquee-container">
+    <div class="colab-marquee">
+      COLAB &nbsp; COLAB &nbsp; COLAB &nbsp; COLAB &nbsp; COLAB &nbsp; COLAB &nbsp; COLAB
+    </div>
+  </section>
+
+  <section>
+    <h2>Poznaj naszych prelegentów</h2>
+    <div class="speakers">
+      <div class="speaker">
+        <img src="speaker1.jpg" alt="Maciek Kwedoczik">
+        <p><strong>Maciek Kwedoczik</strong><br> Moderator / Współzałożyciel</p>
+      </div>
+      <div class="speaker">
+        <img src="speaker2.jpg" alt="Justyna Bisk">
+        <p><strong>Justyna Bisk</strong><br> Liderka HR</p>
+      </div>
+      <div class="speaker">
+        <img src="speaker3.jpg" alt="Kacper Broda">
+        <p><strong>Kacper Broda</strong><br> Ekspert finansów</p>
+      </div>
+      <div class="speaker">
+        <img src="speaker4.jpg" alt="Julietta Bróda">
+        <p><strong>Julietta Bróda</strong><br> Konsultantka i inwestorka</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>AGENDA</h2>
+    <p>Cały dzień pełen energii, wartościowych rozmów i konkretnego wsparcia w rozwoju biznesu.</p>
+    <div class="agenda-items">
+      <div class="agenda-item">01 - Rejestracja i seating (13:00 - 13:20)</div>
+      <div class="agenda-item">02 - Icebreaking networking session (13:25 - 14:00)</div>
+      <div class="agenda-item">03 - Blok inspiracyjny: Business boost (14:05 - 14:50)</div>
+      <div class="agenda-item">04 - Warsztat: Wzmacnianie myślenia w biznesie (14:50 - 15:40)</div>
+      <div class="agenda-item">05 - Mentoring round (15:50 - 16:10)</div>
+      <div class="agenda-item">06 - Piknik integracyjny (16:10 - 16:45)</div>
+    </div>
+  </section>
+
+</body>
+</html>
 
