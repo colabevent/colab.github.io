@@ -2,11 +2,11 @@
 <html lang="pl">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>COLAB - Przestrzeń dla Sukcesu</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com" rel="preconnect" />
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
 <link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700;900&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 <style>
@@ -16,7 +16,7 @@
     color: white;
   }
   .hero {
-    background-image: linear-gradient(rgba(7, 30, 38, 0.8), rgba(7, 30, 38, 0.8)), url("image-placeholder.png");
+    background-image: linear-gradient(rgba(7,30,38,0.8), rgba(7,30,38,0.8)), url("image-placeholder.png");
     background-size: cover;
     background-position: center;
   }
@@ -34,6 +34,55 @@
   }
   .border-custom-teal {
     border-color: #00a0a0;
+  }
+
+  /* Slider */
+  .slider {
+    position: relative;
+    z-index: 5;
+  }
+  .slide {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  .slide.active {
+    opacity: 1;
+    z-index: 10;
+  }
+
+  /* Marquee animacje */
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes marquee-reverse {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  .colab-marquee-row {
+    display: inline-flex;
+    min-width: 200%;
+  }
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+  .animate-marquee-reverse {
+    animation: marquee-reverse 20s linear infinite;
+  }
+  .colab-marquee-row img {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    vertical-align: middle;
+    margin: 0 8px;
+  }
+  .colab-marquee-container {
+    background-color: #000;
   }
 </style>
 </head>
@@ -62,46 +111,41 @@
 
 <section class="slider h-screen relative overflow-hidden">
   <div class="slides h-full w-full relative">
-    <img src="https://picsum.photos/id/1015/1920/1080" alt="Slide 1" class="slide absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-1000" />
-    <img src="https://picsum.photos/id/1016/1920/1080" alt="Slide 2" class="slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" />
-    <img src="https://picsum.photos/id/1018/1920/1080" alt="Slide 3" class="slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" />
+    <img src="https://picsum.photos/id/1015/1920/1080" alt="Slide 1" class="slide active" />
+    <img src="https://picsum.photos/id/1016/1920/1080" alt="Slide 2" class="slide" />
+    <img src="https://picsum.photos/id/1018/1920/1080" alt="Slide 3" class="slide" />
   </div>
 </section>
 
-<style>
-  /* Tailwind CSS classes assumed, dodaję kilka custom */
-  .slider {
-    position: relative;
-    z-index: 5;
-  }
-  .slide {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    object-fit: cover;
-  }
-</style>
+<!-- MARQUEE -->
+<section class="colab-marquee-container overflow-hidden relative bg-black py-6">
+  <div class="colab-marquee-row row-1 whitespace-nowrap flex animate-marquee">
+    COLAB <img src="https://picsum.photos/40/40?1" alt="img1" />
+    COLAB <img src="https://picsum.photos/40/40?2" alt="img2" />
+    COLAB <img src="https://picsum.photos/40/40?3" alt="img3" />
+    COLAB <img src="https://picsum.photos/40/40?1" alt="img1" />
+    COLAB <img src="https://picsum.photos/40/40?2" alt="img2" />
+    COLAB <img src="https://picsum.photos/40/40?3" alt="img3" />
+  </div>
 
-<script>
-  const slides = document.querySelectorAll('.slide');
-  let current = 0;
+  <div class="colab-marquee-row row-2 whitespace-nowrap flex animate-marquee-reverse mt-4">
+    COLAB <img src="https://picsum.photos/40/40?2" alt="img2" />
+    COLAB <img src="https://picsum.photos/40/40?3" alt="img3" />
+    COLAB <img src="https://picsum.photos/40/40?1" alt="img1" />
+    COLAB <img src="https://picsum.photos/40/40?2" alt="img2" />
+    COLAB <img src="https://picsum.photos/40/40?3" alt="img3" />
+    COLAB <img src="https://picsum.photos/40/40?1" alt="img1" />
+  </div>
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.style.opacity = i === index ? '1' : '0';
-    });
-  }
-
-  function nextSlide() {
-    current = (current + 1) % slides.length;
-    showSlide(current);
-  }
-
-  // Start slider
-  setInterval(nextSlide, 4000);
-
-  // Pokaż pierwszy slide od razu
-  showSlide(current);
-</script>
+  <div class="colab-marquee-row row-3 whitespace-nowrap flex animate-marquee mt-4">
+    COLAB <img src="https://picsum.photos/40/40?3" alt="img3" />
+    COLAB <img src="https://picsum.photos/40/40?1" alt="img1" />
+    COLAB <img src="https://picsum.photos/40/40?2" alt="img2" />
+    COLAB <img src="https://picsum.photos/40/40?3" alt="img3" />
+    COLAB <img src="https://picsum.photos/40/40?1" alt="img1" />
+    COLAB <img src="https://picsum.photos/40/40?2" alt="img2" />
+  </div>
+</section>
 
 <section class="py-20 px-6 md:px-0 container mx-auto">
   <div class="grid md:grid-cols-3 gap-12">
@@ -113,77 +157,35 @@
     <article class="space-y-6">
       <h2 class="text-3xl font-bold">Przedsiębiorcze mindsety</h2>
       <div class="border-2 border-custom-teal p-6 rounded-lg space-y-4">
-        <p>"Chcemy zderzyć warunki do budowania relacji biznesowych z przestrzenią kreatywnego rozwoju dla młodych, ambitnych ludzi. Dzięki temu powstaje wybuchowa mieszanka, dzięki której nabierzesz dynamiki i ujarzmisz ją jako doświadczeń."</p>
-        <div class="flex space-x-4">
-          <div class="border border-custom-teal p-3 rounded-lg flex-1">
-            <p>To wydarzenie dla osób, które czują, że posiadają przedsiębiorcze site.</p>
-          </div>
-          <div class="border border-custom-teal p-3 rounded-lg flex-1">
-            <p>To spotkanie ma na celu zderzenie ze sobą produktów ze sceną, na której mają okazję zaprezentować się na jakim jest etapie.</p>
-          </div>
-        </div>
-        <p>"Tę siłę chcemy przekazać Ci dalej..."</p>
+        <p>"Chcemy zderzyć warunki do budowania relacji biznesowych z przestrzenią kreatywnego rozwoju dla młodych, ambitnych ludzi. Dzięki temu powstaje wybuchowa mieszanka, dzięki której możemy osiągać niesamowite sukcesy."</p>
+        <p>- Sebastian Pych, CEO Colab</p>
       </div>
     </article>
 
     <article class="space-y-6">
-      <div class="bg-custom-yellow bg-opacity-20 border border-custom-yellow p-6 rounded-lg space-y-4">
-        <div class="flex justify-between items-start">
-          <h3 class="text-xl font-bold">CO OFERUJEMY?</h3>
-          <span class="material-icons text-custom-yellow" aria-label="help">help_outline</span>
-        </div>
-        <p>Wydarzenie, którego siłą jest dostęp do umysłów takich jak Ty. Poznawaj ludzi, którzy mają tyle samo energii i głód sukcesu co Ty. Poznaj ludzi, którzy mają te same wartości i na podobny sposób postrzegają świat.</p>
-
-        <div class="flex justify-between items-start mt-6">
-          <h3 class="text-xl font-bold">KOGO SZUKAMY?</h3>
-          <span class="material-icons text-custom-yellow" aria-label="group">group</span>
-        </div>
-        <p>Jeżeli grasz do jednej bramki, a Twoją pasją jest przedsiębiorczość - to wydarzenie jest dla Ciebie. Nie zamykaj się na wiedzę, ucz się na błędach i sukcesach innych - tworzymy wydarzenia właśnie dla Ciebie.</p>
-      </div>
-
-      <div class="bg-blue-500 bg-opacity-20 border border-blue-400 p-6 rounded-lg space-y-4 mt-6">
-        <div class="flex justify-between items-start">
-          <h3 class="text-xl font-bold">W JAKĄ GRUPĘ DOCELOWĄ CELUJEMY?</h3>
-          <span class="material-icons text-blue-400" aria-label="target">track_changes</span>
-        </div>
-        <p>Grupa liczy do 100 osób na bardzo wczesnym etapie, z prototypem/MVP lub samym pomysłem na biznes.</p>
-
-        <div class="flex justify-between items-start mt-6">
-          <h3 class="text-xl font-bold">DLACZEGO WARTO SPRÓBOWAĆ?</h3>
-          <span class="material-icons text-blue-400" aria-label="idea">lightbulb</span>
-        </div>
-        <p>Jesteśmy tutaj, żeby dać Ci szansę zdobycia nowych doświadczeń i nowej jakości do Twojego życia – wejdź na pokład COLABu.</p>
+      <h2 class="text-3xl font-bold">Strategiczne wsparcie</h2>
+      <div class="border-2 border-custom-yellow p-6 rounded-lg space-y-4">
+        <p>Wsparcie mentorów oraz możliwość zdobycia cennych kontaktów wśród liderów różnych branż pomaga rozwijać i skalować pomysły na biznes.</p>
+        <p>- Marcin Kowalski, mentor biznesu</p>
       </div>
     </article>
   </div>
 </section>
 
-<section class="py-20 text-center px-6 md:px-0 bg-gray-900 bg-opacity-30">
-  <h3 class="text-xl font-bold text-custom-yellow">ZDERZENIE UMYSŁÓW</h3>
-  <h2 class="text-5xl md:text-7xl font-black my-4">Siła twórcza<br />jako usługa</h2>
-  <div class="flex justify-center items-center space-x-16 my-8 text-white font-bold text-4xl">
-    <span>AGENDA</span>
-    <span>FORMUŁY</span>
-  </div>
-  <a href="#" class="mt-8 bg-custom-yellow text-gray-900 font-bold py-3 px-8 rounded-md hover:bg-yellow-400 transition duration-300 inline-block">ZOBACZ NADCHODZĄCE WYDARZENIA</a>
-</section>
-
-<section class="py-20 overflow-hidden px-6 md:px-0">
-  <div class="container mx-auto flex flex-wrap md:flex-nowrap gap-12">
-    <div class="flex-1">
-      <h3 class="text-xl font-bold mb-6">SPOTKANIA BUSINESS ENABLING</h3>
-      <p class="mb-6">Tworzymy spotkania na których możesz spotkać ludzi takich jak Ty. Doświadczeni, ambitni, chętni do nauki i dzielenia się.</p>
-      <p>Przyjdź, poznaj, zaangażuj się, znajdź pomysł na wspólny projekt i zacznij budować sukces z nami!</p>
-    </div>
-    <div class="flex-1 flex flex-col justify-center">
-      <img src="https://example.com/networking-photo.jpg" alt="Networking meeting" class="rounded-lg w-full object-cover" />
-    </div>
-  </div>
-</section>
-
-<footer class="bg-black py-6 text-center text-gray-400 text-sm">
-  &copy; 2025 COLAB. Wszelkie prawa zastrzeżone.
+<footer class="py-8 bg-black text-center text-gray-400">
+  <p>© 2025 COLAB. Wszelkie prawa zastrzeżone.</p>
 </footer>
+
+<script>
+  // Prosty slider - automatyczne przełączanie co 5 sekund
+  const slides = document.querySelectorAll('.slide');
+  let currentSlide = 0;
+  setInterval(() => {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide+1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }, 5000);
+</script>
 
 </body>
 </html>
