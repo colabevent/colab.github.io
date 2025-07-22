@@ -22,14 +22,14 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      padding: 20px 40px;
+      padding: 20px 60px;
     }
 
     .container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
@@ -39,17 +39,30 @@
 
     .nav-links {
       display: flex;
-      gap: 40px;
+      gap: 60px;
     }
 
     .nav-links a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      position: relative;
+      padding: 5px;
     }
 
-    .nav-links a:hover {
-      text-decoration: underline;
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background-color: #f4c542;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     .hero {
@@ -61,11 +74,11 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 0 20px;
+      padding: 0;
     }
 
     .hero-content h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 30px;
     }
@@ -83,12 +96,17 @@
     .hero-slideshow {
       display: flex;
       gap: 20px;
+      justify-content: center;
+      width: 100%;
+      padding: 0 40px;
     }
 
     .hero-slideshow img {
-      width: 300px;
+      width: 100%;
+      max-width: 400px;
       border-radius: 12px;
       object-fit: cover;
+      transition: opacity 0.5s ease-in-out;
     }
 
     .columns {
@@ -107,6 +125,10 @@
     .colab-marquee-container {
       overflow: hidden;
       background: #071e26;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
       padding: 40px 0;
     }
 
@@ -114,11 +136,11 @@
       white-space: nowrap;
       display: flex;
       align-items: center;
-      font-size: 2.5rem;
+      font-size: 5rem;
       font-weight: bold;
       font-family: Arial, sans-serif;
-      gap: 40px;
-      animation-duration: 30s;
+      gap: 60px;
+      animation-duration: 40s;
       animation-iteration-count: infinite;
       animation-timing-function: linear;
     }
@@ -136,17 +158,17 @@
     }
 
     @keyframes marquee-left {
-      from { transform: translateX(100%); }
-      to { transform: translateX(-100%); }
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
 
     @keyframes marquee-right {
-      from { transform: translateX(-100%); }
-      to { transform: translateX(100%); }
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     .colab-marquee-row img {
-      height: 40px;
+      height: 60px;
     }
   </style>
 </head>
@@ -176,13 +198,13 @@
 
   <section class="colab-marquee-container">
     <div class="colab-marquee-row row-1">
-      COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB
+      COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB<img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB
     </div>
     <div class="colab-marquee-row row-2">
-      COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB
+      COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg">COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg">
     </div>
     <div class="colab-marquee-row row-3">
-      COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB
+      COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg">COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg">
     </div>
   </section>
 </body>
