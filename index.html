@@ -5,7 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>COLAB - Tworzymy przestrzeń dla sukcesu</title>
   <style>
-    body {
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0a2c33;
+  color: white;
+}
+
+/* Pasek menu */
+.navbar {
+  background-color: #0a2c33;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 10px 20px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  height: 40px;
+}
+
+.nav-links a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(to right, rgba(10, 44, 51, 0.7), rgba(10, 44, 51, 0.7)), url('hero-image.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.hero-content button {
+  background-color: #f4c542;
+  border: none;
+  padding: 14px 28px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}    
+
+body {
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: #0a2c33;
@@ -169,20 +238,23 @@
   </style>
 </head>
 <body>
-
-  <div class="navbar">
-    <div class="navbar-logo">COLAB</div>
-    <div class="navbar-menu">
+<header class="navbar">
+  <div class="container">
+    <img src="logo-colab.png" alt="COLAB Logo" class="logo">
+    <nav class="nav-links">
       <a href="#onas">O NAS</a>
       <a href="#dlakogo">DLA KOGO</a>
       <a href="#wydarzenia">WYDARZENIA COLAB</a>
-    </div>
+    </nav>
   </div>
+</header>
 
-  <section class="hero">
-    <h1>TWORZYMY PRZESTRZEŃ DLA SUKCESU</h1>
+<section class="hero">
+  <div class="hero-content">
+    <h1>TWORZYMY PRZESTRZEŃ<br>DLA SUKCESU</h1>
     <button>ZOBACZ NADCHODZĄCE WYDARZENIA</button>
-  </section>
+  </div>
+</section>
 
   <section id="onas">
     <div class="columns">
