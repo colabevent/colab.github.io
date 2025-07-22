@@ -6,10 +6,11 @@
 <title>COLAB - Przestrzeń dla Sukcesu</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 <style>
-  body {
+  body, html {
+    margin: 0; padding: 0; height: 100%;
+    font-family: Arial, sans-serif;
     background-color: #071e26;
     color: white;
-    font-family: Arial, sans-serif;
   }
   header {
     position: fixed;
@@ -40,30 +41,28 @@
     transform: scaleX(1);
     transform-origin: left;
   }
-  /* Hero + slider container */
-  .hero-container {
+
+  /* Hero z tłem slidera */
+  .hero {
+    position: relative;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    padding-top: 70px; /* miejsce na header */
-  }
-  .hero-text {
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 0 1.5rem;
+    z-index: 10;
   }
-  .hero-text h1 {
+  .hero h1 {
     font-weight: 900;
     font-size: 4rem;
     line-height: 1.1;
     text-transform: uppercase;
     max-width: 800px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.7);
   }
-  .hero-text a {
+  .hero a {
     margin-top: 2rem;
     background-color: #f4c542;
     color: #071e26;
@@ -71,27 +70,33 @@
     padding: 0.75rem 2rem;
     border-radius: 0.375rem;
     transition: background-color 0.3s;
+    text-decoration: none;
   }
-  .hero-text a:hover {
+  .hero a:hover {
     background-color: #e0b736;
   }
+
+  /* Slider jako tło */
   .slider {
-    height: 40vh;
-    position: relative;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
+    z-index: 1;
   }
   .slide {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
     object-fit: cover;
     opacity: 0;
     transition: opacity 1s ease;
   }
   .slide.active {
     opacity: 1;
-    z-index: 10;
+    z-index: 1;
   }
 </style>
 </head>
@@ -109,18 +114,16 @@
   </nav>
 </header>
 
-<div class="hero-container">
-  <div class="hero-text">
-    <h1>TWORZYMY PRZESTRZEŃ<br />DLA SUKCESU</h1>
-    <a href="#">ZOBACZ NADCHODZĄCE WYDARZENIA</a>
-  </div>
-
-  <div class="slider">
-    <img src="https://picsum.photos/id/1015/1920/1080" alt="Slide 1" class="slide active" />
-    <img src="https://picsum.photos/id/1016/1920/1080" alt="Slide 2" class="slide" />
-    <img src="https://picsum.photos/id/1018/1920/1080" alt="Slide 3" class="slide" />
-  </div>
+<div class="slider">
+  <img src="https://picsum.photos/id/1015/1920/1080" alt="Slide 1" class="slide active" />
+  <img src="https://picsum.photos/id/1016/1920/1080" alt="Slide 2" class="slide" />
+  <img src="https://picsum.photos/id/1018/1920/1080" alt="Slide 3" class="slide" />
 </div>
+
+<section class="hero">
+  <h1>TWORZYMY PRZESTRZEŃ<br />DLA SUKCESU</h1>
+  <a href="#">ZOBACZ NADCHODZĄCE WYDARZENIA</a>
+</section>
 
 <script>
   const slides = document.querySelectorAll('.slide');
