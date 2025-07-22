@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>COLAB - Tworzymy przestrzeń dla sukcesu</title>
   <style>
     * {
@@ -70,7 +70,8 @@
     .hero {
       position: relative;
       height: 100vh;
-      background: linear-gradient(to right, rgba(10, 44, 51, 0.7), rgba(10, 44, 51, 0.7)), url('hero-image.jpg') center/cover no-repeat;
+      background: linear-gradient(to right, rgba(10, 44, 51, 0.7), rgba(10, 44, 51, 0.7)),
+        url('hero-image.jpg') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -131,8 +132,9 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
-      padding: 40px 0;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px 0;
     }
 
     .colab-marquee-row {
@@ -161,13 +163,21 @@
     }
 
     @keyframes marquee-left {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
     }
 
     @keyframes marquee-right {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
     }
 
     .colab-marquee-row img {
@@ -189,7 +199,7 @@
 <body>
   <header class="navbar">
     <div class="container">
-      <img src="logo-colab.png" alt="COLAB Logo" class="logo">
+      <img src="logo-colab.png" alt="COLAB Logo" class="logo" />
       <nav class="nav-links">
         <a href="#onas">O NAS</a>
         <a href="#dlakogo">DLA KOGO</a>
@@ -200,42 +210,51 @@
 
   <section class="hero">
     <div class="hero-content">
-      <h1>TWORZYMY PRZESTRZEŃ<br>DLA SUKCESU</h1>
+      <h1>
+        TWORZYMY PRZESTRZEŃ<br />
+        DLA SUKCESU
+      </h1>
       <button>ZOBACZ NADCHODZĄCE WYDARZENIA</button>
       <div class="hero-slideshow">
-        <img src="img1.jpg" alt="Slajd 1">
-        <img src="img2.jpg" alt="Slajd 2">
-        <img src="img3.jpg" alt="Slajd 3">
+        <img src="img1.jpg" alt="Slajd 1" />
+        <img src="img2.jpg" alt="Slajd 2" />
+        <img src="img3.jpg" alt="Slajd 3" />
       </div>
     </div>
   </section>
 
   <section class="colab-marquee-container">
     <div class="colab-marquee-row row-1">
-      COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB
+      COLAB <img src="img1.jpg" /> COLAB <img src="img2.jpg" /> COLAB <img src="img3.jpg" /> COLAB
+      <img src="img1.jpg" /> COLAB <img src="img2.jpg" /> COLAB <img src="img3.jpg" /> COLAB
     </div>
     <div class="colab-marquee-row row-2">
-      COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg">
+      COLAB <img src="img2.jpg" /> COLAB <img src="img3.jpg" /> COLAB <img src="img1.jpg" /> COLAB
+      <img src="img2.jpg" /> COLAB <img src="img3.jpg" /> COLAB <img src="img1.jpg" />
     </div>
     <div class="colab-marquee-row row-3">
-      COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg">
+      COLAB <img src="img3.jpg" /> COLAB <img src="img1.jpg" /> COLAB <img src="img2.jpg" /> COLAB
+      <img src="img3.jpg" /> COLAB <img src="img1.jpg" /> COLAB <img src="img2.jpg" />
     </div>
   </section>
 
   <script>
     // Scroll animation
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('reveal');
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+      }
+    );
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
       observer.observe(section);
     });
   </script>
