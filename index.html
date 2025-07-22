@@ -7,8 +7,10 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #071e26;
+      font-family: Arial, sans-serif;
+      background-color: #0a2c33;
+      background-image: radial-gradient(circle at 30% 30%, #6abcff22 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, #6abcff22 0%, transparent 50%);
       color: white;
       line-height: 1.6;
     }
@@ -32,6 +34,34 @@
       margin: 0 auto;
     }
 
+    /* Pasek nawigacyjny */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background-color: #0a2c33;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .navbar-logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .navbar-menu {
+      display: flex;
+      gap: 30px;
+    }
+
+    .navbar-menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
     .hero {
       background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('your-hero-image.jpg') center/cover no-repeat;
       text-align: center;
@@ -45,29 +75,63 @@
 
     .column {
       flex: 1 1 0;
-      background-color: #0e2d3a;
+      background-color: rgba(255, 255, 255, 0.08);
       padding: 20px;
       border-radius: 10px;
+      color: white;
+    }
+
+    .highlight-boxes {
+      display: flex;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .highlight-box {
+      flex: 1;
+      background-color: rgba(255, 255, 255, 0.15);
+      padding: 20px;
+      border-radius: 12px;
+      color: #fff;
     }
 
     .colab-marquee-container {
       overflow: hidden;
-      background: #071e26;
+      background: #0a2c33;
       padding: 40px 0;
-      position: relative;
     }
 
-    .colab-marquee {
-      display: inline-block;
+    .colab-marquee-row {
       white-space: nowrap;
-      animation: marquee 20s linear infinite;
-      font-size: 3rem;
-      font-weight: 700;
+      font-size: 2.5rem;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 30px;
     }
 
-    @keyframes marquee {
+    .colab-marquee-row img {
+      height: 50px;
+      border-radius: 8px;
+    }
+
+    .marquee-left {
+      animation: marquee-left 20s linear infinite;
+    }
+
+    .marquee-right {
+      animation: marquee-right 25s linear infinite;
+    }
+
+    @keyframes marquee-left {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
+    }
+
+    @keyframes marquee-right {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     .speakers {
@@ -106,24 +170,30 @@
 </head>
 <body>
 
+  <div class="navbar">
+    <div class="navbar-logo">COLAB</div>
+    <div class="navbar-menu">
+      <a href="#onas">O NAS</a>
+      <a href="#dlakogo">DLA KOGO</a>
+      <a href="#wydarzenia">WYDARZENIA COLAB</a>
+    </div>
+  </div>
+
   <section class="hero">
     <h1>TWORZYMY PRZESTRZEŃ DLA SUKCESU</h1>
     <button>ZOBACZ NADCHODZĄCE WYDARZENIA</button>
   </section>
 
-  <section>
+  <section id="onas">
     <div class="columns">
       <div class="column">
         <h3>Największe centrum networkingowe</h3>
         <p>Dla Młodych Przedsiębiorców w Polsce</p>
-      </div>
-      <div class="column">
-        <h3>Przedsiębiorcze mindsety</h3>
-        <p>Wierzymy, że przedsiębiorczość zaczyna się od sposobu myślenia.</p>
-      </div>
-      <div class="column">
-        <h3>Co oferujemy?</h3>
-        <p>Dostęp do wydarzeń, kontaktów, inspiracji i mentoringu.</p>
+        <div class="highlight-boxes">
+          <div class="highlight-box">Inspirujemy do działania</div>
+          <div class="highlight-box">Tworzymy społeczność</div>
+          <div class="highlight-box">Skupiamy ludzi z pasją</div>
+        </div>
       </div>
     </div>
   </section>
@@ -135,8 +205,14 @@
   </section>
 
   <section class="colab-marquee-container">
-    <div class="colab-marquee">
-      COLAB &nbsp; COLAB &nbsp; COLAB &nbsp; COLAB &nbsp; COLAB &nbsp; COLAB &nbsp; COLAB
+    <div class="colab-marquee-row marquee-left">
+      COLAB <img src="img1.jpg" alt=""> COLAB <img src="img2.jpg" alt=""> COLAB
+    </div>
+    <div class="colab-marquee-row marquee-right">
+      COLAB <img src="img3.jpg" alt=""> COLAB <img src="img4.jpg" alt=""> COLAB
+    </div>
+    <div class="colab-marquee-row marquee-left">
+      COLAB <img src="img5.jpg" alt=""> COLAB <img src="img6.jpg" alt=""> COLAB
     </div>
   </section>
 
@@ -162,7 +238,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="wydarzenia">
     <h2>AGENDA</h2>
     <p>Cały dzień pełen energii, wartościowych rozmów i konkretnego wsparcia w rozwoju biznesu.</p>
     <div class="agenda-items">
@@ -177,4 +253,3 @@
 
 </body>
 </html>
-
