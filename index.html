@@ -15,6 +15,7 @@
       background-color: #0a2c33;
       color: white;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
 
     header.navbar {
@@ -22,7 +23,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      padding: 20px 60px;
+      padding: 24px 80px;
     }
 
     .container {
@@ -34,12 +35,12 @@
     }
 
     .logo {
-      height: 40px;
+      height: 50px;
     }
 
     .nav-links {
       display: flex;
-      gap: 60px;
+      gap: 40px;
     }
 
     .nav-links a {
@@ -48,6 +49,7 @@
       font-weight: bold;
       position: relative;
       padding: 5px;
+      font-size: 1rem;
     }
 
     .nav-links a::after {
@@ -99,14 +101,15 @@
       justify-content: center;
       width: 100%;
       padding: 0 40px;
+      max-width: 100vw;
     }
 
     .hero-slideshow img {
       width: 100%;
-      max-width: 400px;
+      max-width: 33%;
+      height: auto;
       border-radius: 12px;
       object-fit: cover;
-      transition: opacity 0.5s ease-in-out;
     }
 
     .columns {
@@ -136,10 +139,10 @@
       white-space: nowrap;
       display: flex;
       align-items: center;
-      font-size: 200px;
+      font-size: 170px;
       font-weight: bold;
       font-family: Arial, sans-serif;
-      gap: 20px;
+      gap: 100px;
       animation-duration: 40s;
       animation-iteration-count: infinite;
       animation-timing-function: linear;
@@ -168,7 +171,18 @@
     }
 
     .colab-marquee-row img {
-      height: 60px;
+      height: 120px;
+    }
+
+    section {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    section.reveal {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -198,14 +212,32 @@
 
   <section class="colab-marquee-container">
     <div class="colab-marquee-row row-1">
-      COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB<img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB
+      COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB
     </div>
     <div class="colab-marquee-row row-2">
-      COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg">COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg">
+      COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg">
     </div>
     <div class="colab-marquee-row row-3">
-      COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg">COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg">
+      COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg"> COLAB <img src="img3.jpg"> COLAB <img src="img1.jpg"> COLAB <img src="img2.jpg">
     </div>
   </section>
+
+  <script>
+    // Scroll animation
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
