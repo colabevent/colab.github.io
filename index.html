@@ -1,262 +1,146 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>COLAB - Tworzymy przestrzeń dla sukcesu</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0a2c33;
-      color: white;
-      line-height: 1.6;
-      scroll-behavior: smooth;
-    }
-
-    header.navbar {
-      background-color: #0a2c33;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 24px 80px;
-    }
-
-    .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .logo {
-      height: 50px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      position: relative;
-      padding: 5px;
-      font-size: 1rem;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      height: 2px;
-      width: 0;
-      background-color: #f4c542;
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .hero {
-      position: relative;
-      height: 100vh;
-      background: linear-gradient(to right, rgba(10, 44, 51, 0.7), rgba(10, 44, 51, 0.7)),
-        url('hero-image.jpg') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0;
-    }
-
-    .hero-content h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 30px;
-    }
-
-    .hero-content button {
-      background-color: #f4c542;
-      border: none;
-      padding: 14px 28px;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-bottom: 40px;
-    }
-
-    .hero-slideshow {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      width: 100%;
-      padding: 0 40px;
-      max-width: 100vw;
-    }
-
-    .hero-slideshow img {
-      width: 100%;
-      max-width: 33%;
-      height: auto;
-      border-radius: 12px;
-      object-fit: cover;
-    }
-
-    .columns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .column {
-      flex: 1;
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    .colab-marquee-container {
-      overflow: hidden;
-      background: #071e26;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px 0;
-    }
-
-    .colab-marquee-row {
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      font-size: 170px;
-      font-weight: bold;
-      font-family: Arial, sans-serif;
-      gap: 100px;
-      animation-duration: 40s;
-      animation-iteration-count: infinite;
-      animation-timing-function: linear;
-    }
-
-    .row-1 {
-      animation-name: marquee-left;
-    }
-
-    .row-2 {
-      animation-name: marquee-right;
-    }
-
-    .row-3 {
-      animation-name: marquee-left;
-    }
-
-    @keyframes marquee-left {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-
-    @keyframes marquee-right {
-      0% {
-        transform: translateX(-100%);
-      }
-      100% {
-        transform: translateX(100%);
-      }
-    }
-
-    .colab-marquee-row img {
-      height: 120px;
-    }
-
-    section {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    section.reveal {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>COLAB - Przestrzeń dla Sukcesu</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com" rel="preconnect" />
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #071e26;
+    color: white;
+  }
+  .hero {
+    background-image: linear-gradient(rgba(7, 30, 38, 0.8), rgba(7, 30, 38, 0.8)), url("image-placeholder.png");
+    background-size: cover;
+    background-position: center;
+  }
+  .bg-custom-dark {
+    background-color: #071e26;
+  }
+  .text-custom-yellow {
+    color: #f4c542;
+  }
+  .bg-custom-yellow {
+    background-color: #f4c542;
+  }
+  .border-custom-yellow {
+    border-color: #f4c542;
+  }
+  .border-custom-teal {
+    border-color: #00a0a0;
+  }
+</style>
 </head>
-<body>
-  <header class="navbar">
-    <div class="container">
-      <img src="logo-colab.png" alt="COLAB Logo" class="logo" />
-      <nav class="nav-links">
-        <a href="#onas">O NAS</a>
-        <a href="#dlakogo">DLA KOGO</a>
-        <a href="#wydarzenia">WYDARZENIA COLAB</a>
-      </nav>
-    </div>
-  </header>
+<body class="bg-custom-dark">
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1>
-        TWORZYMY PRZESTRZEŃ<br />
-        DLA SUKCESU
-      </h1>
-      <button>ZOBACZ NADCHODZĄCE WYDARZENIA</button>
-      <div class="hero-slideshow">
-        <img src="img1.jpg" alt="Slajd 1" />
-        <img src="img2.jpg" alt="Slajd 2" />
-        <img src="img3.jpg" alt="Slajd 3" />
+<header class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-50">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <a class="text-2xl font-bold text-custom-yellow" href="#">COLAB</a>
+    <nav class="hidden md:flex space-x-8 text-white">
+      <a class="hover:text-custom-yellow transition" href="#">O NAS</a>
+      <a class="hover:text-custom-yellow transition" href="#">DLA KOGO</a>
+      <a class="hover:text-custom-yellow transition" href="#">WYDARZENIA</a>
+      <a class="hover:text-custom-yellow transition" href="#">COLAB</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero h-screen flex flex-col justify-center items-center text-center px-6 md:px-0">
+  <h1 class="text-5xl md:text-7xl font-black uppercase leading-tight max-w-4xl">
+    TWORZYMY PRZESTRZEŃ<br />DLA SUKCESU
+  </h1>
+  <a href="#" class="mt-8 bg-custom-yellow text-gray-900 font-bold py-3 px-8 rounded-md hover:bg-yellow-400 transition duration-300">
+    ZOBACZ NADCHODZĄCE WYDARZENIA
+  </a>
+</section>
+
+<section class="py-20 px-6 md:px-0 container mx-auto">
+  <div class="grid md:grid-cols-3 gap-12">
+    <article class="space-y-6">
+      <h2 class="text-3xl font-bold">Największe centrum networkingowe dla Młodych Przedsiębiorców w Polsce</h2>
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgpMe8Y7CXrLQ1KEfvyLRuGXX19ERFtszIvc1Ybl_9hRAsJ2ryiJokxvcd4xYCyCmySSmv7ADdrDUBIWR82Ng47ihD8jGpKRUH-tVvq1G0B6UK77xLEFU7virRyPnjG29w5_uaOzXgBQd0IAdGd2hzZDZv0Jwwq4ANlBAW_6vz6YsqbzNxDStzbq7dJ8K0Ps-7SiiVqcXPe2UxLzs0-pwcTDpCYNys28Hgyo3ugnL7pWkRYwtwu3e2-A_NIGRK05QSdZSBpbhMeF4" alt="Business event with people networking" class="rounded-lg w-full object-cover" />
+    </article>
+
+    <article class="space-y-6">
+      <h2 class="text-3xl font-bold">Przedsiębiorcze mindsety</h2>
+      <div class="border-2 border-custom-teal p-6 rounded-lg space-y-4">
+        <p>"Chcemy zderzyć warunki do budowania relacji biznesowych z przestrzenią kreatywnego rozwoju dla młodych, ambitnych ludzi. Dzięki temu powstaje wybuchowa mieszanka, dzięki której nabierzesz dynamiki i ujarzmisz ją jako doświadczeń."</p>
+        <div class="flex space-x-4">
+          <div class="border border-custom-teal p-3 rounded-lg flex-1">
+            <p>To wydarzenie dla osób, które czują, że posiadają przedsiębiorcze site.</p>
+          </div>
+          <div class="border border-custom-teal p-3 rounded-lg flex-1">
+            <p>To spotkanie ma na celu zderzenie ze sobą produktów ze sceną, na której mają okazję zaprezentować się na jakim jest etapie.</p>
+          </div>
+        </div>
+        <p>"Tę siłę chcemy przekazać Ci dalej..."</p>
       </div>
-    </div>
-  </section>
+    </article>
 
-  <section class="colab-marquee-container">
-    <div class="colab-marquee-row row-1">
-      COLAB <img src="img1.jpg" /> COLAB <img src="img2.jpg" /> COLAB <img src="img3.jpg" /> COLAB
-      <img src="img1.jpg" /> COLAB <img src="img2.jpg" /> COLAB <img src="img3.jpg" /> COLAB
-    </div>
-    <div class="colab-marquee-row row-2">
-      COLAB <img src="img2.jpg" /> COLAB <img src="img3.jpg" /> COLAB <img src="img1.jpg" /> COLAB
-      <img src="img2.jpg" /> COLAB <img src="img3.jpg" /> COLAB <img src="img1.jpg" />
-    </div>
-    <div class="colab-marquee-row row-3">
-      COLAB <img src="img3.jpg" /> COLAB <img src="img1.jpg" /> COLAB <img src="img2.jpg" /> COLAB
-      <img src="img3.jpg" /> COLAB <img src="img1.jpg" /> COLAB <img src="img2.jpg" />
-    </div>
-  </section>
+    <article class="space-y-6">
+      <div class="bg-custom-yellow bg-opacity-20 border border-custom-yellow p-6 rounded-lg space-y-4">
+        <div class="flex justify-between items-start">
+          <h3 class="text-xl font-bold">CO OFERUJEMY?</h3>
+          <span class="material-icons text-custom-yellow" aria-label="help">help_outline</span>
+        </div>
+        <p>Wydarzenie, którego siłą jest dostęp do umysłów takich jak Ty. Poznawaj ludzi, którzy mają tyle samo energii i głód sukcesu co Ty. Poznaj ludzi, którzy mają te same wartości i na podobny sposób postrzegają świat.</p>
 
-  <script>
-    // Scroll animation
-    const sections = document.querySelectorAll("section");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("reveal");
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-      }
-    );
+        <div class="flex justify-between items-start mt-6">
+          <h3 class="text-xl font-bold">KOGO SZUKAMY?</h3>
+          <span class="material-icons text-custom-yellow" aria-label="group">group</span>
+        </div>
+        <p>Jeżeli grasz do jednej bramki, a Twoją pasją jest przedsiębiorczość - to wydarzenie jest dla Ciebie. Nie zamykaj się na wiedzę, ucz się na błędach i sukcesach innych - tworzymy wydarzenia właśnie dla Ciebie.</p>
+      </div>
 
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-  </script>
+      <div class="bg-blue-500 bg-opacity-20 border border-blue-400 p-6 rounded-lg space-y-4 mt-6">
+        <div class="flex justify-between items-start">
+          <h3 class="text-xl font-bold">W JAKĄ GRUPĘ DOCELOWĄ CELUJEMY?</h3>
+          <span class="material-icons text-blue-400" aria-label="target">track_changes</span>
+        </div>
+        <p>Grupa liczy do 100 osób na bardzo wczesnym etapie, z prototypem/MVP lub samym pomysłem na biznes.</p>
+
+        <div class="flex justify-between items-start mt-6">
+          <h3 class="text-xl font-bold">DLACZEGO WARTO SPRÓBOWAĆ?</h3>
+          <span class="material-icons text-blue-400" aria-label="idea">lightbulb</span>
+        </div>
+        <p>Jesteśmy tutaj, żeby dać Ci szansę zdobycia nowych doświadczeń i nowej jakości do Twojego życia – wejdź na pokład COLABu.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="py-20 text-center px-6 md:px-0 bg-gray-900 bg-opacity-30">
+  <h3 class="text-xl font-bold text-custom-yellow">ZDERZENIE UMYSŁÓW</h3>
+  <h2 class="text-5xl md:text-7xl font-black my-4">Siła twórcza<br />jako usługa</h2>
+  <div class="flex justify-center items-center space-x-16 my-8 text-white font-bold text-4xl">
+    <span>AGENDA</span>
+    <span>FORMUŁY</span>
+  </div>
+  <a href="#" class="mt-8 bg-custom-yellow text-gray-900 font-bold py-3 px-8 rounded-md hover:bg-yellow-400 transition duration-300 inline-block">ZOBACZ NADCHODZĄCE WYDARZENIA</a>
+</section>
+
+<section class="py-20 overflow-hidden px-6 md:px-0">
+  <div class="container mx-auto flex flex-wrap md:flex-nowrap gap-12">
+    <div class="flex-1">
+      <h3 class="text-xl font-bold mb-6">SPOTKANIA BUSINESS ENABLING</h3>
+      <p class="mb-6">Tworzymy spotkania na których możesz spotkać ludzi takich jak Ty. Doświadczeni, ambitni, chętni do nauki i dzielenia się.</p>
+      <p>Przyjdź, poznaj, zaangażuj się, znajdź pomysł na wspólny projekt i zacznij budować sukces z nami!</p>
+    </div>
+    <div class="flex-1 flex flex-col justify-center">
+      <img src="https://example.com/networking-photo.jpg" alt="Networking meeting" class="rounded-lg w-full object-cover" />
+    </div>
+  </div>
+</section>
+
+<footer class="bg-black py-6 text-center text-gray-400 text-sm">
+  &copy; 2025 COLAB. Wszelkie prawa zastrzeżone.
+</footer>
+
 </body>
 </html>
