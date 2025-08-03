@@ -340,6 +340,32 @@
   bottom: 0;
 }
 
+/* Kafelek jako "zablokowany" */
+.speaker-card.locked {
+  position: relative;
+  filter: grayscale(100%) brightness(0.4);
+  overflow: hidden;
+  pointer-events: none; /* nieklikalne */
+}
+
+/* Przykrycie napisem */
+.speaker-card.locked::after {
+  content: "JUŻ WKRÓTCE";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
 
   </style>
 </head>
@@ -524,50 +550,41 @@
     Poznaj naszych prelegentów
   </h2>
   <div class="speakers-grid">
-    <div class="speaker-card">
-      <img src="maciek.png" alt="Maciek Kowalczyk">
+    <div class="speaker-card locked">
+      <img src="png/hidden.png" alt="Maciek Kowalczyk">
       <div class="info">
-        <img src="microphone.svg" alt="mikrofon" class="icon-svg inline-block" />
         <div>
-          <p class="name">Maciek Kowalczyk</p>
-          <p class="title">Założyciel "Up&Go"</p>
+          <p class="name">Szczegóły niebawem</p>
         </div>
       </div>
     </div>
-    <div class="speaker-card">
-      <img src="ola.png" alt="Justyna Boś">
+    <div class="speaker-card locked">
+      <img src="png/hidden.png" alt="Justyna Boś">
       <div class="info">
-        <img src="microphone.svg" alt="mikrofon" class="icon-svg inline-block" />
         <div>
-          <p class="name">Justyna Boś</p>
-          <p class="title">SM Manager w milanki</p>
+          <p class="name">Szczegóły niebawem</p>
         </div>
       </div>
     </div>
-    <div class="speaker-card">
-      <img src="kamil.png" alt="Kacper Bednarz">
+    <div class="speaker-card locked">
+      <img src="png/hidden.png" alt="Kacper Bednarz">
       <div class="info">
-        <img src="microphone.svg" alt="mikrofon" class="icon-svg inline-block" />
         <div>
-          <p class="name">Kacper Bednarz</p>
-          <p class="title">Senior Partner w AJBC</p>
+          <p class="name">Szczegóły niebawem</p>
         </div>
       </div>
     </div>
-    <div class="speaker-card">
-      <img src="ania.png" alt="Jolanta Bydryk">
+    <div class="speaker-card locked">
+      <img src="png/hidden.png" alt="Jolanta Bydryk">
       <div class="info">
-        <img src="microphone.svg" alt="mikrofon" class="icon-svg inline-block" />
         <div>
-          <p class="name">Jolanta Bydryk</p>
-          <p class="title">Założycielka "Up&Go"</p>
+          <p class="name">Szczegóły niebawem</p>
         </div>
       </div>
     </div>
   </div>
   <button class="buy-ticket">KUP BILET</button>
 </section>
-
 
 
 
