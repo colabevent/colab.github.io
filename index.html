@@ -339,14 +339,49 @@
 
 
 .footer {
-  width: 100%;
-  text-align: center;
-  padding: 15px 10px;
+	font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
   background-color: #071e26;
-  font-size: 14px;
-  color: #555;
-  position: relative; /* lub fixed, jeśli chcesz zawsze na dole okna */
-  bottom: 0;
+  color: #aaa;
+}
+
+.footer p {
+	padding-left: 1em;
+  margin: 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1em;
+  padding-right: 1em;
+}
+
+.social-icon {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: text-shadow 0.3s ease;
+  text-decoration: none;
+  font-size: 24px; /* dotyczy font-awesome */
+}
+
+.social-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Efekt świetlistego podświetlenia na hover */
+.social-icon:hover {
+  text-shadow:
+    0 0 6px white,
+    0 0 12px white,
+    0 0 18px white;
+  color: white; /* zawsze białe */
 }
 
 /* Kafelek jako "zablokowany" */
@@ -671,5 +706,19 @@
   <p>
     <a href="polityka-prywatnosci.html" target="_blank" rel="noopener noreferrer">Polityka prywatności</a> | © COLAB 2025
   </p>
+  <div class="social-icons">
+    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon fb">
+      <i class="fa-brands fa-facebook" style="font-size:24px;"></i>
+    </a>
+    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon insta">
+      <i class="fa-brands fa-instagram" style="font-size:24px;"></i>    
+	  </a>
+    <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="social-icon tiktok">
+      <i class="fa-brands fa-tiktok" style="font-size:24px;"></i>
+    </a>
+    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon linkedin">
+      <i class="fa-brands fa-linkedin" style="font-size:24px;"></i>
+    </a>
+  </div>
 </footer>
 </html>
