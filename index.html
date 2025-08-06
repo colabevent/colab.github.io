@@ -411,6 +411,210 @@
 }
 
 
+.footer {
+	font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  background-color: #071e26;
+  color: #aaa;
+}
+
+.footer p {
+	padding-left: 1em;
+  margin: 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1em;
+  padding-right: 1em;
+}
+
+.social-icon {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: text-shadow 0.3s ease;
+  text-decoration: none;
+  font-size: 24px; /* dotyczy font-awesome */
+}
+
+.social-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Efekt świetlistego podświetlenia na hover */
+.social-icon:hover {
+  text-shadow:
+    0 0 6px white,
+    0 0 12px white,
+    0 0 18px white;
+  color: white; /* zawsze białe */
+}
+
+
+/* Kafelek jako "zablokowany" */
+.speaker-card.locked {
+  position: relative;
+  filter: grayscale(100%) brightness(0.4);
+  overflow: hidden;
+  pointer-events: none; /* nieklikalne */
+}
+
+/* Przykrycie napisem */
+.speaker-card.locked::after {
+  content: "JUŻ WKRÓTCE";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+  .neon-card {
+    background: #072733;
+    border-radius: 1rem;
+    padding: 1.75rem 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+.neon-card-gold {
+  background: #072733;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.75rem 1.25rem;
+  position: relative;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.neon-card-gold::before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 40px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #facc15, #d9b100);
+  box-shadow: 0 0 12px #facc15;
+}
+
+.neon-card-gold:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 2px #facc15, 0 0 20px rgba(250, 204, 21, 0.4);
+}
+
+.neon-card,
+.neon-card-gold {
+  width: 100%;
+  max-width: 300px;
+}
+
+#content-networking,
+#content-wystepy {
+  display: none;
+}
+
+#content-networking.active {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+#content-wystepy.active {
+  display: grid;
+  grid-template-columns: repeat(2, 300px);
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+  .neon-card::before {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 40px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #72efff, #14b8ff);
+    box-shadow: 0 0 12px #38bdf8;
+  }
+  
+  
+
+  .neon-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 0 2px #38bdf8, 0 0 20px rgba(56, 189, 248, 0.4);
+  }
+
+  .card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-left: 2rem;
+  }
+
+  .card-desc {
+    font-size: 0.875rem;
+    color: #ccecf5;
+    margin-top: 1rem;
+    margin-left: 2rem;
+  }
+
+  .tab-btn {
+    position: relative;
+  }
+
+  .tab-btn:hover {
+    color: #facc15;
+  }
+
+  .tab-btn.active {
+    font-weight: 900;
+    color: #38bdf8;
+  }
+
+.tab-btn {
+  position: relative;
+  background-color: transparent; /* Dodanie przezroczystego tła */
+  padding: 0.5rem 1rem; /* Dostosowanie paddingu do podświetlenia */
+}
+
+.tab-btn:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white; /* Białe podświetlenie na hoverze */
+  z-index: -1;
+  border-radius: 0.5rem; /* Zaokrąglenie krawędzi */
+}
+
   </style>
 </head>
 <body>
@@ -631,6 +835,59 @@
 </section>
 
 
+<section id="networking-wystepy" class="text-white">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <div class="relative inline-block">
+      <div class="flex justify-center gap-12 text-3xl font-extrabold uppercase">
+        <button id="btn-networking" class="tab-btn relative text-white hover:text-yellow-400 transition duration-300">NETWORKING</button>
+        <button id="btn-wystepy" class="tab-btn relative text-white hover:text-yellow-400 transition duration-300">WYSTĘPY</button>
+      </div>
+      <div id="tab-indicator" class="absolute bottom-0 h-1 w-32 bg-yellow-400 transition-all duration-300 ease-in-out rounded-full"></div>
+    </div>
+
+    <div id="content-networking">
+      <div class="neon-card">
+        <div class="card-title">Business Speed Dating</div>
+        <div class="card-desc">Poznaj maks ludzi w minimalnym czasie</div>
+      </div>
+      <div class="neon-card">
+        <div class="card-title">Icebreaking</div>
+        <div class="card-desc">Rozmowy na start bez ciśnienia</div>
+      </div>
+      <div class="neon-card">
+        <div class="card-title">Strefa Networkingowa</div>
+        <div class="card-desc">Strefa luzu, chill i kontaktów</div>
+      </div>
+      <div class="neon-card">
+        <div class="card-title">Brainstorming</div>
+        <div class="card-desc">Pomysły lecą z głowy</div>
+      </div>
+      <div class="neon-card-gold">
+        <div class="card-title">Mentoring Round</div>
+        <div class="card-desc">Porozmawiaj 1:1 z mentorami</div>
+      </div>
+    </div>
+
+	<div id="content-wystepy">
+      <div class="neon-card">
+        <div class="card-title">Warsztat</div>
+        <div class="card-desc">Akcja i praktyka z ekspertami</div>
+      </div>
+      <div class="neon-card">
+        <div class="card-title">Pitching Interaktywny</div>
+        <div class="card-desc">Twoja kolej by zabłysnąć</div>
+      </div>
+      <div class="neon-card">
+        <div class="card-title">Inspire</div>
+        <div class="card-desc">Krótkie historie, dużo powera</div>
+      </div>
+      <div class="neon-card">
+        <div class="card-title">Stand-up</div>
+        <div class="card-desc">Dawka śmiechu i dystansu</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
   <script>
@@ -698,6 +955,40 @@
       modal.classList.add('hidden');
     }
   });
+
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in-section').forEach(el => {
+  observer.observe(el);
+});
+
+const btnNetworking = document.getElementById('btn-networking');
+  const btnWystepy = document.getElementById('btn-wystepy');
+  const contentNetworking = document.getElementById('content-networking');
+  const contentWystepy = document.getElementById('content-wystepy');
+
+  function showTab(tab) {
+    if (tab === 'networking') {
+      contentNetworking.classList.add('active');
+      contentWystepy.classList.remove('active');
+      btnNetworking.classList.add('active');
+      btnWystepy.classList.remove('active');
+    } else {
+      contentNetworking.classList.remove('active');
+      contentWystepy.classList.add('active');
+      btnNetworking.classList.remove('active');
+      btnWystepy.classList.add('active');
+    }
+  }
+
+  // Pokaż networking jako domyślny
+  document.addEventListener('DOMContentLoaded', () => {
+    showTab('networking');
+  });
+
+  btnNetworking.addEventListener('click', () => showTab('networking'));
+  btnWystepy.addEventListener('click', () => showTab('wystepy'));
+  
   </script>
 </body>
 
