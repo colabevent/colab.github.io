@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Afacad:700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;600;700;800&display=swap" rel="stylesheet">
     <title>Community Events</title>
     
     <style>
@@ -144,9 +145,9 @@
             width: 538px;
             height: 538px;
             top: 90px;
-            left: 763px;
+            left: 900px;
             z-index: 0;
-            opacity: 0.4;
+            opacity: 0.15;
         }
 
         .hero-background-image img {
@@ -174,7 +175,6 @@
 
         .hero-title {
             font-family: 'Inter', sans-serif;
-            font-style: italic;
             font-weight: 700;
             font-size: 42px;
             color: white;
@@ -238,8 +238,8 @@
 
         .slider-item {
             flex-shrink: 0;
-            width: 400px;
-            height: 280px;
+            width: 600px;
+            height: 420px;
             border-radius: 20px;
             overflow: hidden;
             border: 1.5px solid #F6C643;
@@ -276,6 +276,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+			margin-bottom: 50px;
         }
 
        .section-badge {
@@ -284,6 +285,7 @@
     background: transparent;
     border: 2px solid #F6C643;
     border-radius: 60px;
+	margin-bottom: 50px;
 }
 
 .section-badge-text {
@@ -330,7 +332,7 @@
             overflow: hidden;
         }
 
- /* SEKCJA ZASADY FIRMY */
+/* SEKCJA ZASADY FIRMY */
 .principles-section {
     max-width: 1200px;
     margin: 0 auto;
@@ -351,13 +353,13 @@
     transition: all 0.3s ease;
 }
 
-/* ŻÓŁTY BOX - Nieparzyste (1, 3) */
+/* Żółty box 1,3 */
 .principle-item.yellow-box {
     background: transparent;
     border: 3px solid #F6C643;
 }
 
-/* CZARNY BOX - Parzyste (2, 4) */
+/* Czarny box 2,4 */
 .principle-item.black-box {
     background: rgba(6, 16, 41, 0.8);
     border: 3px solid rgba(255, 255, 255, 0.2);
@@ -376,63 +378,73 @@
     background: rgba(246, 198, 67, 0.1);
 }
 
-/* Lewa strona - dla żółtych */
+/* Lewa strona (1,3) */
 .principle-left {
     display: flex;
     align-items: center;
     gap: 30px;
 }
 
-/* Prawa strona - dla czarnych (reverse) */
+/* Prawa strona (2,4): przycisk po lewej, banner+numer po prawej */
 .principle-right {
     display: flex;
     align-items: center;
-    gap: 30px;
     width: 100%;
     justify-content: space-between;
 }
 
+/* Wrapper dla bannera i numeru (2,4) – trzyma je blisko */
+.principle-right-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;          /* odległość baner–numer; zmniejsz/zwieksz wg uznania */
+}
+
+/* NUMERY – Afacad, złoty */
 .principle-number {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Afacad', sans-serif;
     font-size: 96px;
-    font-weight: 900;
-    color: #F6C643;
+    font-weight: 800;
+    color: #FFD700;
     line-height: 1;
 }
 
-.principle-title-box {
-    display: flex;
+/* BANER – obrazek + tekst, bez dodatkowych prostokątów z CSS */
+.principle-banner {
+    position: relative;
+    display: inline-flex;
     align-items: center;
-    gap: 20px;
-    background: rgba(6, 16, 41, 0.9);
-    padding: 20px 35px;
-    border-radius: 15px;
-    border: 2px solid #F6C643;
 }
 
-/* Żółte tło dla czarnych boxów */
-.principle-title-box.yellow-bg {
-    background: #F6C643;
-    border: 2px solid #061029;
+/* PNG colab gold / colab black */
+.principle-banner-img {
+    display: block;
+    height: 80px;          /* dopasuj do rzeczywistej wysokości grafiki */
+    width: auto;
+    border-radius: 12px;   /* jeśli PNG ma swoje zaokrąglenia – usuń */
 }
 
-.principle-icon {
-    width: 50px;
-    height: 50px;
-}
-
-.principle-title {
+/* Tekst na bannerze – DM Sans */
+.principle-banner-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     font-family: 'DM Sans', sans-serif;
-    font-size: 20px;
     font-weight: 900;
-    color: #fff;
+    font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    line-height: 1.3;
+    line-height: 1.2;
+    color: #061029;      /* domyślnie ciemny */
+    text-align: center;
+    pointer-events: none;
 }
 
-.yellow-bg .principle-title {
-    color: #061029;
+/* NIEPARZYSTE (1,3): biały tekst na bannerze */
+.principle-item:nth-child(1) .principle-banner-text,
+.principle-item:nth-child(3) .principle-banner-text {
+    color: #FFFFFF;
 }
 
 .principle-toggle {
@@ -477,38 +489,45 @@
 }
 
 .principle-description {
-    padding: 0 30px 30px 150px;
+    padding: 10px 30px 30px 30px;
     color: rgba(255, 255, 255, 0.9);
     font-family: 'DM Sans', sans-serif;
     font-size: 16px;
     line-height: 1.8;
+	text-align: center;
 }
 
 .principle-description.right-align {
-    padding: 0 150px 30px 30px;
-    text-align: right;
+    padding: 10px 30px 30px 30px;
+    text-align: center;
 }
 
+/* RESPONSYWNOŚĆ */
 @media (max-width: 768px) {
     .principles-section {
         padding: 60px 20px;
     }
-    
+
     .principle-number {
         font-size: 60px;
     }
-    
-    .principle-title {
-        font-size: 16px;
-    }
-    
+
     .principle-description,
     .principle-description.right-align {
         padding: 0 20px 20px 20px;
-        text-align: left;
+        text-align: center;
+    }
+
+    .principle-right {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .principle-banner-img {
+        height: 70px;
     }
 }
-
 
         /* Target Audience Section - Dla Kogo */
         .audience-section {
@@ -692,7 +711,7 @@
 
         .quote-line {
             width: 100%;
-            max-width: 598px;
+            max-width: 630px;
             height: 2px;
             background: white;
             margin: 20px 0;
@@ -758,33 +777,41 @@
             }
         }
 
-        .about-boxes {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-            row-gap: 35px;
-        }
+.about-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    row-gap: 40px;
+    max-width: 1400px;
+}
 
-        .about-box {
-            background: transparent;
-            border: 2px solid white;
-            border-radius: 30px;
-            padding: 35px;
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            transition: transform 0.3s ease;
-        }
+.about-box {
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 30px;
+    padding: 35px;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+}
 
-        .about-box:nth-child(1),
-        .about-box:nth-child(2) {
-            transform: translateX(40px);
-        }
+/* Wiersz 1: mały, duży */
+.about-box:nth-child(1) {
+    flex: 0 0 35%;
+}
 
-        .about-box:nth-child(3),
-        .about-box:nth-child(4) {
-            transform: translateX(-40px);
-        }
+.about-box:nth-child(2) {
+    flex: 0 0 calc(65% - 30px);
+}
+
+/* Wiersz 2: duży, mały */
+.about-box:nth-child(3) {
+    flex: 0 0 calc(60% - 15px);
+}
+
+.about-box:nth-child(4) {
+    flex: 0 0 calc(40% - 15px);
+}
 
         .about-box-text {
             font-family: 'DM Sans', sans-serif;
@@ -799,6 +826,7 @@
             font-weight: 700;
         }
 		
+
 /* SEKCJA PRODUKT - FORMUŁY */
 .education-section {
     max-width: 1200px;
@@ -917,7 +945,7 @@
 .formula-name {
     font-family: 'DM Sans', sans-serif;
     font-size: 24px;
-    font-weight: 900;
+    font-weight: 300;
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -1041,6 +1069,27 @@
     }
 }
 
+/* MODAL DLA ZŁOTEJ KARTY - MENTORING ROUND */
+.formula-modal.gold-modal .formula-modal-content {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2d2000 100%);
+    border: 3px solid #FFD700;
+}
+
+.formula-modal.gold-modal .formula-modal-content h2 {
+    color: #FFD700;
+}
+
+.formula-modal.gold-modal .formula-modal-content p {
+    color: white;
+}
+
+.formula-modal.gold-modal .formula-close {
+    color: #FFD700;
+}
+
+.formula-modal.gold-modal .formula-close:hover {
+    color: #FFF6A3;
+}
 
 /* Responsive */
 @media (max-width: 1024px) {
@@ -1109,7 +1158,6 @@
         margin: 20% auto;
     }
 }
-
 /* SEKCJA EDUKACJA - AGENDA */
 .education-section {
     max-width: 1200px;
@@ -1175,19 +1223,20 @@
 
 .agenda-cards-wrapper {
     position: relative;
-    height: 500px;
+    height: 5px;
     perspective: 1000px;
+    margin-bottom: 15px; 
 }
 
 .agenda-card {
     position: absolute;
     width: 100%;
-    background: linear-gradient(135deg, #1a2844 0%, #0f1929 100%);
+    background: #172045;
     border: none;
     border-radius: 25px;
     padding: 40px;
-    transition: all 0.3s ease;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    will-change: transform, opacity;
 }
 
 .agenda-card-logo {
@@ -1200,30 +1249,8 @@
 }
 
 .agenda-card-logo img {
-    width: 200px;
+    width: 300px;
     height: auto;
-}
-
-.agenda-card-front {
-    z-index: 2;
-    transform: translateX(0);
-}
-
-.agenda-card-back {
-    z-index: 1;
-    transform: translateX(-20px);
-    opacity: 0.7;
-}
-
-.slide-out {
-    animation: slideOutRight 0.3s ease forwards;
-}
-
-@keyframes slideOutRight {
-    to {
-        transform: translateX(100%);
-        opacity: 0;
-    }
 }
 
 .agenda-card-header {
@@ -1232,16 +1259,47 @@
     margin-bottom: 20px;
 }
 
+/* bazowy styl taga */
 .agenda-tag {
     display: inline-block;
-    background: #8B4FB8;
-    color: white;
     padding: 6px 18px;
     border-radius: 20px;
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
     font-size: 13px;
     text-transform: uppercase;
+    color: #fff;
+}
+
+/* #merytoryka #84CC16 */
+.agenda-tag.tag-merytoryka {
+    background-color: #84CC16;
+}
+
+/* #kreatywność #F43F5E */
+.agenda-tag.tag-kreatywnosc {
+    background-color: #F43F5E;
+}
+
+/* #umiejętności #59B2FF */
+.agenda-tag.tag-umiejetnosci {
+    background-color: #59B2FF;
+}
+
+/* #inspiracja #F59E0B */
+.agenda-tag.tag-inspiracja {
+    background-color: #F59E0B;
+}
+
+/* #fun #E500FF */
+.agenda-tag.tag-fun {
+    background-color: #E500FF;
+}
+
+/* #twojaszansa #FFDD00 */
+.agenda-tag.tag-twojaszansa {
+    background-color: #FFDD00;
+    color: #000; /* na żółtym lepiej czarny tekst */
 }
 
 .agenda-card-title {
@@ -1292,17 +1350,6 @@
     margin: 0;
 }
 
-.agenda-right {
-    position: relative;
-}
-
-.agenda-cards-wrapper {
-    position: relative;
-    height: 500px;
-    perspective: 500px;
-    margin-bottom: -600px;
-}
-
 .agenda-stage {
     margin-top: 0;
     text-align: center;
@@ -1316,7 +1363,6 @@
     height: auto;
 }
 
-
 .agenda-arrow {
     position: absolute;
     right: -80px;
@@ -1325,14 +1371,17 @@
     border: none;
     cursor: pointer;
     transition: transform 0.3s ease;
+    z-index: 10;
 }
 
 .agenda-arrow:hover {
     transform: scale(1.1);
 }
 
-.event-button {
-    display: inline-block;
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     background: linear-gradient(90deg, #FF2D95 0%, #A845FF 100%);
     border: none;
     padding: 14px 40px;
@@ -1344,14 +1393,15 @@
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    white-space: nowrap;
+    cursor: pointer;
     transition: transform 0.3s ease;
 }
 
-.event-button:hover {
+.cta-button:hover {
     transform: translateY(-3px);
 }
 
+/* Responsive */
 @media (max-width: 1024px) {
     .agenda-container {
         grid-template-columns: 1fr;
@@ -1375,6 +1425,10 @@
     
     .agenda-card-title {
         font-size: 28px;
+    }
+    
+    .agenda-card {
+        padding: 30px;
     }
 }
 
@@ -1909,7 +1963,7 @@
     grid-template-columns: 1fr 1.2fr 1fr;
     gap: 60px;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 /* Lewa strona - Zdjęcie */
@@ -2151,6 +2205,19 @@
     width: auto;
 }
 
+.badge-mindset .section-badge-text {
+    color: white;
+}
+
+.badge-education {
+    border: 2px solid #466EFF !important;
+}
+
+.badge-education .section-badge-text {
+    color: white !important;
+}
+
+
     </style>
 </head>
 <body>
@@ -2193,7 +2260,7 @@
             <img src="7d34f958fd4fd3e6409f17119a87f6decc2f3e75.png" alt="Background decoration" />
         </div>
 
-        <div class="hero-content-box">
+        <div id="hero" class="hero-content-box">
             <h1 class="hero-title">Dom ambitnych jednostek</h1>
             <p class="hero-description">Największe eventy networkingowe dla młodych przedsiębiorców</p>
             <button class="cta-button">
@@ -2209,46 +2276,46 @@
         <div class="slider-container">
             <div class="slider-track">
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500" alt="Event 1">
+                    <img src="img1.png" alt="Event 1">
                 </div>
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=500" alt="Event 2">
+                    <img src="img2.png" alt="Event 2">
                 </div>
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=500" alt="Event 3">
+                    <img src="img3.png" alt="Event 3">
                 </div>
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=500" alt="Event 4">
+                    <img src="img1.png" alt="Event 4">
                 </div>
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=500" alt="Event 5">
+                    <img src="img2.png" alt="Event 5">
                 </div>
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=500" alt="Event 6">
+                    <img src="img3.png" alt="Event 6">
                 </div>
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500" alt="Event 1">
+                    <img src="img1.png" alt="Event 1">
                 </div>
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=500" alt="Event 2">
+                    <img src="img2.png" alt="Event 2">
                 </div>
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=500" alt="Event 3">
+                    <img src="img3.png" alt="Event 3">
                 </div>
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=500" alt="Event 4">
+                    <img src="img1.png" alt="Event 4">
                 </div>
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=500" alt="Event 5">
+                    <img src="img2.png" alt="Event 5">
                 </div>
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=500" alt="Event 6">
+                    <img src="img3.png" alt="Event 6">
                 </div>
             </div>
         </div>
     </div>
 
-    <section class="partners-section">
+    <section id="partnerzy" class="partners-section">
         <div class="section-badge">
             <span class="section-badge-text">PARTNERZY</span>
         </div>
@@ -2259,7 +2326,7 @@
         </div>
     </section>
 
-    <section class="about-section">
+    <section id="onas" class="about-section">
         <div class="about-header">
             <div class="section-badge badge-filled">
                 <span class="section-badge-text">O NAS</span>
@@ -2292,10 +2359,10 @@
                     <div class="about-box">
                         <p class="about-box-text">Młodzi przedsiębiorcy muszą trzymać się razem i skupić się na pomaganiu sobie nawzajem w <span class="highlight">realizowaniu swoich marzeń</span></p>
                     </div>
-                    <div class="about-box">
+                    <div class="about-box square-box">
                         <p class="about-box-text">Skończyły się czasy nudnych konferencji i pora na <span class="highlight">nową energię w eventach biznesowych</span></p>
                     </div>
-                    <div class="about-box">
+                    <div class="about-box square-box">
                         <p class="about-box-text">Wierzymy, że siła twórcza rodzi się przy <span class="highlight">zderzeniu przedsiębiorczych umysłów</span></p>
                     </div>
                     <div class="about-box">
@@ -2306,14 +2373,135 @@
         </div>
     </section>
 
+<!-- SEKCJA ZASADY FIRMY -->
+<section id="zasady" class="principles-section">
+    <div class="about-header">
+        <div class="section-badge badge-filled">
+            <span class="section-badge-text">O NAS</span>
+        </div>
+        <div class="section-badge badge-outline">
+            <span class="section-badge-text">ZASADY FIRMY</span>
+        </div>
+    </div>
+
+    <div class="principles-list">
+        <!-- ZASADA 1 -->
+        <div class="principle-item yellow-box">
+            <div class="principle-header" onclick="togglePrinciple(1)">
+                <div class="principle-left">
+                    <span class="principle-number">1</span>
+
+                    <div class="principle-banner">
+                        <img src="colab gold.png" alt="Colab Gold" class="principle-banner-img">
+                        <span class="principle-banner-text">
+                            EVENTY JAKO<br>LIFESTYLE
+                        </span>
+                    </div>
+                </div>
+
+                <button class="principle-toggle">
+                    <span> ROZWIŃ ZASADĘ</span>
+                    <span class="arrow-icon">↓</span>
+                </button>
+            </div>
+            <div class="principle-content">
+                <p class="principle-description">
+                    Naszym celem jest to, aby wydarzenia pod marką Colab stały się integralną częścią Twojego kalendarza. Organizacja i nasza praca jest całkowicie na to nastawiona.
+                </p>
+            </div>
+        </div>
+
+        <!-- ZASADA 2 -->
+        <div class="principle-item black-box">
+            <div class="principle-header" onclick="togglePrinciple(2)">
+                <div class="principle-right">
+                    <button class="principle-toggle">
+                        <span> ROZWIŃ ZASADĘ</span>
+                        <span class="arrow-icon">↓</span>
+                    </button>
+
+                    <!-- banner + numer we wspólnym wrapperze -->
+                    <div class="principle-right-inner">
+                        <div class="principle-banner">
+                            <img src="colab black.png" alt="Colab Black" class="principle-banner-img">
+                            <span class="principle-banner-text">
+                                NETWORKING<br>FIRST
+                            </span>
+                        </div>
+                        <span class="principle-number">2</span>
+                    </div>
+                </div>
+            </div>
+            <div class="principle-content">
+                <p class="principle-description right-align">
+                    W Colab najważniejsze są relacje. Pod zasadę Networking First tworzymy Formuły Networkingowe obecne na każdym wydarzeniu, aby pomóc Ci łatwo nawiązać silne relacje.
+                </p>
+            </div>
+        </div>
+
+        <!-- ZASADA 3 -->
+        <div class="principle-item yellow-box">
+            <div class="principle-header" onclick="togglePrinciple(3)">
+                <div class="principle-left">
+                    <span class="principle-number">3</span>
+
+                    <div class="principle-banner">
+                        <img src="colab gold.png" alt="Colab Gold" class="principle-banner-img">
+                        <span class="principle-banner-text">
+                            NEXT LEVEL<br>AGENDA
+                        </span>
+                    </div>
+                </div>
+
+                <button class="principle-toggle">
+                    <span> ROZWIŃ ZASADĘ</span>
+                    <span class="arrow-icon">↓</span>
+                </button>
+            </div>
+            <div class="principle-content">
+                <p class="principle-description">
+                    W naszym przekonaniu skończyły się czasy nudnych prelekcji. Tego samego dowiesz się na YouTube. Nasza agenda jest dynamiczna, różnorodna, a jej układ sprzyja budowaniu dobrej atmosfery na evencie.
+                </p>
+            </div>
+        </div>
+
+        <!-- ZASADA 4 -->
+        <div class="principle-item black-box">
+            <div class="principle-header" onclick="togglePrinciple(4)">
+                <div class="principle-right">
+                    <button class="principle-toggle">
+                        <span> ROZWIŃ ZASADĘ</span>
+                        <span class="arrow-icon">↓</span>
+                    </button>
+
+                    <div class="principle-right-inner">
+                        <div class="principle-banner">
+                            <img src="colab black.png" alt="Colab Black" class="principle-banner-img">
+                            <span class="principle-banner-text">
+                                SILNE<br>COMMUNITY
+                            </span>
+                        </div>
+                        <span class="principle-number">4</span>
+                    </div>
+                </div>
+            </div>
+            <div class="principle-content">
+                <p class="principle-description right-align">
+                    Do świata Colab zapraszamy ambitne jednostki gotowe wspierać innych swoją wiedzą, doświadczeniem i kontaktami. Budujemy społeczność nastawioną na samorozwój oraz otwartość międzyludzką, bez ograniczeń branżowych.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <!-- Target Audience Section - Dla Kogo -->
-<section class="audience-section">
+<section id="dla-kogo" class="audience-section">
     <div class="audience-header">
         <div class="section-badge badge-filled">
             <span class="section-badge-text">DLA KOGO?</span>
         </div>
-        <div class="section-badge badge-outline-gradient">
+        <div class="section-badge badge-mindset">
             <span class="section-badge-text">PRZEDSIĘBIORCZE MINDSETY</span>
         </div>
     </div>
@@ -2349,108 +2537,6 @@
                 <h3 class="audience-card-title">"Chcę czerpać <span class="highlight">wiedzę</span> od najlepszych"</h3>
             </div>
             <p class="audience-card-desc">W networkingu skupiamy się na dawaniu, nie tylko braniu od innych. Tego samego oczekujemy od Ciebie.</p>
-        </div>
-    </div>
-</section>
-
-
- <!-- SEKCJA ZASADY FIRMY -->
-<section id="zasady" class="principles-section">
-    <div class="section-header">
-        <div class="section-tags">
-            <div class="badge-outline-gradient">
-                <span class="section-badge-text">ZASADY FIRMY</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="principles-list">
-        <!-- Zasada 1 - ŻÓŁTY BOX -->
-        <div class="principle-item yellow-box">
-            <div class="principle-header" onclick="togglePrinciple(1)">
-                <div class="principle-left">
-                    <span class="principle-number">1</span>
-                    <div class="principle-title-box">
-                        <img src="yellow_outline.png" alt="Icon" class="principle-icon">
-                        <span class="principle-title">EVENTY JAKO<br>LIFESTYLE</span>
-                    </div>
-                </div>
-                <button class="principle-toggle">
-                    <span> ROZWIŃ ZASADĘ</span>
-                    <span class="arrow-icon">↓</span>
-                </button>
-            </div>
-            <div class="principle-content">
-                <p class="principle-description">
-                    Naszym celem jest to, aby wydarzenia pod marką Colab stały się integralną częścią Twojego kalendarza. Organizacja i nasza praca jest całkowicie na to nastawiona.
-                </p>
-            </div>
-        </div>
-
-        <!-- Zasada 2 - CZARNY BOX -->
-        <div class="principle-item black-box">
-            <div class="principle-header" onclick="togglePrinciple(2)">
-                <div class="principle-right">
-                    <button class="principle-toggle">
-                        <span> ROZWIŃ ZASADĘ</span>
-                        <span class="arrow-icon">↓</span>
-                    </button>
-                    <div class="principle-title-box yellow-bg">
-                        <img src="black_outline.png" alt="Icon" class="principle-icon">
-                        <span class="principle-title">NETWORKING<br>FIRST</span>
-                    </div>
-                    <span class="principle-number">2</span>
-                </div>
-            </div>
-            <div class="principle-content">
-                <p class="principle-description right-align">
-                    W Colab najważniejsze są relacje. Pod zasadę Networking First tworzymy Formuły Networkingowe obecne na każdym wydarzeniu, aby pomóc Ci łatwo nawiązyć silne relacje.
-                </p>
-            </div>
-        </div>
-
-        <!-- Zasada 3 - ŻÓŁTY BOX -->
-        <div class="principle-item yellow-box">
-            <div class="principle-header" onclick="togglePrinciple(3)">
-                <div class="principle-left">
-                    <span class="principle-number">3</span>
-                    <div class="principle-title-box">
-                        <img src="yellow_outline.png" alt="Icon" class="principle-icon">
-                        <span class="principle-title">NEXT LEVEL<br>AGENDA</span>
-                    </div>
-                </div>
-                <button class="principle-toggle">
-                    <span> ROZWIŃ ZASADĘ</span>
-                    <span class="arrow-icon">↓</span>
-                </button>
-            </div>
-            <div class="principle-content">
-                <p class="principle-description">
-                    W naszym przekonaniu skończyły się czasy nudnych prelekcji. Tego samego dowiesz się na YouTube. Nasza agenda jest dynamiczna, różnorodna a jej układ sprzyja budowaniu dobrej atmosfery na evencie.
-                </p>
-            </div>
-        </div>
-
-        <!-- Zasada 4 - CZARNY BOX -->
-        <div class="principle-item black-box">
-            <div class="principle-header" onclick="togglePrinciple(4)">
-                <div class="principle-right">
-                    <button class="principle-toggle">
-                        <span> ROZWIŃ ZASADĘ</span>
-                        <span class="arrow-icon">↓</span>
-                    </button>
-                    <div class="principle-title-box yellow-bg">
-                        <img src="black_outline.png" alt="Icon" class="principle-icon">
-                        <span class="principle-title">SILNE<br>COMMUNITY</span>
-                    </div>
-                    <span class="principle-number">4</span>
-                </div>
-            </div>
-            <div class="principle-content">
-                <p class="principle-description right-align">
-                    Do świata Colab zapraszamy ambitne jednostki gotowe wspierać innych swoją wiedzą, doświadczeniem i kontaktami. Budujemy społeczność nastawioną na samorozwój oraz otwartość międzyludzką, bez ograniczeń branżowych.
-                </p>
-            </div>
         </div>
     </div>
 </section>
@@ -2575,43 +2661,125 @@
         </div>
 
         <div class="agenda-right">
-            <div class="agenda-cards-wrapper">
-                <div class="agenda-card agenda-card-back">
-                    <div class="agenda-card-logo">
-                        <img src="7d34f958fd4fd3e6409f17119a87f6decc2f3e75.png" alt="Colab Logo">
-                    </div>
-                    <div class="agenda-card-header">
-                        <span class="agenda-tag">#KREATYWNOŚĆ</span>
-                    </div>
-                    <h4 class="agenda-card-title">INTERAKTYWNY PITCH</h4>
-                    <ul class="agenda-list">
-                        <li>3 Founders prezentujących swoją firmę na biznes Twój networking</li>
-                        <li>Wczuj się w skórę VC i konstruuj pytania</li>
-                    </ul>
-                    <p class="agenda-time">Czas trwania: 30 minut</p>
-                </div>
+<div class="agenda-cards-wrapper">
+    <!-- 1. HIGH VALUE SPEECH -->
+    <div class="agenda-card">
+        <div class="agenda-card-logo">
+            <img src="7d34f958fd4fd3e6409f17119a87f6decc2f3e75.png" alt="Colab Logo">
+        </div>
+        <div class="agenda-card-header">
+            <span class="agenda-tag tag-merytoryka">#MERYTORYKA</span>
+        </div>
+        <h4 class="agenda-card-title">HIGH VALUE<br>SPEECH</h4>
+        <ul class="agenda-list">
+            <li>Kaloryczna prelekcja od specjalisty z danej dziedziny biznesowej</li>
+            <li>Szansa na przełożenie fachowej wiedzy na Twój case</li>
+        </ul>
+        <p class="agenda-time">Czas trwania: 45 minut</p>
+    </div>
 
-                <div class="agenda-card agenda-card-front">
-                    <div class="agenda-card-logo">
-                        <img src="7d34f958fd4fd3e6409f17119a87f6decc2f3e75.png" alt="Colab Logo">
-                    </div>
-                    <div class="agenda-card-header">
-                        <span class="agenda-tag">#MERYTORYKA</span>
-                    </div>
-                    <h4 class="agenda-card-title">HIGH VALUE SPEECH</h4>
-                    <ul class="agenda-list">
-                        <li>Kaloryczna prelekcja od specjalisty z danej dziedziny biznesowej</li>
-                        <li>Szansa na przełożenie fachowej wiedzy na Twój case</li>
-                    </ul>
-                    <p class="agenda-time">Czas trwania: 45 minut</p>
-                </div>
-            </div>
+    <!-- 2. “HOOK-OFF” TALENT SHOW -->
+    <div class="agenda-card">
+        <div class="agenda-card-logo">
+            <img src="7d34f958fd4fd3e6409f17119a87f6decc2f3e75.png" alt="Colab Logo">
+        </div>
+        <div class="agenda-card-header">
+            <span class="agenda-tag tag-kreatywnosc">#KREATYWNOŚĆ</span>
+        </div>
+        <h4 class="agenda-card-title">“HOOK-OFF”<br>TALENT SHOW</h4>
+        <ul class="agenda-list">
+            <li>Pojedynek 3 personal brandów w celu zdobycia i utrzymania Twojej uwagi</li>
+            <li>Ty jako jury oceń ich umiejętności, charyzmę i kreatywność</li>
+        </ul>
+        <p class="agenda-time">Czas trwania: 45 minut</p>
+    </div>
+
+    <!-- 3. WORKSHOP -->
+    <div class="agenda-card">
+        <div class="agenda-card-logo">
+            <img src="7d34f958fd4fd3e6409f17119a87f6decc2f3e75.png" alt="Colab Logo">
+        </div>
+        <div class="agenda-card-header">
+            <span class="agenda-tag tag-umiejetnosci">#UMIEJĘTNOŚCI</span>
+        </div>
+        <h4 class="agenda-card-title">WORKSHOP</h4>
+        <ul class="agenda-list">
+            <li>Warsztat z umiejętności miękkich uniwersalnych dla biznesu</li>
+            <li>Zdobądź nowe praktyczne skille biznesowe, których użyjesz w swojej branży</li>
+        </ul>
+        <p class="agenda-time">Czas trwania: 45 minut</p>
+    </div>
+
+    <!-- 4. INTERACTIVE PITCHING -->
+    <div class="agenda-card">
+        <div class="agenda-card-logo">
+            <img src="7d34f958fd4fd3e6409f17119a87f6decc2f3e75.png" alt="Colab Logo">
+        </div>
+        <div class="agenda-card-header">
+            <span class="agenda-tag tag-kreatywnosc">#KREATYWNOŚĆ</span>
+        </div>
+        <h4 class="agenda-card-title">INTERACTIVE<br>PITCHING</h4>
+        <ul class="agenda-list">
+            <li>3 Founderów prezentuje swoje wizjonerskie pomysły na biznes</li>
+            <li>Wczuj się w rolę inwestora – przekaż konstruktywny feedback występującym</li>
+        </ul>
+        <p class="agenda-time">Czas trwania: 45 minut</p>
+    </div>
+
+    <!-- 5. FIRESIDE CHAT -->
+    <div class="agenda-card">
+        <div class="agenda-card-logo">
+            <img src="7d34f958fd4fd3e6409f17119a87f6decc2f3e75.png" alt="Colab Logo">
+        </div>
+        <div class="agenda-card-header">
+            <span class="agenda-tag tag-inspiracja">#INSPIRACJA</span>
+        </div>
+        <h4 class="agenda-card-title">FIRESIDE CHAT</h4>
+        <ul class="agenda-list">
+            <li>Poruszająca rozmowa prowadzącego z doświadczonym przedsiębiorcą</li>
+            <li>Ujrzyj, co tak naprawdę kryje się za spektakularnym sukcesem</li>
+        </ul>
+        <p class="agenda-time">Czas trwania: 45 minut</p>
+    </div>
+
+    <!-- 6. “MÓJ KOLEGA BIZNESMAN” -->
+    <div class="agenda-card">
+        <div class="agenda-card-logo">
+            <img src="7d34f958fd4fd3e6409f17119a87f6decc2f3e75.png" alt="Colab Logo">
+        </div>
+        <div class="agenda-card-header">
+            <span class="agenda-tag tag-fun">#FUN</span>
+        </div>
+        <h4 class="agenda-card-title">“MÓJ KOLEGA<br>BIZNESMAN”</h4>
+        <ul class="agenda-list">
+            <li>Mocny stand-up o biznesie i przedsiębiorczości w krzywym zwierciadle</li>
+            <li>Czas na humor i złapanie dystansu</li>
+        </ul>
+        <p class="agenda-time">Czas trwania: 45 minut</p>
+    </div>
+
+    <!-- 7. IMPRO! OPEN MIC -->
+    <div class="agenda-card">
+        <div class="agenda-card-logo">
+            <img src="7d34f958fd4fd3e6409f17119a87f6decc2f3e75.png" alt="Colab Logo">
+        </div>
+        <div class="agenda-card-header">
+            <span class="agenda-tag tag-twojaszansa">#TWOJASZANSA</span>
+        </div>
+        <h4 class="agenda-card-title">IMPRO!<br>OPEN MIC</h4>
+        <ul class="agenda-list">
+            <li>‎ </li>
+            <li>‎ </li>
+        </ul>
+        <p class="agenda-time">Czas trwania: 45 minut</p>
+    </div>
+</div>
 
             <div class="agenda-stage">
                 <img src="colab_stage_no_outline 1.png" alt="Stage">
             </div>
 
-            <button class="agenda-arrow" onclick="nextAgendaCard()">
+            <button class="agenda-arrow">
                 <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
                     <path d="M20 30 L40 30 M40 30 L30 20 M40 30 L30 40" stroke="#F6C643" stroke-width="3" stroke-linecap="round"/>
                 </svg>
@@ -2628,6 +2796,7 @@
         </button>
     </div>
 </section>
+
 
 <!-- SEKCJA EXTRA VALUE -->
 <section class="extra-section">
@@ -2708,7 +2877,12 @@
     </div>
 
     <div style="text-align: center; margin-top: 60px;">
-        <a href="event.html" class="event-button">SPRAWDŹ EVENT</a>
+        <button class="cta-button">
+            <span>SPRAWDŹ EVENT</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M7 3L14 10L7 17" stroke="white" stroke-width="2"/>
+            </svg>
+        </button>
     </div>
 </section>
 
@@ -2716,7 +2890,7 @@
 <section id="edukacja" class="edukacja-final-section">
     <div class="section-header">
         <div class="section-tags">
-            <div class="badge-outline-gradient">
+            <div class="section-badge badge-education">
                 <span class="section-badge-text">EDUKACJA</span>
             </div>
         </div>
@@ -2803,6 +2977,49 @@
 
 
 <script>
+
+// Dane formuł
+let currentCardIndex = 0;
+const cards = document.querySelectorAll('.agenda-card');
+const totalCards = cards.length;
+
+function updateCardPositions() {
+    cards.forEach((card, index) => {
+        card.classList.remove('agenda-card-front', 'agenda-card-back', 'agenda-card-hidden');
+        
+        if (index === currentCardIndex) {
+            card.classList.add('agenda-card-front');
+            card.style.zIndex = 2;
+            card.style.transform = 'translateX(0)';
+            card.style.opacity = '1';
+        } else if (index === (currentCardIndex + 1) % totalCards) {
+            card.classList.add('agenda-card-back');
+            card.style.zIndex = 1;
+            card.style.transform = 'translateX(-20px)';
+            card.style.opacity = '0.7';
+        } else {
+            card.classList.add('agenda-card-hidden');
+            card.style.zIndex = 0;
+            card.style.transform = 'translateX(-40px)';
+            card.style.opacity = '0';
+        }
+    });
+}
+
+function nextAgendaCard() {
+    const currentCard = cards[currentCardIndex];
+    currentCard.classList.add('slide-out');
+    
+    setTimeout(() => {
+        currentCard.classList.remove('slide-out');
+        currentCardIndex = (currentCardIndex + 1) % totalCards;
+        updateCardPositions();
+    }, 300);
+}
+
+// Inicjalizacja
+updateCardPositions();
+
 // Dane formuł
 const formulasData = {
     'general': {
@@ -2839,6 +3056,12 @@ function openFormulaModal(formulaId) {
     const modal = document.getElementById('formulaModal');
     const data = formulasData[formulaId];
     
+    modal.classList.remove('gold-modal');
+    
+    if (formulaId === 'mentoring') {
+        modal.classList.add('gold-modal');
+    }
+    
     document.getElementById('formulaModalTitle').textContent = data.title;
     document.getElementById('formulaModalDescription').textContent = data.description;
     
@@ -2852,7 +3075,6 @@ function closeFormulaModal() {
     document.body.style.overflow = 'auto';
 }
 
-// Zamknięcie modala po kliknięciu poza nim
 window.onclick = function(event) {
     const modal = document.getElementById('formulaModal');
     if (event.target === modal) {
@@ -2861,71 +3083,99 @@ window.onclick = function(event) {
 }
 
 // Agenda Slider
-let agendaItems = [
-    {
-        tag: '#KREATYWNOŚĆ',
-        title: 'INTERAKTYWNY PITCH',
-        points: [
-            '3 Founders prezentujących swoją firmę na biznes Twój networking',
-            'Wczuj się w skórę VC i konstruuj pytania'
-        ],
-        time: '30 minut'
-    },
-    {
-        tag: '#MERYTORYKA',
-        title: 'HIGH VALUE SPEECH',
-        points: [
-            'Kaloryczna prelekcja od specjalisty z danej dziedziny biznesowej',
-            'Szansa na przełożenie fachowej wiedzy na Twój case'
-        ],
-        time: '45 minut'
-    },
-    {
-        tag: '#NETWORKING',
-        title: 'PANEL DYSKUSYJNY',
-        points: [
-            'Eksperci dzielą się swoimi doświadczeniami',
-            'Możliwość zadawania pytań w czasie rzeczywistym'
-        ],
-        time: '60 minut'
+let currentIndex = 0;
+let isAnimating = false;
+
+// Czekaj aż DOM się załaduje
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.agenda-card');
+    const totalCards = cards.length;
+    const nextBtn = document.querySelector('.agenda-arrow');
+
+    console.log('Znaleziono kart:', totalCards);
+    console.log('Przycisk:', nextBtn);
+
+    // Inicjalizacja
+    function init() {
+        cards.forEach((card, i) => {
+            if (i === 0) {
+                card.style.zIndex = '10';
+                card.style.transform = 'translateX(0)';
+                card.style.opacity = '1';
+                card.style.display = 'block';
+            } else if (i === 1) {
+                card.style.zIndex = '9';
+                card.style.transform = 'translateX(-20px)';
+                card.style.opacity = '0.7';
+                card.style.display = 'block';
+            } else {
+                card.style.zIndex = '0';
+                card.style.transform = 'translateX(-40px)';
+                card.style.opacity = '0';
+                card.style.display = 'none';
+            }
+        });
     }
-];
 
-let currentAgendaIndex = 0;
+    // Funkcja zmiany karty
+    function nextCard() {
+        if (isAnimating) return;
+        
+        console.log('Kliknięto! Obecny index:', currentIndex);
+        isAnimating = true;
 
-function nextAgendaCard() {
-    const frontCard = document.querySelector('.agenda-card-front');
-    const backCard = document.querySelector('.agenda-card-back');
-    
-    // Animacja wysunięcia przedniej karty
-    frontCard.classList.add('slide-out');
-    
-    setTimeout(() => {
-        // Przednia karta staje się tylną
-        frontCard.classList.remove('agenda-card-front', 'slide-out');
-        frontCard.classList.add('agenda-card-back');
-        
-        // Tylna karta staje się przednią
-        backCard.classList.remove('agenda-card-back');
-        backCard.classList.add('agenda-card-front');
-        
-        // Aktualizuj indeks
-        currentAgendaIndex = (currentAgendaIndex + 1) % agendaItems.length;
-        const nextIndex = (currentAgendaIndex + 1) % agendaItems.length;
-        
-        // Wypełnij nową tylną kartę danymi
-        const newBackCard = document.querySelector('.agenda-card-back');
-        const nextItem = agendaItems[nextIndex];
-        
-        newBackCard.querySelector('.agenda-tag').textContent = nextItem.tag;
-        newBackCard.querySelector('.agenda-card-title').textContent = nextItem.title;
-        
-        const list = newBackCard.querySelector('.agenda-list');
-        list.innerHTML = nextItem.points.map(point => `<li>${point}</li>`).join('');
-        
-        newBackCard.querySelector('.agenda-time').textContent = `Czas trwania: ${nextItem.time}`;
-    }, 300);
-}
+        const current = cards[currentIndex];
+        const nextIndex = (currentIndex + 1) % totalCards;
+        const next = cards[nextIndex];
+        const afterNextIndex = (currentIndex + 2) % totalCards;
+        const afterNext = cards[afterNextIndex];
+
+        // Wysuń obecną kartę w prawo
+        current.style.transition = 'all 0.5s ease';
+        current.style.transform = 'translateX(150%)';
+        current.style.opacity = '0';
+
+        // Przesuń następną do przodu
+        next.style.transition = 'all 0.5s ease';
+        next.style.zIndex = '10';
+        next.style.transform = 'translateX(0)';
+        next.style.opacity = '1';
+
+        // Pokaż kolejną z tyłu
+        afterNext.style.display = 'block';
+        setTimeout(() => {
+            afterNext.style.transition = 'all 0.5s ease';
+            afterNext.style.zIndex = '9';
+            afterNext.style.transform = 'translateX(-20px)';
+            afterNext.style.opacity = '0.7';
+        }, 50);
+
+        // Po animacji
+        setTimeout(() => {
+            current.style.transition = 'none';
+            current.style.zIndex = '0';
+            current.style.transform = 'translateX(-40px)';
+            current.style.display = 'none';
+
+            currentIndex = nextIndex;
+            isAnimating = false;
+
+            console.log('Nowy index:', currentIndex);
+        }, 500);
+    }
+
+    // Dodaj event listener
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextCard);
+        console.log('Event listener dodany!');
+    } else {
+        console.error('Nie znaleziono przycisku!');
+    }
+
+    // Inicjalizacja
+    init();
+});
+
 
 // Video Player dla Edukacji
 const videos = [
@@ -2995,10 +3245,49 @@ videoElement.addEventListener('pause', () => {
 videoElement.addEventListener('click', toggleVideoPause);
 
 function togglePrinciple(id) {
-    const item = document.querySelector(`.principle-item:nth-child(${id})`);
-    item.classList.toggle('active');
+    const items = document.querySelectorAll('.principle-item');
+    items.forEach((item, index) => {
+        if (index === id - 1) {
+            item.classList.toggle('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const navButtons = document.querySelectorAll('.nav-btn');
+  const targets = {
+    'PARTNERZY': '#partnerzy',
+    'O NAS': '#onas',
+    'DLA KOGO?': '#dla-kogo',
+    'PRODUKT': '#produkt',
+    'EDUKACJA': '#edukacja'
+  };
+
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const label = btn.textContent.trim();
+      const selector = targets[label];
+      if (!selector) return;
+      const section = document.querySelector(selector);
+      if (!section) return;
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const logo = document.querySelector('.logo');
+  const heroSection = document.querySelector('#hero');
+
+  if (logo && heroSection) {
+    logo.style.cursor = 'pointer';
+    logo.addEventListener('click', () => {
+      heroSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+});
 
 </script>
 
