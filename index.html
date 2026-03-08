@@ -665,11 +665,10 @@
         }
 
         .about-content {
-            display: flex;
-            gap: 60px;
-            align-items: flex-start;
-            max-width: 1400px;
-            margin: 0 auto;
+			display: flex;
+    		justify-content: center;
+   			max-width: 1400px;
+    		margin: 0 auto;
         }
 
         .about-image-container {
@@ -702,6 +701,7 @@
 
         .about-text-container {
             flex: 1;
+			max-width: 900px;
         }
 
         .about-quote-wrapper {
@@ -1217,8 +1217,7 @@
 }
 
 .agenda-left {
-    position: sticky;
-    top: 140px;
+    position: static;
 }
 
 .agenda-subtitle {
@@ -1984,7 +1983,7 @@
 
 .edukacja-final-container {
     display: grid;
-    grid-template-columns: 1fr 1.2fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
     gap: 60px;
     align-items: center;
     margin-top: 20px;
@@ -2361,13 +2360,6 @@
         </div>
 
         <div class="about-content">
-            <div class="about-image-container">
-                <div class="about-image">
-                    <img src="EB2C9F85-F63F-49FD-8FC0-0B1CBF1AB679 1.png" alt="Team photo">
-                </div>
-                <p class="about-authors">Kacper Miłoszewski, Lider Colab Kuba<br>Ferek, Co-founder Colab Julka Adamczyk,<br>Ambasadorka marki</p>
-            </div>
-
             <div class="about-text-container">
                 <div class="about-quote-wrapper">
                     <div class="quote-line"></div>
@@ -2921,13 +2913,6 @@
     </div>
 
     <div class="edukacja-final-container">
-        <!-- Lewa strona - Zdjęcie -->
-        <div class="edukacja-left">
-            <div class="edukacja-photo">
-                <img src="kacper.png" alt="Founders">
-            </div>
-        </div>
-
         <!-- Środek - Cytat i tekst -->
         <div class="edukacja-center">
             <blockquote class="edukacja-quote">
