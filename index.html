@@ -666,9 +666,8 @@
 
         .about-content {
             display: flex;
-            gap: 60px;
-            align-items: flex-start;
-            max-width: 1400px;
+            justify-content: center;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -702,6 +701,8 @@
 
         .about-text-container {
             flex: 1;
+            max-width: 100%;
+            width: 100%;
         }
 
         .about-quote-wrapper {
@@ -1212,12 +1213,12 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 60px;
-    align-items: start;
+    align-items: stretch;
     margin-top: 60px;
 }
 
 .agenda-left {
-    position: static;
+    align-self: auto;
 }
 
 .agenda-subtitle {
@@ -2181,12 +2182,8 @@
         order: 1;
     }
     
-    .edukacja-left {
-        order: 2;
-    }
-    
     .edukacja-right {
-        order: 3;
+        order: 2;
     }
 }
 
