@@ -2082,35 +2082,37 @@
 }
 
 .iphone-mockup {
-    perspective: 1000px;
     position: relative;
+    width: 320px;
+    margin: 0 auto;
 }
 
 .iphone-frame {
-    width: 300px;
     position: relative;
+    width: 100%;
+    aspect-ratio: 400 / 812;
     margin: 0 auto;
 }
 
 .iphone-frame-image {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
+    display: block;
     z-index: 2;
     pointer-events: none;
 }
 
 .iphone-screen {
     position: absolute;
-    top: 2%;
-    left: 8%;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    border-radius: 40px;
+    top: 2.2%;
+    left: 8.2%;
+    width: 83.6%;
+    height: 95.2%;
+    border-radius: 42px;
     overflow: hidden;
+    background: #000;
     z-index: 1;
 }
 
@@ -2118,6 +2120,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 
