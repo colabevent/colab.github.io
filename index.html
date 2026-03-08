@@ -665,10 +665,11 @@
         }
 
         .about-content {
-			display: flex;
-    		justify-content: center;
-   			max-width: 1400px;
-    		margin: 0 auto;
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .about-image-container {
@@ -701,7 +702,6 @@
 
         .about-text-container {
             flex: 1;
-			max-width: 900px;
         }
 
         .about-quote-wrapper {
@@ -1217,7 +1217,8 @@
 }
 
 .agenda-left {
-    position: static;
+    position: sticky;
+    top: 140px;
 }
 
 .agenda-subtitle {
@@ -1983,9 +1984,9 @@
 
 .edukacja-final-container {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1fr 1.2fr 1fr;
     gap: 60px;
-    align-items: start;
+    align-items: center;
     margin-top: 20px;
 }
 
@@ -2082,14 +2083,13 @@
 }
 
 .iphone-mockup {
+    perspective: 1000px;
     position: relative;
-    width: 480px;
-    margin: 0 auto;
 }
 
 .iphone-frame {
+    width: 400px;
     position: relative;
-    width: 100%;
     margin: 0 auto;
 }
 
@@ -2097,33 +2097,37 @@
     width: 100%;
     height: auto;
     display: block;
-    position: relative;
-    z-index: 3;
+    position: absolute;
+    top: 158px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
     pointer-events: none;
 }
 
 .iphone-screen {
-    position: absolute;
-    top: 2.2%;
-    left: 9.5%;
-    width: 81%;
-    height: 95.5%;
-    border-radius: 46px;
-    overflow: hidden;
+    width: 95%;
+    height: 100%;
     background: #000;
+    border-radius: 47px;
+    overflow: hidden;
+    position: relative;
     z-index: 1;
+    aspect-ratio: 9 / 19.5;
+    transform: scale(0.58);
+    margin: 0 auto;
 }
 
 .iphone-video {
-    position: absolute;
-    inset: 0;
     width: 100%;
-    height: 100%;
+    height: 110%;
     object-fit: cover;
-    object-position: center;
-    display: block;
+    object-position: center 30%;
+    margin-top: -10%;
 }
-		
+
+
+
 /* Video Controls */
 .video-controls {
     position: absolute;
@@ -2211,16 +2215,12 @@
     }
     
     .iphone-mockup {
-        width: 360px;
+        width: 280px;
     }
-
+    
     .iphone-frame {
-        width: 100%;
-        height: auto;
-    }
-
-    .iphone-screen {
-        border-radius: 34px;
+        width: 280px;
+        height: 576px;
     }
 }
 	
@@ -2361,6 +2361,13 @@
         </div>
 
         <div class="about-content">
+            <div class="about-image-container">
+                <div class="about-image">
+                    <img src="EB2C9F85-F63F-49FD-8FC0-0B1CBF1AB679 1.png" alt="Team photo">
+                </div>
+                <p class="about-authors">Kacper Miłoszewski, Lider Colab Kuba<br>Ferek, Co-founder Colab Julka Adamczyk,<br>Ambasadorka marki</p>
+            </div>
+
             <div class="about-text-container">
                 <div class="about-quote-wrapper">
                     <div class="quote-line"></div>
@@ -2845,7 +2852,7 @@
                     </div>
                     <div class="company-info">
                         <p class="company-category">AI</p>
-                        <p class="company-name"> </p>
+                        <p class="company-name">imagon.ai</p>
                     </div>
                 </div>
 
@@ -2855,7 +2862,7 @@
                     </div>
                     <div class="company-info">
                         <p class="company-category">MARKETING</p>
-                        <p class="company-name"> </p>
+                        <p class="company-name">Creative Grove</p>
                     </div>
                 </div>
 
@@ -2865,7 +2872,7 @@
                     </div>
                     <div class="company-info">
                         <p class="company-category">PRAWO I PODATKI</p>
-                        <p class="company-name"> </p>
+                        <p class="company-name">Castro Souza</p>
                     </div>
                 </div>
             </div>
@@ -2914,6 +2921,13 @@
     </div>
 
     <div class="edukacja-final-container">
+        <!-- Lewa strona - Zdjęcie -->
+        <div class="edukacja-left">
+            <div class="edukacja-photo">
+                <img src="kacper.png" alt="Founders">
+            </div>
+        </div>
+
         <!-- Środek - Cytat i tekst -->
         <div class="edukacja-center">
             <blockquote class="edukacja-quote">
@@ -2950,11 +2964,12 @@
         <div class="edukacja-right">
             <div class="iphone-mockup">
                 <div class="iphone-frame">
-				    <div class="iphone-screen">
-				        <video id="eduVideo" class="iphone-video" playsinline>
-				            <source src="kacper.mp4" type="video/mp4">
-				            Twoja przeglądarka nie wspiera odtwarzania wideo.
-				        </video>
+                    <img src="phone.png" alt="iPhone Frame" class="iphone-frame-image">
+                    <div class="iphone-screen">
+                        <video id="eduVideo" class="iphone-video" playsinline>
+                            <source src="kacper.mp4" type="video/mp4">
+                            Twoja przeglądarka nie wspiera odtwarzania wideo.
+                        </video>
                         
                         <!-- Kontrolki wideo -->
                         <div class="video-controls">
