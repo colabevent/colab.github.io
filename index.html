@@ -1980,6 +1980,11 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 80px 40px;
+    scroll-margin-top: 120px;
+}
+
+.edukacja-final-section .section-header {
+    margin-bottom: 50px;
 }
 
 .edukacja-final-container {
@@ -2083,13 +2088,15 @@
 }
 
 .iphone-mockup {
-    perspective: 1000px;
     position: relative;
+    width: 380px;
+    max-width: 100%;
 }
 
 .iphone-frame {
-    width: 400px;
     position: relative;
+    width: 100%;
+    max-width: 420px;
     margin: 0 auto;
 }
 
@@ -2097,33 +2104,31 @@
     width: 100%;
     height: auto;
     display: block;
-    position: absolute;
-    top: 158px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
+    position: relative;
+    z-index: 3;
     pointer-events: none;
 }
 
 .iphone-screen {
-    width: 95%;
-    height: 100%;
-    background: #000;
-    border-radius: 47px;
+    position: absolute;
+    top: 2.2%;
+    left: 9.5%;
+    width: 81%;
+    height: 95.5%;
+    border-radius: 46px;
     overflow: hidden;
-    position: relative;
+    background: #000;
     z-index: 1;
-    aspect-ratio: 9 / 19.5;
-    transform: scale(0.58);
-    margin: 0 auto;
 }
 
 .iphone-video {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: 110%;
+    height: 100%;
     object-fit: cover;
-    object-position: center 30%;
-    margin-top: -10%;
+    object-position: center;
+    display: block;
 }
 
 
