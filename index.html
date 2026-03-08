@@ -2087,42 +2087,38 @@
 }
 
 .iphone-frame {
-    width: 400px;
+    width: 300px;
     position: relative;
     margin: 0 auto;
 }
 
 .iphone-frame-image {
-    width: 100%;
-    height: auto;
-    display: block;
     position: absolute;
-    top: 158px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
     pointer-events: none;
 }
 
 .iphone-screen {
-    width: 55%;      
+    position: absolute;
+    top: 3.5%;
+    left: 5%;
+    width: 90%;
+    height: 93%;
     background: #000;
-    border-radius: 47px;
+    border-radius: 40px;
     overflow: hidden;
-    position: relative;
     z-index: 1;
-    aspect-ratio: 9 / 19.5;
-    margin: 0 auto;
 }
 
 .iphone-video {
     width: 100%;
-    height: 110%;
+    height: 100%;
     object-fit: cover;
-    object-position: center 30%;
-    margin-top: -10%;
 }
-
 
 
 /* Video Controls */
@@ -2946,7 +2942,7 @@
         <!-- Prawa strona - iPhone z wideo -->
         <div class="edukacja-right">
             <div class="iphone-mockup">
-                <div class="iphone-frame">
+                <div class="iphone-frame" style="padding-bottom: 216%;">
                     <img src="phone.png" alt="iPhone Frame" class="iphone-frame-image">
                     <div class="iphone-screen">
                         <video id="eduVideo" class="iphone-video" playsinline>
