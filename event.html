@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,500,700&display=swap" rel="stylesheet">
+    <title>COLAB EVENT</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* ══ WRAPPER CAŁEJ STRONY — position:relative dla kół ══ */
+        .site-wrapper {
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            /* jeden spójny gradient tła bez odcięć */
+            background: linear-gradient(160deg, #000000 0%, #040d1f 30%, #071428 60%, #0D1C38 100%);
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ══════════════════════════════
+           TŁO — 4 KOŁA GRADIENTOWE
+           position: absolute — przyklejone do strony, nie do viewport
+        ══════════════════════════════ */
+
+        /* 1. Góra-lewa — złote */
+        .bg-orb-1 {
+            position: absolute;
+            top: -200px; left: -300px;
+            width: 900px; height: 900px;
+            background: radial-gradient(circle at center,
+                rgba(200,145,0,0.42) 0%, rgba(180,120,0,0.18) 45%, transparent 70%);
+            pointer-events: none; z-index: 0;
+        }
+
+        /* 2. Środek-prawa — fioletowo-różowe */
+        .bg-orb-2 {
+            position: absolute;
+            top: 800px; right: -500px;
+            width: 1000px; height: 1000px;
+            background: radial-gradient(circle at center,
+                rgba(100,40,200,0.32) 0%, rgba(160,30,120,0.16) 45%, transparent 70%);
+            pointer-events: none; z-index: 0;
+        }
+
+        /* 3. Dół-lewa przy agendzie — jasnoniebieski */
+        .bg-orb-3 {
+            position: absolute;
+            bottom: 0; left: -200px;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle at center,
+                rgba(0,180,220,0.40) 0%, rgba(0,140,180,0.18) 45%, transparent 70%);
+            pointer-events: none; z-index: 0;
+        }
+
+        /* 4. Dół-prawa przy agendzie — ciemnoniebieski */
+        .bg-orb-4 {
+            position: absolute;
+            bottom: 0; right: -200px;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle at center,
+                rgba(0,50,180,0.48) 0%, rgba(0,30,100,0.22) 45%, transparent 70%);
+            pointer-events: none; z-index: 0;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 16px; left: 26px; right: 26px; height: 68px;
+            background: #0B0F1A; border-radius: 8px; z-index: 1000;
+        }
+        .navbar::before {
+            content: ''; position: absolute; inset: 0; border-radius: 8px; padding: 1px;
+            background: linear-gradient(90deg, #FF2D95, #A845FF, #6E3AFF);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+        }
+        .navbar-content {
+            position: relative; height: 68px;
+            display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-image { height: 36px; width: auto; object-fit: contain; }
+        .logo-event {
+            font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 13px;
+            color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 2.5px;
+        }
+        .nav-btn {
+            height: 47px; padding: 0 60px; background: #F6C643; border: none;
+            color: #0B0F1A; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 16px;
+            cursor: pointer; border-radius: 6px; transition: all 0.3s ease;
+        }
+        .nav-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        .page {
+            position: relative; z-index: 1;
+            max-width: 1400px; margin: 0 auto;
+            padding: 160px 80px 80px;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .ev-block { width: 100%; }
+        .ev-title {
+            font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 74px;
+            color: #F6C643; margin-bottom: 32px; line-height: 1.1;
+        }
+        .ev-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+        .ev-label { color: #F6C643; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 22px; white-space: nowrap; }
+        .ev-val { color: rgba(255,255,255,0.9); font-family: 'Inter', sans-serif; font-size: 22px; }
+        .buy-btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-top: 32px; width: 340px; height: 52px; background: #F6C643; border: none;
+            border-radius: 6px; color: #0B0F1A; font-family: 'DM Sans', sans-serif;
+            font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.3s ease;
+        }
+        .buy-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* ══════════ NA SCENIE ══════════ */
+        .section-title {
+            font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 22px;
+            color: white; margin: 72px 0 40px; width: 100%;
+        }
+        .speakers-row {
+            display: flex; justify-content: center; gap: 40px; align-items: flex-end; width: 100%;
+        }
+        .speaker-card { display: flex; flex-direction: column; align-items: center; width: 280px; }
+        .speaker-photo {
+            width: 160px; height: 220px; object-fit: cover; object-position: top center; display: block;
+            -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+        }
+        .speaker-panel {
+            width: 100%; background: #172045;
+            border-radius: 999px 14px 14px 999px;
+            padding: 14px 20px 14px 14px;
+            display: flex; align-items: center; gap: 12px;
+            margin-top: 4px; position: relative; overflow: hidden;
+        }
+        .panel-bg-sygnet {
+            position: absolute; right: 40px; top: 50%; transform: translateY(-50%);
+            height: 90%; width: auto; opacity: 0.07; pointer-events: none;
+        }
+        .speaker-mic { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .speaker-mic img { width: 36px; height: 36px; object-fit: contain; }
+        .speaker-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; position: relative; z-index: 1; }
+        .speaker-name { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 12px; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.6px; font-style: italic; white-space: nowrap; text-align: center; }
+        .speaker-role { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 14px; color: white; text-transform: uppercase; letter-spacing: 0.3px; white-space: nowrap; text-align: center; }
+        .speaker-role .on { font-weight: 400; color: rgba(255,255,255,0.45); font-size: 12px; margin-right: 2px; }
+        .speaker-lines { display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; position: relative; z-index: 1; }
+        .speaker-lines span { display: block; width: 20px; height: 2.5px; background: #F6C643; border-radius: 2px; }
+
+        /* ══════════ MENTORING ROUND ══════════ */
+        .mentoring-section { width: 100%; margin-top: 80px; display: flex; flex-direction: column; align-items: center; }
+        .mentors-row { display: flex; justify-content: center; gap: 40px; align-items: flex-end; width: 100%; }
+        .mentoring-title { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 22px; color: white; margin-bottom: 48px; width: 100%; }
+        .mentor-card { display: flex; flex-direction: column; align-items: center; width: 280px; }
+        .mentor-photo { width: 160px; height: 220px; object-fit: cover; object-position: top center; display: block; -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%); mask-image: linear-gradient(to bottom, black 55%, transparent 100%); }
+        .mentor-panel { position: relative; overflow: hidden; border-radius: 0 20px 0 20px; background: linear-gradient(135deg, #FFF6A3 0%, #FFD700 30%, #FFB000 65%, #FFD700 100%); padding: 14px 20px; width: 280px; display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 4px; }
+        .mentor-panel-sygnet { position: absolute; right: -10px; top: 50%; transform: translateY(-50%); height: 120%; width: auto; opacity: 0.12; pointer-events: none; filter: brightness(0); }
+        .mentor-name { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 11px; color: rgba(0,0,0,0.7); text-transform: uppercase; letter-spacing: 0.6px; font-style: italic; text-align: center; position: relative; z-index: 1; }
+        .mentor-role { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 14px; color: #000; text-transform: uppercase; letter-spacing: 0.3px; text-align: center; position: relative; z-index: 1; }
+
+        @media (max-width: 960px) { .speakers-row { flex-wrap: wrap; gap: 24px; } .ev-title { font-size: 42px; } }
+        @media (max-width: 768px) { .page { padding: 110px 24px 60px; } }
+
+        /* ══════════ TALENT SHOW ══════════ */
+        .talent-section { width: 100%; margin-top: 80px; display: flex; flex-direction: column; align-items: center; }
+        .talent-title { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 22px; color: white; margin-bottom: 40px; width: 100%; }
+        .talent-row { display: flex; justify-content: center; gap: 40px; align-items: flex-end; width: 100%; }
+        .talent-card { display: flex; flex-direction: column; align-items: center; width: 280px; }
+        .talent-photo { width: 160px; height: 220px; object-fit: cover; object-position: top center; display: block; -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%); mask-image: linear-gradient(to bottom, black 55%, transparent 100%); }
+        .talent-panel { width: 100%; background: #172045; border-radius: 999px 14px 14px 999px; padding: 14px 20px 14px 14px; display: flex; align-items: center; gap: 12px; margin-top: 4px; position: relative; overflow: hidden; }
+        .talent-panel-sygnet { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); height: 90%; width: auto; opacity: 0.07; pointer-events: none; }
+        .talent-mic { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .talent-mic img { width: 36px; height: 36px; object-fit: contain; }
+        .talent-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; position: relative; z-index: 1; }
+        .talent-name { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 12px; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.6px; font-style: italic; white-space: nowrap; text-align: center; }
+        .talent-role { background: #D32F2F; border-radius: 4px; padding: 2px 10px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 11px; color: white; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; text-align: center; }
+        .talent-lines { display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; position: relative; z-index: 1; }
+        .talent-lines span { display: block; width: 20px; height: 2.5px; background: #F6C643; border-radius: 2px; }
+
+        /* ══════════ BRAINSTORMINGI ══════════ */
+        .brainstorm-section { width: 100%; margin-top: 80px; display: flex; flex-direction: column; align-items: center; }
+        .brainstorm-title { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 22px; color: white; margin-bottom: 40px; width: 100%; }
+        .brainstorm-row { display: flex; justify-content: center; gap: 40px; align-items: flex-end; width: 100%; }
+        .brainstorm-card { display: flex; flex-direction: column; align-items: center; width: 280px; }
+        .brainstorm-photo { width: 160px; height: 220px; object-fit: cover; object-position: top center; display: block; -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%); mask-image: linear-gradient(to bottom, black 55%, transparent 100%); }
+        .brainstorm-panel { width: 100%; background: linear-gradient(135deg, #0C1A35 0%, #224375 100%); border-radius: 0; padding: 14px 20px 14px 14px; display: flex; align-items: center; gap: 12px; margin-top: 4px; position: relative; overflow: hidden; }
+        .brainstorm-panel-sygnet { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); height: 90%; width: auto; opacity: 0.07; pointer-events: none; }
+        .brainstorm-mic { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .brainstorm-mic img { width: 36px; height: 36px; object-fit: contain; }
+        .brainstorm-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; position: relative; z-index: 1; }
+        .brainstorm-name { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 12px; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.6px; font-style: italic; white-space: nowrap; text-align: center; }
+        .brainstorm-role { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 13px; color: white; text-transform: uppercase; letter-spacing: 0.3px; white-space: nowrap; text-align: center; }
+        .brainstorm-lines { display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; position: relative; z-index: 1; }
+        .brainstorm-lines span { display: block; width: 20px; height: 2.5px; background: #F6C643; border-radius: 2px; }
+
+        /* ══════════════════════════════
+           AGENDA SECTION — bez własnego tła, spójne z resztą strony
+        ══════════════════════════════ */
+        .agenda-section {
+            position: relative;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            padding: 80px 80px 120px;
+            /* BRAK background — dziedziczy tło body */
+        }
+
+        .agenda-header {
+            display: flex; align-items: flex-start; justify-content: space-between;
+            margin-bottom: 48px; max-width: 900px; margin-left: auto; margin-right: auto;
+        }
+        .agenda-heading {
+            font-family: 'DM Sans', sans-serif; font-weight: 900; font-size: 96px;
+            line-height: 1; color: white; letter-spacing: -2px;
+        }
+        .agenda-pdf-btn {
+            border: 1.5px solid rgba(255,255,255,0.45); background: transparent; color: white;
+            font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 13px;
+            letter-spacing: 1px; padding: 10px 22px; cursor: pointer; border-radius: 4px;
+            transition: all 0.2s; margin-top: 20px; white-space: nowrap;
+        }
+        .agenda-pdf-btn:hover { background: rgba(255,255,255,0.08); }
+
+        .agenda-inner { max-width: 900px; margin: 0 auto; position: relative; }
+
+        .agenda-num-viewport { overflow: hidden; }
+        .agenda-num-track { display: flex; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); }
+        .agenda-num-col { flex: 0 0 280px; text-align: center; }
+        .agenda-num { font-family: 'DM Sans', sans-serif; font-weight: 900; font-size: 96px; line-height: 1; color: white; }
+
+        .agenda-divider { height: 1px; background: rgba(255,255,255,0.22); margin: 14px 0 24px; }
+
+        .agenda-viewport { overflow: hidden; width: 840px; }
+        .agenda-track { display: flex; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); align-items: flex-start; }
+        .agenda-col { flex: 0 0 280px; padding: 0 12px; display: flex; flex-direction: column; gap: 10px; }
+
+        .agenda-time { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 13px; color: rgba(255,255,255,0.6); text-align: center; }
+        .agenda-block-title { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 14px; color: white; text-align: center; margin-bottom: 6px; }
+        .agenda-block-title.yellow { color: #F6C643; }
+
+        .agenda-item { background: #172045; border-radius: 8px; padding: 11px 14px; display: flex; flex-direction: column; gap: 3px; position: relative; overflow: hidden; }
+        .agenda-item-title { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 13px; color: white; text-align: center; }
+        .agenda-item-sub { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 11.5px; color: rgba(255,255,255,0.5); font-style: italic; text-align: center; }
+        .agenda-item-quote { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 11.5px; color: rgba(255,255,255,0.6); text-align: center; margin-top: 2px; }
+        .agenda-item-speaker { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 11.5px; color: rgba(255,255,255,0.55); text-align: center; margin-top: 4px; }
+
+        .agenda-slider-wrap { position: relative; }
+        .agenda-arrow {
+            position: absolute;
+            top: 50%; transform: translateY(-50%);
+            right: -54px;
+            width: 42px; height: 42px;
+            background: rgba(255,255,255,0.07);
+            border: 1.5px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 22px; color: white;
+            transition: all 0.2s; z-index: 10; user-select: none;
+        }
+        .agenda-arrow.left { right: auto; left: -54px; }
+        .agenda-arrow:hover { background: rgba(255,255,255,0.14); }
+        .agenda-arrow.hidden { opacity: 0; pointer-events: none; }
+
+        .agenda-item.workshop { background: #171E45; }
+        .agenda-item.diamond { background: linear-gradient(135deg, #0C1A35 30%, #224375 100%); }
+
+        .agenda-item-sygnet { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); height: 120%; width: auto; opacity: 0.08; pointer-events: none; }
+        .agenda-item > *:not(.agenda-item-sygnet) { position: relative; z-index: 1; }
+
+        .agenda-mic-inline { width: 11px; height: 11px; object-fit: contain; vertical-align: middle; margin-right: 3px; opacity: 0.7; }
+
+
+        /* ══════════════════════════════
+           BILETY SECTION
+        ══════════════════════════════ */
+        .tickets-section {
+            position: relative;
+            width: 100%;
+            padding: 100px 80px 120px;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* żółta poświata z prawej */
+        .tickets-section::after {
+            content: '';
+            position: absolute;
+            right: -200px;
+            bottom: -100px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle at center,
+                rgba(220,160,0,0.55) 0%,
+                rgba(200,130,0,0.28) 35%,
+                transparent 65%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .tickets-heading {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 900;
+            font-size: 80px;
+            color: white;
+            margin-bottom: 64px;
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tickets-row {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── KARTA BILETU ── */
+        .ticket-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 280px;
+            align-self: stretch;
+        }
+
+        /* smycz — klips metalowy */
+        .ticket-clip {
+            width: 72px;
+            height: auto;
+            display: block;
+            margin-bottom: -4px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* sam bilet */
+        .ticket-body {
+            width: 100%;
+            background: #0E1B3D;
+            border-radius: 16px;
+            padding: 24px 22px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+            overflow: hidden;
+            border: 1.5px solid rgba(255,255,255,0.08);
+            flex: 1;
+        }
+
+        /* PREMIUM — złota ramka */
+        .ticket-card.premium .ticket-body {
+            border: 2px solid #F6C643;
+            box-shadow: 0 0 32px rgba(246,198,67,0.25);
+        }
+
+        /* sygnet w tle */
+        .ticket-sygnet {
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            width: 180px;
+            height: auto;
+            opacity: 0.07;
+            pointer-events: none;
+        }
+
+        .ticket-name {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 900;
+            font-size: 26px;
+            color: white;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+            position: relative; z-index: 1;
+        }
+        .ticket-card.premium .ticket-name { color: #F6C643; }
+
+        .ticket-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 400;
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 14px;
+            position: relative; z-index: 1;
+        }
+
+        .ticket-contains-label {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 12px;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 6px;
+            position: relative; z-index: 1;
+        }
+
+        .ticket-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            position: relative; z-index: 1;
+            flex: 1;
+        }
+        .ticket-features li {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 400;
+            font-size: 12.5px;
+            color: rgba(255,255,255,0.80);
+            padding-left: 14px;
+            position: relative;
+        }
+        .ticket-features li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: rgba(255,255,255,0.55);
+        }
+
+        .ticket-price {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 34px;
+            color: white;
+            text-align: center;
+            line-height: 1.1;
+            margin-bottom: 2px;
+            position: relative; z-index: 1;
+        }
+        .ticket-price-note {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 400;
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            margin-bottom: 18px;
+            position: relative; z-index: 1;
+        }
+
+        .ticket-btn {
+            width: 100%;
+            height: 44px;
+            background: #F6C643;
+            border: none;
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #0B0F1A;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative; z-index: 1;
+        }
+        .ticket-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+
+        /* ══════════════════════════════
+           RESPONSIVE — MOBILE
+        ══════════════════════════════ */
+
+        /* ── TABLET (≤ 1024px) ── */
+        @media (max-width: 1024px) {
+            .page { padding: 120px 40px 60px; }
+            .agenda-section { padding: 60px 40px 80px; }
+            .agenda-viewport { width: 100%; }
+            .agenda-inner { max-width: 100%; }
+            .agenda-header { max-width: 100%; }
+            .tickets-section { padding: 80px 40px 100px; }
+        }
+
+        /* ── MOBILE (≤ 768px) ── */
+        @media (max-width: 768px) {
+            /* NAVBAR */
+            .navbar { top: 10px; left: 12px; right: 12px; height: 56px; }
+            .navbar-content { padding: 0 16px; }
+            .logo-image { height: 28px; }
+            .nav-btn { height: 38px; padding: 0 20px; font-size: 13px; }
+
+            /* PAGE */
+            .page { padding: 100px 20px 50px; }
+
+            /* HERO */
+            .ev-title { font-size: 32px; margin-bottom: 20px; }
+            .ev-label { font-size: 15px; }
+            .ev-val { font-size: 15px; }
+            .buy-btn { width: 100%; }
+
+            /* SECTION TITLES */
+            .section-title,
+            .mentoring-title,
+            .talent-title,
+            .brainstorm-title { font-size: 18px; margin: 48px 0 28px; }
+
+            /* SPEAKERS / MENTORS / TALENT / BRAINSTORM — stack vertically */
+            .speakers-row,
+            .mentors-row,
+            .talent-row,
+            .brainstorm-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+            .speaker-card,
+            .mentor-card,
+            .talent-card,
+            .brainstorm-card { width: 100%; max-width: 320px; }
+
+            .mentor-panel,
+            .mentor-card { width: 100%; max-width: 320px; }
+
+            /* AGENDA */
+            .agenda-section { padding: 60px 20px 80px; }
+            .agenda-heading { font-size: 56px; }
+            .agenda-header { flex-direction: column; gap: 12px; margin-bottom: 32px; }
+            .agenda-pdf-btn { align-self: flex-start; }
+
+            /* Slider: show 1 column on mobile */
+            .agenda-viewport { width: 100%; overflow: hidden; }
+            .agenda-num-viewport { overflow: hidden; }
+            .agenda-col { flex: 0 0 100%; padding: 0 4px; }
+            .agenda-num-col { flex: 0 0 100%; }
+            .agenda-num { font-size: 64px; }
+
+            /* Strzałki bliżej slidera na mobile */
+            .agenda-arrow { right: -14px; width: 36px; height: 36px; font-size: 18px; }
+            .agenda-arrow.left { left: -14px; }
+
+            /* BILETY */
+            .tickets-section { padding: 60px 20px 80px; }
+            .tickets-heading { font-size: 52px; margin-bottom: 40px; }
+            .tickets-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+            .ticket-card { width: 100%; max-width: 320px; align-self: auto; }
+            .ticket-body { flex: none; }
+            .ticket-features { flex: none; }
+        }
+
+        /* ── SMALL MOBILE (≤ 480px) ── */
+        @media (max-width: 480px) {
+            .ev-title { font-size: 26px; }
+            .agenda-heading { font-size: 48px; }
+            .tickets-heading { font-size: 42px; }
+            .agenda-num { font-size: 52px; }
+            .nav-btn { padding: 0 14px; font-size: 12px; }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="site-wrapper">
+
+<!-- TŁO — 4 KOŁA (absolute = przyklejone do strony) -->
+<div class="bg-orb-1"></div>
+<div class="bg-orb-2"></div>
+<div class="bg-orb-3"></div>
+<div class="bg-orb-4"></div>
+
+<nav class="navbar">
+    <div class="navbar-content">
+        <a class="logo" href="#">
+            <img src="COLAB.png" alt="Colab Logo" class="logo-image">
+            <span class="logo-event">EVENT</span>
+        </a>
+        <a href="#bilety" class="nav-btn" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">Kup bilet</a>
+    </div>
+</nav>
+
+<div class="page">
+    <div class="ev-block">
+        <div class="ev-title">#1 Colab Business Networking Event</div>
+        <div class="ev-row"><span class="ev-label">Gdzie?</span><span class="ev-val">ADN Centrum Konferencyjne, ul. Grzybowska 56, 00-844 Warszawa</span></div>
+        <div class="ev-row"><span class="ev-label">Kiedy?</span><span class="ev-val">25.05.2025 r.</span></div>
+        <div class="ev-row"><span class="ev-label">W jakich godzinach?</span><span class="ev-val">13:00–22:00</span></div>
+        <a href="#bilety" class="buy-btn" style="text-decoration:none;">Kup bilet</a>
+    </div>
+
+    <!-- NA SCENIE -->
+    <div class="section-title">Na scenie:</div>
+    <div class="speakers-row">
+        <div class="speaker-card">
+            <img src="person.png" alt="" class="speaker-photo">
+            <div class="speaker-panel">
+                <img src="COLAB sygnet.png" alt="" class="panel-bg-sygnet">
+                <div class="speaker-mic"><img src="microphone.png" alt="mic"></div>
+                <div class="speaker-center">
+                    <div class="speaker-name">PAWEŁ BERENT</div>
+                    <div class="speaker-role"><span class="on">on </span>FIRESIDE CHAT</div>
+                </div>
+                <div class="speaker-lines"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+        <div class="speaker-card">
+            <img src="person.png" alt="" class="speaker-photo">
+            <div class="speaker-panel">
+                <img src="COLAB sygnet.png" alt="" class="panel-bg-sygnet">
+                <div class="speaker-mic"><img src="microphone.png" alt="mic"></div>
+                <div class="speaker-center">
+                    <div class="speaker-name">KUBA FEREK</div>
+                    <div class="speaker-role"><span class="on">on </span>WORKSHOP</div>
+                </div>
+                <div class="speaker-lines"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+        <div class="speaker-card">
+            <img src="person.png" alt="" class="speaker-photo">
+            <div class="speaker-panel">
+                <img src="COLAB sygnet.png" alt="" class="panel-bg-sygnet">
+                <div class="speaker-mic"><img src="microphone.png" alt="mic"></div>
+                <div class="speaker-center">
+                    <div class="speaker-name">PAWEŁ KONKIEL</div>
+                    <div class="speaker-role"><span class="on">on </span>BIZ STAND-UP</div>
+                </div>
+                <div class="speaker-lines"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MENTORING ROUND -->
+    <div class="mentoring-section">
+        <div class="mentoring-title">Mentoring Round:</div>
+        <div class="mentors-row">
+            <div class="mentor-card">
+                <img src="person.png" alt="" class="mentor-photo">
+                <div class="mentor-panel">
+                    <img src="COLAB sygnet.png" alt="" class="mentor-panel-sygnet">
+                    <div class="mentor-name">DARIUSZ MIŁEK</div>
+                    <div class="mentor-role">ZAŁOŻYCIEL SPÓŁKI CCC</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOOK-OFF TALENT SHOW -->
+    <div class="talent-section">
+        <div class="talent-title">Hook-off Talent Show:</div>
+        <div class="talent-row">
+            <div class="talent-card">
+                <img src="person.png" alt="" class="talent-photo">
+                <div class="talent-panel">
+                    <img src="COLAB sygnet.png" alt="" class="talent-panel-sygnet">
+                    <div class="talent-mic"><img src="microphone.png" alt="mic"></div>
+                    <div class="talent-center">
+                        <div class="talent-name">MICHAŁ SZERMELEK</div>
+                        <div class="talent-role">PERFORMER</div>
+                    </div>
+                    <div class="talent-lines"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+            <div class="talent-card">
+                <img src="person.png" alt="" class="talent-photo">
+                <div class="talent-panel">
+                    <img src="COLAB sygnet.png" alt="" class="talent-panel-sygnet">
+                    <div class="talent-mic"><img src="microphone.png" alt="mic"></div>
+                    <div class="talent-center">
+                        <div class="talent-name">AMELIA CZERWIK</div>
+                        <div class="talent-role">PERFORMER</div>
+                    </div>
+                    <div class="talent-lines"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+            <div class="talent-card">
+                <img src="person.png" alt="" class="talent-photo">
+                <div class="talent-panel">
+                    <img src="COLAB sygnet.png" alt="" class="talent-panel-sygnet">
+                    <div class="talent-mic"><img src="microphone.png" alt="mic"></div>
+                    <div class="talent-center">
+                        <div class="talent-name">OLIWIER UCHMAŃSKI</div>
+                        <div class="talent-role">PERFORMER</div>
+                    </div>
+                    <div class="talent-lines"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROWADZĄCY BRANSTORMINGI -->
+    <div class="brainstorm-section">
+        <div class="brainstorm-title">Prowadzący Branstormingi:</div>
+        <div class="brainstorm-row">
+            <div class="brainstorm-card">
+                <img src="person.png" alt="" class="brainstorm-photo">
+                <div class="brainstorm-panel">
+                    <img src="COLAB sygnet.png" alt="" class="brainstorm-panel-sygnet">
+                    <div class="brainstorm-mic"><img src="microphone.png" alt="mic"></div>
+                    <div class="brainstorm-center">
+                        <div class="brainstorm-name">ANGELIKA BARCZAK</div>
+                        <div class="brainstorm-role">GRUPA EARLY-STAGE</div>
+                    </div>
+                    <div class="brainstorm-lines"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+            <div class="brainstorm-card">
+                <img src="person.png" alt="" class="brainstorm-photo">
+                <div class="brainstorm-panel">
+                    <img src="COLAB sygnet.png" alt="" class="brainstorm-panel-sygnet">
+                    <div class="brainstorm-mic"><img src="microphone.png" alt="mic"></div>
+                    <div class="brainstorm-center">
+                        <div class="brainstorm-name">MIKOŁAJ WINKIEL</div>
+                        <div class="brainstorm-role">GRUPA MID-STAGE</div>
+                    </div>
+                    <div class="brainstorm-lines"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══ AGENDA ══ -->
+<div class="agenda-section">
+
+    <div class="agenda-header">
+        <div class="agenda-heading">AGENDA</div>
+        <button class="agenda-pdf-btn">POBIERZ AGENDĘ (PDF)</button>
+    </div>
+
+    <div class="agenda-inner">
+        <div class="agenda-slider-wrap">
+
+            <div class="agenda-arrow left hidden" id="arrowLeft">&#8249;</div>
+            <div class="agenda-arrow" id="arrowRight">&#8250;</div>
+
+            <!-- numery -->
+            <div class="agenda-num-viewport">
+                <div class="agenda-num-track" id="numTrack">
+                    <div class="agenda-num-col"><div class="agenda-num">01</div></div>
+                    <div class="agenda-num-col"><div class="agenda-num">02</div></div>
+                    <div class="agenda-num-col"><div class="agenda-num">03</div></div>
+                    <div class="agenda-num-col"><div class="agenda-num">04</div></div>
+                    <div class="agenda-num-col"><div class="agenda-num">05</div></div>
+                    <div class="agenda-num-col"><div class="agenda-num">06</div></div>
+                    <div class="agenda-num-col"><div class="agenda-num">07</div></div>
+                    <div class="agenda-num-col"><div class="agenda-num">08</div></div>
+                    <div class="agenda-num-col"><div class="agenda-num">09</div></div>
+                    <div class="agenda-num-col"><div class="agenda-num">10</div></div>
+                </div>
+            </div>
+
+            <div class="agenda-divider"></div>
+
+            <!-- slider -->
+            <div class="agenda-viewport">
+                <div class="agenda-track" id="agendaTrack">
+
+                    <!-- 01 -->
+                    <div class="agenda-col">
+                        <div class="agenda-time">12:00 – 13:00</div>
+                        <div class="agenda-block-title">Rejestracja</div>
+                        <div class="agenda-time" style="margin-top:8px;">13:10 – 13:15</div>
+                        <div class="agenda-block-title">Entering</div>
+                    </div>
+
+                    <!-- 02 -->
+                    <div class="agenda-col">
+                        <div class="agenda-time">13:20 – 14:25</div>
+                        <div class="agenda-block-title yellow">#1 Blok networkingowy</div>
+                        <div class="agenda-item diamond">
+                            <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
+                            <div class="agenda-item-title">Icebreaking</div>
+                            <div class="agenda-item-sub">Prowadzi: Kuba Ferek</div>
+                        </div>
+                        <div class="agenda-item diamond">
+                            <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
+                            <div class="agenda-item-title">Business Speed Dating</div>
+                            <div class="agenda-item-sub">Grupa 1</div>
+                        </div>
+                        <div class="agenda-item diamond">
+                            <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
+                            <div class="agenda-item-title">Brainstorming</div>
+                            <div class="agenda-item-sub">Grupy Early oraz Mid</div>
+                        </div>
+                    </div>
+
+                    <!-- 03 -->
+                    <div class="agenda-col">
+                        <div class="agenda-time">14:05 – 14:50</div>
+                        <div class="agenda-block-title yellow">Performance</div>
+                        <div class="agenda-item workshop">
+                            <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
+                            <div class="agenda-item-title">WORKSHOP</div>
+                            <div class="agenda-item-quote">"Negocjacje w praktyce. Od sporu do porozumienia"</div>
+                            <div class="agenda-item-speaker"><img src="microphone.png" class="agenda-mic-inline" alt="">Mówca: Kuba Ferek</div>
+                        </div>
+                    </div>
+
+                    <!-- 04 -->
+                    <div class="agenda-col">
+                        <div class="agenda-time">15:15 – 16:00</div>
+                        <div class="agenda-block-title yellow">#2 Blok networkingowy</div>
+                        <div class="agenda-item diamond">
+                            <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
+                            <div class="agenda-item-title">Business Speed Dating</div>
+                            <div class="agenda-item-sub">Grupa 2</div>
+                        </div>
+                        <div class="agenda-item diamond">
+                            <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
+                            <div class="agenda-item-title">Brainstorming</div>
+                            <div class="agenda-item-sub">Grupy Early oraz Mid</div>
+                        </div>
+                    </div>
+
+                    <!-- 05 -->
+                    <div class="agenda-col">
+                        <div class="agenda-time">16:05 – 16:50</div>
+                        <div class="agenda-block-title yellow">Performance</div>
+                        <div class="agenda-item workshop">
+                            <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
+                            <div class="agenda-item-title">FIRESIDE CHAT</div>
+                            <div class="agenda-item-speaker"><img src="microphone.png" class="agenda-mic-inline" alt="">Prowadzący: WKRÓTCE</div>
+                        </div>
+                    </div>
+
+                    <!-- 06 -->
+                    <div class="agenda-col">
+                        <div class="agenda-time">16:50 – 17:35</div>
+                        <div class="agenda-block-title yellow">#3 Blok networkingowy</div>
+                        <div class="agenda-item diamond">
+                            <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
+                            <div class="agenda-item-title">Business Speed Dating</div>
+                            <div class="agenda-item-sub">Grupa 3</div>
+                        </div>
+                        <div class="agenda-item diamond">
+                            <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
+                            <div class="agenda-item-title">Brainstorming</div>
+                            <div class="agenda-item-sub">Grupy Early</div>
+                        </div>
+                        <div class="agenda-item diamond">
+                            <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
+                            <div class="agenda-item-title">Mentoring Round</div>
+                            <div class="agenda-item-sub">Rekin i Prowadzący</div>
+                        </div>
+                    </div>
+
+                    <!-- 07 -->
+                    <div class="agenda-col">
+                        <div class="agenda-time">17:35 – 18:50</div>
+                        <div class="agenda-block-title">Lunch Break</div>
+                        <div class="agenda-block-title">OTWARCIE BARU</div>
+                    </div>
+
+                    <!-- 08 -->
+                    <div class="agenda-col">
+                        <div class="agenda-time">18:50 – 19:35</div>
+                        <div class="agenda-block-title yellow">Performance</div>
+                        <div class="agenda-item workshop">
+                            <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
+                            <div class="agenda-item-title">INTERACTIVE PITCHING</div>
+                            <div class="agenda-item-speaker"><img src="microphone.png" class="agenda-mic-inline" alt="">Prowadzący: WKRÓTCE</div>
+                        </div>
+                    </div>
+
+                    <!-- 09 -->
+                    <div class="agenda-col">
+                        <div class="agenda-time">19:35 – 20:15</div>
+                        <div class="agenda-block-title yellow">#4 Blok networkingowy</div>
+                        <div class="agenda-item diamond">
+                            <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
+                            <div class="agenda-item-title">Business Speed Dating</div>
+                            <div class="agenda-item-sub">Grupa 4</div>
+                        </div>
+                        <div class="agenda-item diamond">
+                            <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
+                            <div class="agenda-item-title">Brainstorming</div>
+                            <div class="agenda-item-sub">Grupy Early oraz Mid</div>
+                        </div>
+                    </div>
+
+                    <!-- 10 -->
+                    <div class="agenda-col">
+                        <div class="agenda-time">20:20 – 20:45</div>
+                        <div class="agenda-block-title yellow">Performance</div>
+                        <div class="agenda-item workshop">
+                            <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
+                            <div class="agenda-item-title">STAND-UP</div>
+                            <div class="agenda-item-speaker"><img src="microphone.png" class="agenda-mic-inline" alt="">Prowadzący: WKRÓTCE</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ══ BILETY ══ -->
+<section class="tickets-section" id="bilety">
+
+    <div class="tickets-heading">BILETY</div>
+
+    <div class="tickets-row">
+
+        <!-- STANDARD -->
+        <div class="ticket-card standard">
+            <img src="metal_clip.png" alt="" class="ticket-clip">
+            <div class="ticket-body">
+                <img src="COLAB sygnet.png" alt="" class="ticket-sygnet">
+                <div class="ticket-name">STANDARD</div>
+                <div class="ticket-contains-label">Zawiera</div>
+                <ul class="ticket-features">
+                    <li>Pełny dostęp do wydarzenia (8 godzin)</li>
+                    <li>Zapis do grupy na Business Speed Dating</li>
+                    <li>Dostęp do stanowisk Business Boost</li>
+                </ul>
+                <div class="ticket-price">399 zł</div>
+                <div class="ticket-price-note">(brutto)</div>
+                <a href="#bilety" class="ticket-btn" style="text-decoration:none;display:flex;align-items:center;justify-content:center;">Kup bilet</a>
+            </div>
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="ticket-card premium">
+            <img src="metal_clip.png" alt="" class="ticket-clip">
+            <div class="ticket-body">
+                <img src="COLAB sygnet.png" alt="" class="ticket-sygnet">
+                <div class="ticket-name">PREMIUM</div>
+                <div class="ticket-contains-label">Zawiera</div>
+                <ul class="ticket-features">
+                    <li>To samo co STANDARD</li>
+                    <li>Dostęp do sesji premium MENTORING ROUND</li>
+                </ul>
+                <div class="ticket-price">1499 zł</div>
+                <div class="ticket-price-note">(brutto)</div>
+                <a href="#bilety" class="ticket-btn" style="text-decoration:none;display:flex;align-items:center;justify-content:center;">Kup bilet</a>
+            </div>
+        </div>
+
+        <!-- TANDEM -->
+        <div class="ticket-card tandem">
+            <img src="metal_clip.png" alt="" class="ticket-clip">
+            <div class="ticket-body">
+                <img src="COLAB sygnet.png" alt="" class="ticket-sygnet">
+                <div class="ticket-name">TANDEM</div>
+                <div class="ticket-subtitle">Dla 2 osób</div>
+                <div class="ticket-contains-label">Zawiera</div>
+                <ul class="ticket-features">
+                    <li>To samo co STANDARD</li>
+                </ul>
+                <div class="ticket-price">649 zł</div>
+                <div class="ticket-price-note">(brutto)</div>
+                <a href="#bilety" class="ticket-btn" style="text-decoration:none;display:flex;align-items:center;justify-content:center;">Kup bilet</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+</div><!-- /site-wrapper -->
+
+<script>
+    const TOTAL = 10;
+    let cur = 0;
+    const track = document.getElementById('agendaTrack');
+    const numTrack = document.getElementById('numTrack');
+    const aL = document.getElementById('arrowLeft');
+    const aR = document.getElementById('arrowRight');
+
+    function getParams() {
+        const mobile = window.innerWidth <= 768;
+        const colW = mobile ? document.querySelector('.agenda-col').offsetWidth : 280;
+        const visible = mobile ? 1 : 3;
+        return { colW, visible };
+    }
+
+    function slide() {
+        const { colW, visible } = getParams();
+        const off = cur * colW;
+        track.style.transform = `translateX(-${off}px)`;
+        numTrack.style.transform = `translateX(-${off}px)`;
+        aL.classList.toggle('hidden', cur === 0);
+        aR.classList.toggle('hidden', cur >= TOTAL - visible);
+    }
+
+    aR.addEventListener('click', () => {
+        const { visible } = getParams();
+        if (cur < TOTAL - visible) { cur++; slide(); }
+    });
+    aL.addEventListener('click', () => {
+        if (cur > 0) { cur--; slide(); }
+    });
+
+    window.addEventListener('resize', () => { cur = 0; slide(); });
+    slide();
+</script>
+
+</body>
+</html>
