@@ -13,7 +13,7 @@
         .site-wrapper {
             position: relative;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: clip; /* blocks ALL overflow including position:absolute leakage */
         }
 
         body {
@@ -24,6 +24,7 @@
             color: white;
             min-height: 100vh;
             overflow-x: hidden;
+            max-width: 100vw;
         }
 
         /* ══════════════════════════════
@@ -108,8 +109,10 @@
 
         .ev-block { width: 100%; }
         .ev-title {
-            font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 74px;
+            font-family: 'DM Sans', sans-serif; font-weight: 700;
+            font-size: clamp(28px, 4.5vw, 74px);
             color: #F6C643; margin-bottom: 32px; line-height: 1.1;
+            white-space: nowrap;
         }
         .ev-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
         .ev-label { color: #F6C643; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 22px; white-space: nowrap; }
@@ -144,8 +147,8 @@
             margin-top: 4px; position: relative; overflow: hidden;
         }
         .panel-bg-sygnet {
-            position: absolute; right: 40px; top: 50%; transform: translateY(-50%);
-            height: 90%; width: auto; opacity: 0.07; pointer-events: none;
+            position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+            height: 115%; width: auto; opacity: 0.10; pointer-events: none;
         }
         .speaker-mic { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .speaker-mic img { width: 36px; height: 36px; object-fit: contain; }
@@ -163,7 +166,7 @@
         .mentor-card { display: flex; flex-direction: column; align-items: center; width: 280px; }
         .mentor-photo { width: 160px; height: 220px; object-fit: cover; object-position: top center; display: block; -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%); mask-image: linear-gradient(to bottom, black 55%, transparent 100%); }
         .mentor-panel { position: relative; overflow: hidden; border-radius: 0 20px 0 20px; background: linear-gradient(135deg, #FFF6A3 0%, #FFD700 30%, #FFB000 65%, #FFD700 100%); padding: 14px 20px; width: 280px; display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 4px; }
-        .mentor-panel-sygnet { position: absolute; right: -10px; top: 50%; transform: translateY(-50%); height: 120%; width: auto; opacity: 0.12; pointer-events: none; filter: brightness(0); }
+        .mentor-panel-sygnet { position: absolute; right: -10px; top: 50%; transform: translateY(-50%); height: 140%; width: auto; opacity: 0.14; pointer-events: none; filter: brightness(0); }
         .mentor-name { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 11px; color: rgba(0,0,0,0.7); text-transform: uppercase; letter-spacing: 0.6px; font-style: italic; text-align: center; position: relative; z-index: 1; }
         .mentor-role { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 14px; color: #000; text-transform: uppercase; letter-spacing: 0.3px; text-align: center; position: relative; z-index: 1; }
 
@@ -177,7 +180,7 @@
         .talent-card { display: flex; flex-direction: column; align-items: center; width: 280px; }
         .talent-photo { width: 160px; height: 220px; object-fit: cover; object-position: top center; display: block; -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%); mask-image: linear-gradient(to bottom, black 55%, transparent 100%); }
         .talent-panel { width: 100%; background: #172045; border-radius: 999px 14px 14px 999px; padding: 14px 20px 14px 14px; display: flex; align-items: center; gap: 12px; margin-top: 4px; position: relative; overflow: hidden; }
-        .talent-panel-sygnet { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); height: 90%; width: auto; opacity: 0.07; pointer-events: none; }
+        .talent-panel-sygnet { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); height: 115%; width: auto; opacity: 0.10; pointer-events: none; }
         .talent-mic { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .talent-mic img { width: 36px; height: 36px; object-fit: contain; }
         .talent-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; position: relative; z-index: 1; }
@@ -193,7 +196,7 @@
         .brainstorm-card { display: flex; flex-direction: column; align-items: center; width: 280px; }
         .brainstorm-photo { width: 160px; height: 220px; object-fit: cover; object-position: top center; display: block; -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%); mask-image: linear-gradient(to bottom, black 55%, transparent 100%); }
         .brainstorm-panel { width: 100%; background: linear-gradient(135deg, #0C1A35 0%, #224375 100%); border-radius: 0; padding: 14px 20px 14px 14px; display: flex; align-items: center; gap: 12px; margin-top: 4px; position: relative; overflow: hidden; }
-        .brainstorm-panel-sygnet { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); height: 90%; width: auto; opacity: 0.07; pointer-events: none; }
+        .brainstorm-panel-sygnet { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); height: 115%; width: auto; opacity: 0.10; pointer-events: none; }
         .brainstorm-mic { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .brainstorm-mic img { width: 36px; height: 36px; object-fit: contain; }
         .brainstorm-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; position: relative; z-index: 1; }
@@ -213,12 +216,20 @@
             /* BRAK background — dziedziczy tło body */
         }
 
+        .agenda-top-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            width: 100%;
+        }
         .agenda-header {
-            display: flex; align-items: flex-start; justify-content: space-between;
-            margin-bottom: 48px; max-width: 900px; margin-left: auto; margin-right: auto;
+            display: flex; align-items: flex-end; justify-content: space-between;
+            margin-bottom: 48px; width: 840px; margin-left: 0; margin-right: 0;
+            position: relative;
         }
         .agenda-heading {
-            font-family: 'DM Sans', sans-serif; font-weight: 900; font-size: 96px;
+            font-family: 'DM Sans', sans-serif; font-weight: 900; font-size: 80px;
             line-height: 1; color: white; letter-spacing: -2px;
         }
         .agenda-pdf-btn {
@@ -231,14 +242,14 @@
 
         .agenda-inner { max-width: 900px; margin: 0 auto; position: relative; }
 
-        .agenda-num-viewport { overflow: hidden; }
+        .agenda-num-viewport { overflow: hidden; scrollbar-width: none; }
         .agenda-num-track { display: flex; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); }
         .agenda-num-col { flex: 0 0 280px; text-align: center; }
         .agenda-num { font-family: 'DM Sans', sans-serif; font-weight: 900; font-size: 96px; line-height: 1; color: white; }
 
         .agenda-divider { height: 1px; background: rgba(255,255,255,0.22); margin: 14px 0 24px; }
 
-        .agenda-viewport { overflow: hidden; width: 840px; }
+        .agenda-viewport { overflow: hidden; width: 840px; scrollbar-width: none; }
         .agenda-track { display: flex; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); align-items: flex-start; }
         .agenda-col { flex: 0 0 280px; padding: 0 12px; display: flex; flex-direction: column; gap: 10px; }
 
@@ -249,6 +260,18 @@
         .agenda-item { background: #172045; border-radius: 8px; padding: 11px 14px; display: flex; flex-direction: column; gap: 3px; position: relative; overflow: hidden; }
         .agenda-item-title { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 13px; color: white; text-align: center; }
         .agenda-item-sub { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 11.5px; color: rgba(255,255,255,0.5); font-style: italic; text-align: center; }
+        .agenda-item-standup-title {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 12px;
+            color: rgba(255,255,255,0.65);
+            text-align: center;
+            font-style: italic;
+            margin-top: 4px;
+            padding: 4px 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
         .agenda-item-quote { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 11.5px; color: rgba(255,255,255,0.6); text-align: center; margin-top: 2px; }
         .agenda-item-speaker { font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 11.5px; color: rgba(255,255,255,0.55); text-align: center; margin-top: 4px; }
 
@@ -272,10 +295,10 @@
         .agenda-item.workshop { background: #171E45; }
         .agenda-item.diamond { background: linear-gradient(135deg, #0C1A35 30%, #224375 100%); }
 
-        .agenda-item-sygnet { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); height: 120%; width: auto; opacity: 0.08; pointer-events: none; }
+        .agenda-item-sygnet { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); height: 160%; width: auto; opacity: 0.10; pointer-events: none; }
         .agenda-item > *:not(.agenda-item-sygnet) { position: relative; z-index: 1; }
 
-        .agenda-mic-inline { width: 11px; height: 11px; object-fit: contain; vertical-align: middle; margin-right: 3px; opacity: 0.7; }
+        .agenda-mic-inline { width: 26px; height: 26px; object-fit: contain; vertical-align: middle; margin-right: 6px; opacity: 0.90; }
 
 
         /* ══════════════════════════════
@@ -314,6 +337,7 @@
             letter-spacing: -1px;
             position: relative;
             z-index: 1;
+            text-align: left;
         }
 
         .tickets-row {
@@ -324,6 +348,12 @@
             position: relative;
             z-index: 1;
         }
+        .ticket-card {
+            padding: 0;
+            flex: 1;
+            max-width: 280px;
+        }
+
 
         /* ── KARTA BILETU ── */
         .ticket-card {
@@ -349,14 +379,16 @@
             width: 100%;
             background: #0E1B3D;
             border-radius: 16px;
-            padding: 24px 22px 22px;
+            padding: 28px 24px 24px;
             display: flex;
             flex-direction: column;
             gap: 0;
             position: relative;
             overflow: hidden;
-            border: 1.5px solid rgba(255,255,255,0.08);
+            border: none;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3);
             flex: 1;
+            min-height: 380px;
         }
 
         /* PREMIUM — złota ramka */
@@ -368,11 +400,12 @@
         /* sygnet w tle */
         .ticket-sygnet {
             position: absolute;
-            right: -20px;
-            bottom: -20px;
-            width: 180px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 85%;
             height: auto;
-            opacity: 0.07;
+            opacity: 0.09;
             pointer-events: none;
         }
 
@@ -384,8 +417,14 @@
             letter-spacing: 0.5px;
             margin-bottom: 2px;
             position: relative; z-index: 1;
+            text-align: center;
         }
-        .ticket-card.premium .ticket-name { color: #F6C643; }
+        .ticket-card.premium .ticket-name {
+            background: linear-gradient(135deg, #FFF6A3 0%, #FFD700 30%, #FFB000 65%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
         .ticket-subtitle {
             font-family: 'DM Sans', sans-serif;
@@ -394,6 +433,7 @@
             color: rgba(255,255,255,0.6);
             margin-bottom: 14px;
             position: relative; z-index: 1;
+            text-align: center;
         }
 
         .ticket-contains-label {
@@ -403,6 +443,7 @@
             color: rgba(255,255,255,0.75);
             margin-bottom: 6px;
             position: relative; z-index: 1;
+            text-align: center;
         }
 
         .ticket-features {
@@ -420,15 +461,19 @@
             font-weight: 400;
             font-size: 12.5px;
             color: rgba(255,255,255,0.80);
-            padding-left: 14px;
+            padding: 7px 0;
             position: relative;
+            text-align: center;
+            list-style: none;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .ticket-features li:last-child {
+            border-bottom: none;
         }
         .ticket-features li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: rgba(255,255,255,0.55);
+            display: none;
         }
+        
 
         .ticket-price {
             font-family: 'DM Sans', sans-serif;
@@ -529,7 +574,7 @@
 
             /* Slider: show 1 column on mobile */
             .agenda-viewport { width: 100%; overflow: hidden; }
-            .agenda-num-viewport { overflow: hidden; }
+            .agenda-num-viewport { overflow: hidden; scrollbar-width: none; }
             .agenda-col { flex: 0 0 100%; padding: 0 4px; }
             .agenda-num-col { flex: 0 0 100%; }
             .agenda-num { font-size: 64px; }
@@ -560,6 +605,226 @@
             .nav-btn { padding: 0 14px; font-size: 12px; }
         }
 
+
+        /* ══════════════════════════════
+           ANIMACJE — IntersectionObserver
+        ══════════════════════════════ */
+
+        .fade-in,
+        .slide-up {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .fade-in {
+            transform: none;
+        }
+        .fade-in.visible,
+        .slide-up.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Staggered delay dla kart w rzędzie */
+        .stagger-1 { transition-delay: 0ms; }
+        .stagger-2 { transition-delay: 100ms; }
+        .stagger-3 { transition-delay: 200ms; }
+        .stagger-4 { transition-delay: 300ms; }
+
+        /* Hover lift — karty mówców, mentorów itd. */
+        .speaker-card,
+        .mentor-card,
+        .talent-card,
+        .brainstorm-card {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .speaker-card:hover,
+        .mentor-card:hover,
+        .talent-card:hover,
+        .brainstorm-card:hover {
+            transform: translateY(-6px);
+        }
+
+        /* Hover lift — karty biletów */
+        .ticket-card {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ticket-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Hover glow na PREMIUM */
+        .ticket-card.premium {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.3s ease;
+        }
+        .ticket-card.premium:hover {
+            transform: translateY(-8px);
+            filter: drop-shadow(0 0 18px rgba(246,198,67,0.35));
+        }
+
+        /* Agenda item hover */
+        .agenda-item {
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.2s ease;
+        }
+        .agenda-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        }
+
+        /* Reduced motion — wyłącz wszystkie animacje */
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in, .slide-up {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .speaker-card:hover, .mentor-card:hover, .talent-card:hover,
+            .brainstorm-card:hover, .ticket-card:hover, .ticket-card.premium:hover { transform: none; filter: none; }
+            .agenda-item:hover { transform: none; box-shadow: none; }
+        }
+
+
+        /* ══════════════════════════════
+           STOPKA
+        ══════════════════════════════ */
+        .site-footer {
+            position: relative;
+            z-index: 1;
+            background: #060d1c;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 64px 80px 40px;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+        .footer-brand {}
+        .footer-logo-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .footer-logo-img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+        .footer-brand-name {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: white;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .footer-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.6;
+            max-width: 240px;
+        }
+        .footer-col-title {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            color: rgba(255,255,255,0.35);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+        }
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .footer-contact-icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            opacity: 0.5;
+        }
+        .footer-contact-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 13.5px;
+            color: rgba(255,255,255,0.70);
+            line-height: 1.5;
+        }
+        .footer-cta-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+        .footer-cta-text {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: white;
+            margin-bottom: 18px;
+            line-height: 1.3;
+        }
+        .footer-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 46px;
+            padding: 0 36px;
+            background: #F6C643;
+            border: none;
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #0B0F1A;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .footer-cta-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .footer-divider {
+            max-width: 1200px;
+            margin: 0 auto 28px;
+            height: 1px;
+            background: rgba(255,255,255,0.07);
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-copy {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: rgba(255,255,255,0.28);
+        }
+        .footer-event-badge {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            color: rgba(255,255,255,0.25);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .site-footer { padding: 48px 20px 32px; }
+            .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+        }
+
     </style>
 </head>
 <body>
@@ -583,7 +848,7 @@
 </nav>
 
 <div class="page">
-    <div class="ev-block">
+    <div class="ev-block slide-up stagger-1">
         <div class="ev-title">#1 Colab Business Networking Event</div>
         <div class="ev-row"><span class="ev-label">Gdzie?</span><span class="ev-val">ADN Centrum Konferencyjne, ul. Grzybowska 56, 00-844 Warszawa</span></div>
         <div class="ev-row"><span class="ev-label">Kiedy?</span><span class="ev-val">25.05.2025 r.</span></div>
@@ -592,9 +857,9 @@
     </div>
 
     <!-- NA SCENIE -->
-    <div class="section-title">Na scenie:</div>
+    <div class="section-title fade-in">Na scenie:</div>
     <div class="speakers-row">
-        <div class="speaker-card">
+        <div class="speaker-card slide-up stagger-1">
             <img src="person.png" alt="" class="speaker-photo">
             <div class="speaker-panel">
                 <img src="COLAB sygnet.png" alt="" class="panel-bg-sygnet">
@@ -606,7 +871,7 @@
                 <div class="speaker-lines"><span></span><span></span><span></span></div>
             </div>
         </div>
-        <div class="speaker-card">
+        <div class="speaker-card slide-up stagger-2">
             <img src="person.png" alt="" class="speaker-photo">
             <div class="speaker-panel">
                 <img src="COLAB sygnet.png" alt="" class="panel-bg-sygnet">
@@ -618,7 +883,7 @@
                 <div class="speaker-lines"><span></span><span></span><span></span></div>
             </div>
         </div>
-        <div class="speaker-card">
+        <div class="speaker-card slide-up stagger-3">
             <img src="person.png" alt="" class="speaker-photo">
             <div class="speaker-panel">
                 <img src="COLAB sygnet.png" alt="" class="panel-bg-sygnet">
@@ -633,10 +898,10 @@
     </div>
 
     <!-- MENTORING ROUND -->
-    <div class="mentoring-section">
-        <div class="mentoring-title">Mentoring Round:</div>
+    <div class="mentoring-section slide-up">
+        <div class="mentoring-title fade-in">Mentoring Round:</div>
         <div class="mentors-row">
-            <div class="mentor-card">
+            <div class="mentor-card slide-up stagger-1">
                 <img src="person.png" alt="" class="mentor-photo">
                 <div class="mentor-panel">
                     <img src="COLAB sygnet.png" alt="" class="mentor-panel-sygnet">
@@ -648,10 +913,10 @@
     </div>
 
     <!-- HOOK-OFF TALENT SHOW -->
-    <div class="talent-section">
-        <div class="talent-title">Hook-off Talent Show:</div>
+    <div class="talent-section slide-up">
+        <div class="talent-title fade-in">Hook-off Talent Show:</div>
         <div class="talent-row">
-            <div class="talent-card">
+            <div class="talent-card slide-up stagger-1">
                 <img src="person.png" alt="" class="talent-photo">
                 <div class="talent-panel">
                     <img src="COLAB sygnet.png" alt="" class="talent-panel-sygnet">
@@ -663,7 +928,7 @@
                     <div class="talent-lines"><span></span><span></span><span></span></div>
                 </div>
             </div>
-            <div class="talent-card">
+            <div class="talent-card slide-up stagger-2">
                 <img src="person.png" alt="" class="talent-photo">
                 <div class="talent-panel">
                     <img src="COLAB sygnet.png" alt="" class="talent-panel-sygnet">
@@ -675,7 +940,7 @@
                     <div class="talent-lines"><span></span><span></span><span></span></div>
                 </div>
             </div>
-            <div class="talent-card">
+            <div class="talent-card slide-up stagger-3">
                 <img src="person.png" alt="" class="talent-photo">
                 <div class="talent-panel">
                     <img src="COLAB sygnet.png" alt="" class="talent-panel-sygnet">
@@ -691,10 +956,10 @@
     </div>
 
     <!-- PROWADZĄCY BRANSTORMINGI -->
-    <div class="brainstorm-section">
-        <div class="brainstorm-title">Prowadzący Branstormingi:</div>
+    <div class="brainstorm-section slide-up">
+        <div class="brainstorm-title fade-in">Prowadzący Branstormingi:</div>
         <div class="brainstorm-row">
-            <div class="brainstorm-card">
+            <div class="brainstorm-card slide-up stagger-1">
                 <img src="person.png" alt="" class="brainstorm-photo">
                 <div class="brainstorm-panel">
                     <img src="COLAB sygnet.png" alt="" class="brainstorm-panel-sygnet">
@@ -706,7 +971,7 @@
                     <div class="brainstorm-lines"><span></span><span></span><span></span></div>
                 </div>
             </div>
-            <div class="brainstorm-card">
+            <div class="brainstorm-card slide-up stagger-2">
                 <img src="person.png" alt="" class="brainstorm-photo">
                 <div class="brainstorm-panel">
                     <img src="COLAB sygnet.png" alt="" class="brainstorm-panel-sygnet">
@@ -723,13 +988,12 @@
 </div>
 
 <!-- ══ AGENDA ══ -->
-<div class="agenda-section">
+<div class="agenda-section slide-up">
 
-    <div class="agenda-header">
-        <div class="agenda-heading">AGENDA</div>
+    <div class="agenda-top-row">
+        <div class="agenda-heading fade-in">AGENDA</div>
         <button class="agenda-pdf-btn">POBIERZ AGENDĘ (PDF)</button>
     </div>
-
     <div class="agenda-inner">
         <div class="agenda-slider-wrap">
 
@@ -860,7 +1124,7 @@
                         <div class="agenda-block-title yellow">Performance</div>
                         <div class="agenda-item workshop">
                             <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
-                            <div class="agenda-item-title">INTERACTIVE PITCHING</div>
+                            <div class="agenda-item-title">HOOK-OFF</div>
                             <div class="agenda-item-speaker"><img src="microphone.png" class="agenda-mic-inline" alt="">Prowadzący: WKRÓTCE</div>
                         </div>
                     </div>
@@ -888,7 +1152,8 @@
                         <div class="agenda-item workshop">
                             <img src="COLAB sygnet.png" class="agenda-item-sygnet" alt="">
                             <div class="agenda-item-title">STAND-UP</div>
-                            <div class="agenda-item-speaker"><img src="microphone.png" class="agenda-mic-inline" alt="">Prowadzący: WKRÓTCE</div>
+                            <div class="agenda-item-quote agenda-item-standup-title">„Tytuł stand-upu – WKRÓTCE"</div>
+                            <div class="agenda-item-speaker"><img src="microphone.png" class="agenda-mic-inline" alt="">Komik: WKRÓTCE</div>
                         </div>
                     </div>
 
@@ -897,18 +1162,19 @@
 
         </div>
     </div>
+    </div><!-- /agenda-inner -->
 </div>
 
 
 <!-- ══ BILETY ══ -->
-<section class="tickets-section" id="bilety">
+<section class="tickets-section slide-up" id="bilety">
 
-    <div class="tickets-heading">BILETY</div>
+    <div class="tickets-heading fade-in">BILETY</div>
 
     <div class="tickets-row">
 
         <!-- STANDARD -->
-        <div class="ticket-card standard">
+        <div class="ticket-card standard slide-up stagger-1">
             <img src="metal_clip.png" alt="" class="ticket-clip">
             <div class="ticket-body">
                 <img src="COLAB sygnet.png" alt="" class="ticket-sygnet">
@@ -926,7 +1192,7 @@
         </div>
 
         <!-- PREMIUM -->
-        <div class="ticket-card premium">
+        <div class="ticket-card premium slide-up stagger-2">
             <img src="metal_clip.png" alt="" class="ticket-clip">
             <div class="ticket-body">
                 <img src="COLAB sygnet.png" alt="" class="ticket-sygnet">
@@ -943,7 +1209,7 @@
         </div>
 
         <!-- TANDEM -->
-        <div class="ticket-card tandem">
+        <div class="ticket-card tandem slide-up stagger-3">
             <img src="metal_clip.png" alt="" class="ticket-clip">
             <div class="ticket-body">
                 <img src="COLAB sygnet.png" alt="" class="ticket-sygnet">
@@ -963,9 +1229,67 @@
 
 </section>
 
+
+<!-- ══ STOPKA ══ -->
+<footer class="site-footer slide-up">
+    <div class="footer-inner">
+
+        <!-- Branding -->
+        <div class="footer-brand">
+            <div class="footer-logo-row">
+                <img src="COLAB.png" alt="Colab Logo" class="footer-logo-img">
+            </div>
+            <p class="footer-tagline">Dom ambitnych jednostek. Największe eventy networkingowe dla młodych przedsiębiorców.</p>
+        </div>
+
+        <!-- Kontakt -->
+        <div>
+            <div class="footer-col-title">Kontakt</div>
+            <div class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span class="footer-contact-text">ul. Grzybowska 56, 00-844 Warszawa<br>ADN Centrum Konferencyjne</span>
+            </div>
+            <div class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.7 12.3 19.79 19.79 0 0 1 1.67 3.7a2 2 0 0 1 1.73-2H6.5a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.4a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span class="footer-contact-text">+48 500 123 456</span>
+            </div>
+            <div class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span class="footer-contact-text">kontakt@colabhub.pl</span>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="footer-cta-col">
+            <div class="footer-cta-text">Gotowy na networking<br>nowego poziomu?</div>
+            <a href="#bilety" class="footer-cta-btn">Kup bilet</a>
+        </div>
+
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+        <span class="footer-copy">© 2026 Colab. Wszelkie prawa zastrzeżone.</span>
+        <span class="footer-event-badge">#1 Colab Business Networking Event</span>
+    </div>
+</footer>
+
 </div><!-- /site-wrapper -->
 
 <script>
+    // ── IntersectionObserver animations ──
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-in, .slide-up').forEach(el => observer.observe(el));
+
     const TOTAL = 10;
     let cur = 0;
     const track = document.getElementById('agendaTrack');
