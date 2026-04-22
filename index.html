@@ -185,9 +185,9 @@
 
         .hero-background-image {
             position: absolute;
-            width: 538px;
-            height: 538px;
-            top: 90px;
+            width: 820px;
+            height: 820px;
+            top: -20px;
             left: 900px;
             z-index: 0;
             opacity: 0.15;
@@ -323,12 +323,14 @@
         }
 
        .section-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 12px 50px;
     background: transparent;
     border: 2px solid #F6C643;
     border-radius: 60px;
-	margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 .section-badge-text {
@@ -391,7 +393,6 @@
 
 .principle-item {
     border-radius: 25px;
-    overflow: hidden;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
 }
@@ -444,13 +445,19 @@
 }
 
 /* NUMERY – Afacad, złoty */
+
 .principle-number {
     font-family: 'Afacad', sans-serif;
-    font-size: 96px;
+    font-size: 140px;
     font-weight: 800;
-    color: #FFD700;
     line-height: 1;
+    background: linear-gradient(135deg, #FFF6A3 0%, #FFD700 30%, #FFB000 65%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
 }
+
 
 /* BANER – obrazek + tekst, bez dodatkowych prostokątów z CSS */
 .principle-banner {
@@ -1024,7 +1031,7 @@
 }
 
 .formula-footer {
-    background: linear-gradient(135deg, #FFF6A3 0%, #FFD700 50%, #FFB000 75%, #FFD700 100%);
+    background: #F6C643;
     padding: 15px;
     text-align: center;
     margin: 0;
@@ -2265,7 +2272,271 @@
 }
 
 
-    </style>
+    
+.nav-btn-partnerzy {
+    background: transparent !important;
+    border: 1px solid #F6C643 !important;
+    color: #F6C643 !important;
+}
+
+
+.nav-btn-edukacja {
+    background: transparent !important;
+    border: 1px solid #466EFF !important;
+    color: white !important;
+}
+
+
+.principle-banner-img {
+    display: block;
+    height: 80px;
+    width: auto;
+    border-radius: 0;
+    overflow: visible;
+}
+.principle-header {
+    overflow: visible;
+}
+
+
+        .site-footer {
+            position: relative;
+            z-index: 1;
+            background: #060d1c;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 64px 80px 40px;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+        .footer-brand {}
+        .footer-logo-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .footer-logo-img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+        .footer-brand-name {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: white;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .footer-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.6;
+            max-width: 240px;
+        }
+        .footer-col-title {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            color: rgba(255,255,255,0.35);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+        }
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .footer-contact-icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            opacity: 0.5;
+        }
+        .footer-contact-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 13.5px;
+            color: rgba(255,255,255,0.70);
+            line-height: 1.5;
+        }
+        .footer-cta-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+        .footer-cta-text {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: white;
+            margin-bottom: 18px;
+            line-height: 1.3;
+        }
+        .footer-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 46px;
+            padding: 0 36px;
+            background: #F6C643;
+            border: none;
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #0B0F1A;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .footer-cta-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .footer-divider {
+            max-width: 1200px;
+            margin: 0 auto 28px;
+            height: 1px;
+            background: rgba(255,255,255,0.07);
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-copy {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: rgba(255,255,255,0.28);
+        }
+        .footer-event-badge {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            color: rgba(255,255,255,0.25);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        @media (max-width: 768px) {
+            .site-footer { padding: 48px 20px 32px; }
+            .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+        }
+
+
+/* CTA nad sekcją partnerzy */
+.partners-cta-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.partners-cta-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 42px;
+    color: white;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+.cta-offer {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 40px;
+    background: #F6C643;
+    color: #0d1117;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    border-radius: 9999px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform 180ms cubic-bezier(0.16,1,0.3,1), box-shadow 180ms cubic-bezier(0.16,1,0.3,1), background 180ms cubic-bezier(0.16,1,0.3,1);
+    cursor: pointer;
+    border: none;
+}
+.cta-offer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+}
+.cta-offer:hover::before { transform: translateX(100%); }
+.cta-offer:hover {
+    background: #ffd84a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(246,198,67,0.4), 0 0 0 3px rgba(246,198,67,0.2);
+}
+.cta-offer:active { transform: translateY(0); }
+
+
+.partner-section-group {
+    width: 100%;
+    margin-bottom: 40px;
+}
+.partner-section-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #FFFFFF;
+    margin-bottom: 16px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.sponsor-main-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+.event-partners-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+.media-partners-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+.partner-card-new {
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    border-radius: 20px;
+    aspect-ratio: 3/1.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+.partner-card-new:hover {
+    border-color: rgba(246,198,67,0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.partner-card-new.sponsor-main-card {
+    aspect-ratio: 5/1.4;
+}
+@media (max-width: 768px) {
+    .event-partners-grid, .media-partners-grid { grid-template-columns: 1fr 1fr; }
+}
+
+</style>
 </head>
 <body>
     <nav class="navbar">
@@ -2274,11 +2545,11 @@
 </div>
 
         <div class="nav-buttons">
-            <button class="nav-btn">PARTNERZY</button>
+            <button class="nav-btn nav-btn-partnerzy">PARTNERZY</button>
             <button class="nav-btn">O NAS</button>
             <button class="nav-btn">DLA KOGO?</button>
             <button class="nav-btn">PRODUKT</button>
-            <button class="nav-btn">EDUKACJA</button>
+            <button class="nav-btn nav-btn-edukacja">EDUKACJA</button>
         <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
             <span></span>
             <span></span>
@@ -2287,11 +2558,11 @@
     </nav>
 
     <div class="mobile-menu" id="mobileMenu">
-        <button class="nav-btn">PARTNERZY</button>
+        <button class="nav-btn nav-btn-partnerzy">PARTNERZY</button>
         <button class="nav-btn">O NAS</button>
         <button class="nav-btn">DLA KOGO?</button>
         <button class="nav-btn">PRODUKT</button>
-        <button class="nav-btn">EDUKACJA</button>
+        <button class="nav-btn nav-btn-edukacja">EDUKACJA</button>
     </div>
 	
     <section class="hero">
@@ -2375,15 +2646,43 @@
     </div>
 
     <section id="partnerzy" class="partners-section">
-        <div class="section-badge">
-            <span class="section-badge-text">PARTNERZY</span>
+    <div class="section-badge">
+        <span class="section-badge-text">PARTNERZY</span>
+    </div>
+
+    <div class="partners-cta-header">
+        <h2 class="partners-cta-title">Chcesz zostać partnerem COLAB?</h2>
+        <a href="#" class="cta-offer">
+            Poznaj naszą ofertę dla sponsorów
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    <div class="partner-section-group">
+        <div class="partner-section-label">Sponsor Główny i Builder Hubu</div>
+        <div class="sponsor-main-grid">
+            <div class="partner-card-new sponsor-main-card"></div>
         </div>
-        <div class="partners-cards">
-            <div class="partner-card"></div>
-            <div class="partner-card"></div>
-            <div class="partner-card"></div>
+    </div>
+
+    <div class="partner-section-group">
+        <div class="partner-section-label">Partnerzy Eventu</div>
+        <div class="event-partners-grid">
+            <div class="partner-card-new"></div>
+            <div class="partner-card-new"></div>
+            <div class="partner-card-new"></div>
         </div>
-    </section>
+    </div>
+
+    <div class="partner-section-group">
+        <div class="partner-section-label">Partnerzy Medialni</div>
+        <div class="media-partners-grid">
+            <div class="partner-card-new"></div>
+            <div class="partner-card-new"></div>
+            <div class="partner-card-new"></div>
+        </div>
+    </div>
+</section>
 
     <section id="onas" class="about-section">
         <div class="about-header">
@@ -2720,7 +3019,7 @@
             <img src="COLAB sygnet.png" alt="Colab Logo">
         </div>
         <div class="agenda-card-header">
-            <span class="agenda-tag tag-merytoryka">#MERYTORYKA</span>
+            <span class="agenda-tag tag-merytoryka">MERYTORYKA</span>
         </div>
         <h4 class="agenda-card-title">HIGH VALUE<br>SPEECH</h4>
         <ul class="agenda-list">
@@ -2736,7 +3035,7 @@
             <img src="COLAB sygnet.png" alt="Colab Logo">
         </div>
         <div class="agenda-card-header">
-            <span class="agenda-tag tag-kreatywnosc">#KREATYWNOŚĆ</span>
+            <span class="agenda-tag tag-kreatywnosc">KREATYWNOŚĆ</span>
         </div>
         <h4 class="agenda-card-title">“HOOK-OFF”<br>TALENT SHOW</h4>
         <ul class="agenda-list">
@@ -2752,7 +3051,7 @@
             <img src="COLAB sygnet.png" alt="Colab Logo">
         </div>
         <div class="agenda-card-header">
-            <span class="agenda-tag tag-umiejetnosci">#UMIEJĘTNOŚCI</span>
+            <span class="agenda-tag tag-umiejetnosci">UMIEJĘTNOŚCI</span>
         </div>
         <h4 class="agenda-card-title">WORKSHOP</h4>
         <ul class="agenda-list">
@@ -2768,7 +3067,7 @@
             <img src="COLAB sygnet.png" alt="Colab Logo">
         </div>
         <div class="agenda-card-header">
-            <span class="agenda-tag tag-kreatywnosc">#KREATYWNOŚĆ</span>
+            <span class="agenda-tag tag-kreatywnosc">KREATYWNOŚĆ</span>
         </div>
         <h4 class="agenda-card-title">INTERACTIVE<br>PITCHING</h4>
         <ul class="agenda-list">
@@ -2784,7 +3083,7 @@
             <img src="COLAB sygnet.png" alt="Colab Logo">
         </div>
         <div class="agenda-card-header">
-            <span class="agenda-tag tag-inspiracja">#INSPIRACJA</span>
+            <span class="agenda-tag tag-inspiracja">INSPIRACJA</span>
         </div>
         <h4 class="agenda-card-title">FIRESIDE CHAT</h4>
         <ul class="agenda-list">
@@ -2800,7 +3099,7 @@
             <img src="COLAB sygnet.png" alt="Colab Logo">
         </div>
         <div class="agenda-card-header">
-            <span class="agenda-tag tag-fun">#FUN</span>
+            <span class="agenda-tag tag-fun">FUN</span>
         </div>
         <h4 class="agenda-card-title">“MÓJ KOLEGA<br>BIZNESMAN”</h4>
         <ul class="agenda-list">
@@ -2816,7 +3115,7 @@
             <img src="COLAB sygnet.png" alt="Colab Logo">
         </div>
         <div class="agenda-card-header">
-            <span class="agenda-tag tag-twojaszansa">#TWOJASZANSA</span>
+            <span class="agenda-tag tag-twojaszansa">TWOJASZANSA</span>
         </div>
         <h4 class="agenda-card-title">IMPRO!<br>OPEN MIC</h4>
         <ul class="agenda-list">
@@ -3344,6 +3643,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </script>
 
+
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo-row">
+                <img src="COLAB.png" alt="Colab Logo" class="footer-logo-img">
+            </div>
+            <p class="footer-tagline">Dom ambitnych jednostek. Największe eventy networkingowe dla młodych przedsiębiorców.</p>
+        </div>
+        <div>
+            <div class="footer-col-title">Kontakt</div>
+            <div class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span class="footer-contact-text">ul. Grzybowska 56, 00-844 Warszawa<br>ADN Centrum Konferencyjne</span>
+            </div>
+            <div class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.7 12.3 19.79 19.79 0 0 1 1.67 3.7a2 2 0 0 1 1.73-2H6.5a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.4a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span class="footer-contact-text">+48 500 123 456</span>
+            </div>
+            <div class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span class="footer-contact-text">kontakt@colabhub.pl</span>
+            </div>
+        </div>
+        <div class="footer-cta-col">
+            <div class="footer-cta-text">Gotowy na networking<br>nowego poziomu?</div>
+            <a href="#" class="footer-cta-btn">Sprawdź event</a>
+        </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+        <span class="footer-copy">© 2026 Colab. Wszelkie prawa zastrzeżone.</span>
+        <span class="footer-event-badge">#1 Colab Business Networking Event</span>
+    </div>
+</footer>
 
 </body>
 </html>
