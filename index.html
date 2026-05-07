@@ -464,37 +464,103 @@
     position: relative;
     display: inline-flex;
     align-items: center;
+    min-width: 220px;
 }
 
 /* PNG colab gold / colab black */
 .principle-banner-img {
     display: block;
-    height: 80px;          /* dopasuj do rzeczywistej wysokości grafiki */
-    width: auto;
-    border-radius: 12px;   /* jeśli PNG ma swoje zaokrąglenia – usuń */
+    height: 80px;
+    width: 280px;
+    border-radius: 12px;
 }
 
 /* Tekst na bannerze – DM Sans */
 .principle-banner-text {
     position: absolute;
-    left: 50%;
+    left: 33%;
     top: 50%;
     transform: translate(-50%, -50%);
     font-family: 'DM Sans', sans-serif;
     font-weight: 900;
-    font-size: 16px;
+    font-size: 15px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     line-height: 1.2;
-    color: #061029;      /* domyślnie ciemny */
+    color: #fff;
     text-align: center;
     pointer-events: none;
+    width: 58%;
+    white-space: normal;
 }
 
-/* NIEPARZYSTE (1,3): biały tekst na bannerze */
+
+/* ===== BANNER CSS (zastępuje PNG z tekstem) ===== */
+.principle-banner-css {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 14px 16px 14px 24px;
+    gap: 12px;
+    min-width: 260px;
+    overflow: visible;
+}
+
+.principle-banner-css.gold {
+    border: 2px solid #F6C643;
+    background: transparent;
+}
+
+.principle-banner-css.dark {
+    border: 2px solid rgba(255,255,255,0.25);
+    background: transparent;
+}
+
+.principle-banner-css-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 900;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.25;
+    text-align: center;
+    flex: 1;
+}
+
+.principle-item:nth-child(1) .principle-banner-css-text,
+.principle-item:nth-child(3) .principle-banner-css-text {
+    color: #fff;
+}
+
+.principle-item:nth-child(2) .principle-banner-css-text,
+.principle-item:nth-child(4) .principle-banner-css-text {
+    color: #fff;
+}
+
+.principle-banner-sygnet {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    flex-shrink: 0;
+    margin-right: -30px;
+    margin-top: -4px;
+    margin-bottom: -4px;
+}
+
+/* Wszystkie teksty na bannerze - białe */
 .principle-item:nth-child(1) .principle-banner-text,
-.principle-item:nth-child(3) .principle-banner-text {
+.principle-item:nth-child(2) .principle-banner-text,
+.principle-item:nth-child(3) .principle-banner-text,
+.principle-item:nth-child(4) .principle-banner-text {
     color: #FFFFFF;
+}
+
+/* colab black - sygnet po LEWEJ, tekst w prawej części, czarna czcionka */
+.principle-item:nth-child(2) .principle-banner-text,
+.principle-item:nth-child(4) .principle-banner-text {
+    left: 67%;
+    color: #0B0F1A;
 }
 
 .principle-toggle {
@@ -717,8 +783,13 @@
         .about-content {
             display: flex;
             justify-content: center;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
+        }
+
+        .about-content .about-text-container {
+            width: 100%;
         }
 
         .about-image-container {
@@ -2081,6 +2152,64 @@
     margin: 0;
 }
 
+
+.edukacja-stats-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 30px 0;
+}
+
+.edukacja-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    text-align: center;
+}
+
+.edukacja-stat-number {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #FFF6A3 0%, #FFD700 30%, #FFB000 65%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.edukacja-stat-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.edukacja-stat-divider {
+    width: 1px;
+    height: 60px;
+    background: rgba(255,255,255,0.2);
+}
+
+@media (max-width: 768px) {
+    .edukacja-stats-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .edukacja-stat-divider {
+        width: 60px;
+        height: 1px;
+    }
+    .edukacja-stat-number {
+        font-size: 36px;
+    }
+}
+
 .edukacja-social-icons {
     display: flex;
     gap: 24px;
@@ -2254,6 +2383,137 @@
     }
 }
 	
+
+
+  /* ===== NASZE WARTOŚCI - NOWY HEADER ===== */
+  .about-values-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .about-values-header .about-header {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .values-heading {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+
+  .values-highlight {
+    color: #F6C643;
+  }
+
+  .values-sub {
+    color: #b0b8cc;
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+    line-height: 1.6;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* ===== NASZE WARTOŚCI - PANELS ===== */
+  .about-section .panels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1100px;
+    margin: 0 auto;
+    overflow: visible;
+  }
+
+  .about-section .panel {
+    position: relative;
+    overflow: visible;
+    padding: 48px 32px 48px;
+    border-right: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .about-section .panel:last-child { border-right: none; }
+
+  .about-section .orb {
+    position: absolute;
+    pointer-events: none;
+    filter: blur(80px);
+    aspect-ratio: 1;
+    z-index: 0;
+  }
+
+  .about-section .panel-1 .orb {
+    width: 130%;
+    background: radial-gradient(circle at center,
+      rgba(120,40,220,0.38) 0%, rgba(160,30,120,0.15) 50%, transparent 75%);
+    top: -30%;
+    left: -15%;
+    border-radius: 44% 56% 62% 38% / 52% 40% 60% 48%;
+  }
+
+  .about-section .panel-2 .orb {
+    width: 140%;
+    background: radial-gradient(circle at center,
+      rgba(0,60,200,0.50) 0%, rgba(0,30,100,0.18) 50%, transparent 75%);
+    top: -35%;
+    left: -20%;
+    border-radius: 58% 42% 38% 62% / 46% 60% 40% 54%;
+  }
+
+  .about-section .panel-3 .orb {
+    width: 130%;
+    background: radial-gradient(circle at center,
+      rgba(200,145,0,0.45) 0%, rgba(180,120,0,0.15) 50%, transparent 75%);
+    top: -25%;
+    left: -15%;
+    border-radius: 52% 48% 55% 45% / 60% 38% 62% 40%;
+  }
+
+  .about-section .panel__icon {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    z-index: 1;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0.07;
+  }
+  .about-section .panel__icon svg {
+    width: 120px;
+    height: 120px;
+  }
+  .about-section .panel-1 .panel__icon svg { stroke: #c084fc; fill: none; }
+  .about-section .panel-2 .panel__icon svg { stroke: #93c5fd; fill: none; }
+  .about-section .panel-3 .panel__icon svg { stroke: #fbbf24; fill: none; }
+
+  .about-section .panel__text {
+    position: relative;
+    z-index: 2;
+    font-size: clamp(0.85rem, 1.3vw, 1rem);
+    color: #d0d8e8;
+    line-height: 1.75;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .about-section .panel__text span { color: #f0a500; font-weight: 600; }
+
+  @media (max-width: 700px) {
+    .about-section .panels { grid-template-columns: 1fr; }
+    .about-section .panel { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .about-section .panel:last-child { border-bottom: none; }
+  }
+
 .logo-image {
     height: 40px; /* dostosuj wysokość */
     width: auto;
@@ -2389,13 +2649,13 @@
             justify-content: center;
             height: 46px;
             padding: 0 36px;
-            background: #F6C643;
+            background: linear-gradient(90deg, #FF2D95 0%, #A845FF 100%);
             border: none;
             border-radius: 6px;
             font-family: 'DM Sans', sans-serif;
             font-weight: 700;
             font-size: 14px;
-            color: #0B0F1A;
+            color: #ffffff;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.2s;
@@ -2652,7 +2912,7 @@
 
     <div class="partners-cta-header">
         <h2 class="partners-cta-title">Chcesz zostać partnerem COLAB?</h2>
-        <a href="#" class="cta-offer">
+        <a href="sponsorzy.html" class="cta-offer">
             Poznaj naszą ofertę dla sponsorów
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -2685,41 +2945,87 @@
 </section>
 
     <section id="onas" class="about-section">
-        <div class="about-header">
-            <div class="section-badge badge-filled">
-                <span class="section-badge-text">O NAS</span>
+        <div class="about-values-header">
+            <div class="about-header">
+                <div class="section-badge badge-filled">
+                    <span class="section-badge-text">O NAS</span>
+                </div>
+                <div class="section-badge badge-outline">
+                    <span class="section-badge-text">NASZE WARTOŚCI</span>
+                </div>
             </div>
-            <div class="section-badge badge-outline">
-                <span class="section-badge-text">NASZE WARTOŚCI</span>
-            </div>
+
+            <h2 class="values-heading">
+                Budujemy relacje,<br>
+                które <span class="values-highlight">napędzają biznes i lifestyle</span>
+            </h2>
+            <p class="values-sub">
+                Wierzymy, że wartościowe połączenia to klucz do rozwoju<br>
+                osobistego, zawodowego i biznesowego
+            </p>
         </div>
 
         <div class="about-content">
             <div class="about-text-container">
-                <div class="about-quote-wrapper">
-                    <div class="quote-line"></div>
-                    <p class="about-quote">
-                        <span class="quote-line-1">Wierzymy w to, że <span class="underline">budowanie relacji</span></span><br>
-                        <span class="quote-line-2">jest najlepszą dźwignią do rozwoju,</span><br>
-                        <span class="quote-line-3">tak w <span class="highlight">biznesie</span> jak i w <span class="highlight">całym życiu</span></span>
-                    </p>
-                    <div class="quote-line"></div>
-                </div>
+                <div class="panels">
 
-                <div class="about-boxes">
-                    <div class="about-box">
-                        <p class="about-box-text">Młodzi przedsiębiorcy muszą trzymać się razem i skupić się na pomaganiu sobie nawzajem w <span class="highlight">realizowaniu swoich marzeń</span></p>
-                    </div>
-                    <div class="about-box square-box">
-                        <p class="about-box-text">Skończyły się czasy nudnych konferencji i pora na <span class="highlight">nową energię w eventach biznesowych</span></p>
-                    </div>
-                    <div class="about-box square-box">
-                        <p class="about-box-text">Wierzymy, że siła twórcza rodzi się przy <span class="highlight">zderzeniu przedsiębiorczych umysłów</span></p>
-                    </div>
-                    <div class="about-box">
-                        <p class="about-box-text">Networking powinien przynosić realne, wymierne korzyści klientowi i <span class="highlight">zadaniem organizatora jest to dowieźć</span></p>
-                    </div>
-                </div>
+    <div class="panel panel-1">
+      <div class="orb"></div>
+      <div class="panel__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <p class="panel__text">
+        Młodzi przedsiębiorcy muszą<br>
+        trzymać się razem i skupić się na<br>
+        pomaganiu sobie nawzajem<br>
+        w <span>realizowaniu swoich marzeń</span>
+      </p>
+    </div>
+
+    <div class="panel panel-2">
+      <div class="orb"></div>
+      <div class="panel__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+          <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/>
+        </svg>
+      </div>
+      <p class="panel__text">
+        Skończyły się czasy<br>
+        nudnych konferencji i pora<br>
+        na <span>nową energię w<br>eventach biznesowych</span>
+      </p>
+    </div>
+
+    <div class="panel panel-3">
+      <div class="orb"></div>
+      <div class="panel__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="12" r="6"/>
+          <circle cx="12" cy="12" r="2"/>
+          <line x1="12" y1="2" x2="12" y2="6"/>
+          <line x1="12" y1="18" x2="12" y2="22"/>
+          <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
+          <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+        </svg>
+      </div>
+      <p class="panel__text">
+        Networking powinien przynosić<br>
+        realne, wymierne korzyści<br>
+        klientowi i <span>zadaniem organizatora<br>jest to dowieźć</span>
+      </p>
+    </div>
+
+  </div>
             </div>
         </div>
     </section>
@@ -2744,9 +3050,7 @@
 
                     <div class="principle-banner">
                         <img src="colab gold.png" alt="Colab Gold" class="principle-banner-img">
-                        <span class="principle-banner-text">
-                            EVENTY JAKO<br>LIFESTYLE
-                        </span>
+                        <span class="principle-banner-text">EVENTY JAKO<br>LIFESTYLE</span>
                     </div>
                 </div>
 
@@ -2775,9 +3079,7 @@
                     <div class="principle-right-inner">
                         <div class="principle-banner">
                             <img src="colab black.png" alt="Colab Black" class="principle-banner-img">
-                            <span class="principle-banner-text">
-                                NETWORKING<br>FIRST
-                            </span>
+                            <span class="principle-banner-text">NETWORKING<br>FIRST</span>
                         </div>
                         <span class="principle-number">2</span>
                     </div>
@@ -2798,9 +3100,7 @@
 
                     <div class="principle-banner">
                         <img src="colab gold.png" alt="Colab Gold" class="principle-banner-img">
-                        <span class="principle-banner-text">
-                            NEXT LEVEL<br>AGENDA
-                        </span>
+                        <span class="principle-banner-text">NEXT LEVEL<br>AGENDA</span>
                     </div>
                 </div>
 
@@ -2828,9 +3128,7 @@
                     <div class="principle-right-inner">
                         <div class="principle-banner">
                             <img src="colab black.png" alt="Colab Black" class="principle-banner-img">
-                            <span class="principle-banner-text">
-                                SILNE<br>COMMUNITY
-                            </span>
+                            <span class="principle-banner-text">SILNE<br>COMMUNITY</span>
                         </div>
                         <span class="principle-number">4</span>
                     </div>
@@ -3021,10 +3319,10 @@
         <div class="agenda-card-header">
             <span class="agenda-tag tag-merytoryka">MERYTORYKA</span>
         </div>
-        <h4 class="agenda-card-title">HIGH VALUE<br>SPEECH</h4>
+        <h4 class="agenda-card-title">THE POINT</h4>
         <ul class="agenda-list">
-            <li>Kaloryczna prelekcja od specjalisty z danej dziedziny biznesowej</li>
-            <li>Szansa na przełożenie fachowej wiedzy na Twój case</li>
+            <li>‎ </li>
+            <li>‎ </li>
         </ul>
         <p class="agenda-time">Czas trwania: 45 minut</p>
     </div>
@@ -3109,21 +3407,6 @@
         <p class="agenda-time">Czas trwania: 45 minut</p>
     </div>
 
-    <!-- 7. IMPRO! OPEN MIC -->
-    <div class="agenda-card">
-        <div class="agenda-card-logo">
-            <img src="COLAB sygnet.png" alt="Colab Logo">
-        </div>
-        <div class="agenda-card-header">
-            <span class="agenda-tag tag-twojaszansa">TWOJASZANSA</span>
-        </div>
-        <h4 class="agenda-card-title">IMPRO!<br>OPEN MIC</h4>
-        <ul class="agenda-list">
-            <li>‎ </li>
-            <li>‎ </li>
-        </ul>
-        <p class="agenda-time">Czas trwania: 45 minut</p>
-    </div>
 </div>
 
             <div class="agenda-stage">
@@ -3250,11 +3533,6 @@
     <div class="edukacja-final-container">
         <!-- Środek - Cytat i tekst -->
         <div class="edukacja-center">
-            <blockquote class="edukacja-quote">
-                "Najcenniejszą rzeczą jakiej młody człowiek może się nauczyć jest budowanie trwałych i szczerych relacji."
-            </blockquote>
-            <p class="edukacja-author">Fryderyk Karzelek, przedsiębiorca i mentor</p>
-
             <div class="edukacja-divider"></div>
 
             <p class="edukacja-description">
