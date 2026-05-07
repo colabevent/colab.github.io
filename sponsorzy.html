@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;700;900&display=swap" rel="stylesheet">
+<title>Sponsorzy – COLAB</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #0B1631;
+    color: white;
+    min-height: 100vh;
+}
+
+/* ══════════════════════
+   NAVBAR (z głównej)
+══════════════════════ */
+.navbar {
+    position: fixed;
+    top: 16px;
+    left: 26px;
+    right: 26px;
+    height: 68px;
+    background: #0B0F1A;
+    border-radius: 8px;
+    border: 1px solid rgba(246,198,67,0.14);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logo-image {
+    height: 40px;
+    width: auto;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.nav-btn {
+    height: 47px;
+    padding: 0 20px;
+    background: #F6C643;
+    border: 1px solid #0B0F1A;
+    color: #0B0F1A;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+.nav-btn-partnerzy {
+    background: transparent !important;
+    border: 1px solid #F6C643 !important;
+    color: #F6C643 !important;
+}
+
+.nav-btn-edukacja {
+    background: transparent !important;
+    border: 1px solid #466EFF !important;
+    color: white !important;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: #F6C643;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 96px;
+    left: 26px;
+    right: 26px;
+    background: #0B0F1A;
+    border: 1px solid rgba(246,198,67,0.3);
+    border-radius: 8px;
+    padding: 16px;
+    z-index: 999;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mobile-menu.open { display: flex; }
+.mobile-menu .nav-btn { width: 100%; height: 50px; justify-content: center; }
+
+@media (max-width: 768px) {
+    .nav-buttons { display: none; }
+    .hamburger { display: flex; }
+}
+
+/* ══════════════════════
+   STRONA GŁÓWNA
+══════════════════════ */
+.sponsor-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 140px 40px 100px;
+    text-align: center;
+}
+
+.sponsor-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 52px;
+    color: #F6C643;
+    margin-bottom: 36px;
+    line-height: 1.15;
+}
+
+.sponsor-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    color: #fff;
+    line-height: 1.75;
+    margin-bottom: 18px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sponsor-contact {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    color: #fff;
+    line-height: 2;
+    margin-bottom: 70px;
+}
+.sponsor-contact strong { font-weight: 700; }
+.sponsor-contact a { color: #F6C643; text-decoration: none; font-weight: 700; }
+.sponsor-contact a:hover { text-decoration: underline; }
+
+/* ══════════════════════
+   KARTY
+══════════════════════ */
+.cards-row {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.card-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 240px;
+}
+
+/* SMYCZ: cienki złoty pasek pionowy + partner_clip.png nachodzi na kartę */
+.lanyard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.lanyard-clip-img {
+    width: 110px;
+    height: auto;
+    display: block;
+    margin-bottom: -52px;
+    position: relative;
+    z-index: 3;
+}
+
+/* KARTA */
+.sponsor-card {
+    width: 100%;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 34px 20px 28px;
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.card-gold   { background: linear-gradient(180deg, #F6C643 0%, #C39D35 50%, #907427 100%); }
+.card-blue   { background: linear-gradient(196.89deg, #244F91 11.65%, #0B172B 100%); }
+.card-purple { background: linear-gradient(160deg, #1a1a6e 0%, #6b21a8 55%, #db2777 100%); }
+
+/* Sygnet watermark - duży wyśrodkowany */
+.card-watermark {
+    position: absolute;
+    width: 280px;
+    height: auto;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* złoty - lewy dolny */
+.card-gold .card-watermark {
+    bottom: -10px;
+    left: -10px;
+}
+
+/* niebieski lewy (Partner Eventu) - prawy dolny */
+.card-blue-left .card-watermark {
+    bottom: -10px;
+    right: -10px;
+    left: auto;
+}
+
+/* niebieski prawy (Partner Medialny) - lewy dolny */
+.card-blue-right .card-watermark {
+    bottom: -10px;
+    left: -10px;
+}
+
+/* różowy - prawy dolny */
+.card-purple .card-watermark {
+    bottom: -10px;
+    right: -10px;
+    left: auto;
+}
+
+.card-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.35;
+    text-align: center;
+    margin-bottom: 14px;
+}
+
+.card-gold .card-title   { color: #0B1631; }
+.card-blue .card-title   { color: #F6C643; }
+.card-media .card-title  { color: #fff !important; }
+.card-purple .card-title { color: #fff; }
+
+.card-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+}
+
+.card-list li {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 12.5px;
+    line-height: 1.6;
+    margin-bottom: 4px;
+    padding-left: 16px;
+    position: relative;
+}
+
+.card-list li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+}
+
+.card-gold .card-list li { color: #0B1631; }
+.card-gold .card-list li::before { color: #0B1631; }
+.card-blue .card-list li,
+.card-purple .card-list li { color: rgba(255,255,255,0.92); }
+.card-blue .card-list li::before,
+.card-purple .card-list li::before { color: rgba(255,255,255,0.6); }
+
+.card-note {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 1.65;
+    text-align: left;
+    width: 100%;
+    margin-top: 12px;
+    color: rgba(255,255,255,0.9);
+}
+
+/* FOOTER */
+.sponsor-footer {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.sponsor-footer a img {
+    height: 56px;
+    width: auto;
+}
+
+
+
+@media (max-width: 900px) {
+    .cards-row { flex-wrap: wrap; }
+    .card-wrap { max-width: calc(50% - 12px); }
+    .sponsor-title { font-size: 36px; }
+}
+@media (max-width: 560px) {
+    .card-wrap { max-width: 100%; }
+    .sponsor-title { font-size: 26px; }
+    .sponsor-page { padding: 120px 20px 80px; }
+}
+
+
+/* ══ STOPKA ══ */
+.site-footer {
+    position: relative;
+    z-index: 1;
+    background: #060d1c;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 64px 80px 40px;
+}
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+}
+.footer-brand .footer-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+.footer-logo-img { height: 32px; width: auto; object-fit: contain; }
+.footer-brand-name {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+    letter-spacing: 1px;
+}
+.footer-tagline {
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+    max-width: 240px;
+}
+.footer-col-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+.footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+.footer-contact-icon {
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    opacity: 0.5;
+    color: white;
+}
+.footer-contact-text {
+    font-family: Inter, sans-serif;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.70);
+    line-height: 1.5;
+}
+.footer-cta-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.footer-cta-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 18px;
+    line-height: 1.3;
+}
+.footer-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+    padding: 0 36px;
+    background: #F6C643;
+    border: none;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #0B0F1A;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.footer-cta-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+.footer-divider {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 28px;
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+}
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer-copy {
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.28);
+}
+.footer-event-badge {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+@media (max-width: 768px) {
+    .site-footer { padding: 48px 20px 32px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="index.html" class="logo">
+        <img src="COLAB.png" alt="Colab Logo" class="logo-image">
+    </a>
+    <div class="nav-buttons">
+        <a href="index.html#partnerzy" class="nav-btn nav-btn-partnerzy">PARTNERZY</a>
+        <a href="index.html#onas" class="nav-btn">O NAS</a>
+        <a href="index.html#dla-kogo" class="nav-btn">DLA KOGO?</a>
+        <a href="index.html#produkt" class="nav-btn">PRODUKT</a>
+        <a href="index.html#edukacja" class="nav-btn nav-btn-edukacja">EDUKACJA</a>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#partnerzy" class="nav-btn nav-btn-partnerzy">PARTNERZY</a>
+    <a href="index.html#onas" class="nav-btn">O NAS</a>
+    <a href="index.html#dla-kogo" class="nav-btn">DLA KOGO?</a>
+    <a href="index.html#produkt" class="nav-btn">PRODUKT</a>
+    <a href="index.html#edukacja" class="nav-btn nav-btn-edukacja">EDUKACJA</a>
+</div>
+
+<div class="sponsor-page">
+
+    <h1 class="sponsor-title">Budowanie Hubu Networkingowego<br>dla Młodych Przedsiębiorców</h1>
+
+    <p class="sponsor-desc">Jako firma chcemy współpracować z markami i usługodawcami, którzy podzielają naszą wizję szerzenia kultury networkingu i budowania relacji wśród młodych wilków i wilczyc.</p>
+    <p class="sponsor-desc">Goście na naszych eventach to młodzi przedsiębiorcy i entuzjaści biznesu nastawieni na rozwój i proaktywność biznesową. Chcesz, aby ta grupa poznała Twój produkt lub usługę?<br>To właśnie dla Ciebie tworzymy nasze pakiety sponsorskie.</p>
+
+    <div class="sponsor-contact">
+        <strong>Jeżeli chcesz zostać Budowniczym Hubu – napisz do nas na;</strong><br>
+        <a href="mailto:partner@colabhub.pl">partner@colabhub.pl</a><br>
+        lub zadzwoń<br>
+        <a href="tel:518325138">+48 500 123 456</a>
+    </div>
+
+    <div class="cards-row">
+
+        <!-- 1. Builder Hubu -->
+        <div class="card-wrap">
+            <div class="lanyard">
+                <img src="partner_clip.png" alt="smycz" class="lanyard-clip-img">
+            </div>
+            <div class="sponsor-card card-gold">
+                <img src="COLAB sygnet.png" alt="" class="card-watermark">
+                <div class="card-content">
+                    <div class="card-title">Builder Hubu<br>Sponsor Główny</div>
+                    <ul class="card-list">
+                        <li>15 minutowe wystąpienie na scenie</li>
+                        <li>Stoisko na evencie</li>
+                        <li>Baner firmy przy scenie</li>
+                        <li>Wyłączność branżowa</li>
+                        <li>Status "Sponsor Główny Colab #1"</li>
+                        <li>Logotyp na identyfikatorach uczestników</li>
+                        <li>Miejscówki dla 3 Reprezentantów</li>
+                        <li>Logotyp na stronie internetowej Colab</li>
+                        <li>Ekspozycja marki podczas zapowiedzi wystąpień</li>
+                        <li>Pierwszeństwo przy współpracy w przyszłości</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Partner Eventu -->
+        <div class="card-wrap">
+            <div class="lanyard">
+                <img src="partner_clip.png" alt="smycz" class="lanyard-clip-img">
+            </div>
+            <div class="sponsor-card card-blue card-blue-left">
+                <img src="COLAB sygnet.png" alt="" class="card-watermark">
+                <div class="card-content">
+                    <div class="card-title">Partner Eventu</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Partner Medialny -->
+        <div class="card-wrap">
+            <div class="lanyard">
+                <img src="partner_clip.png" alt="smycz" class="lanyard-clip-img">
+            </div>
+            <div class="sponsor-card card-blue card-media card-blue-right">
+                <img src="COLAB sygnet.png" alt="" class="card-watermark">
+                <div class="card-content">
+                    <div class="card-title">Partner Medialny</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Business Boost -->
+        <div class="card-wrap">
+            <div class="lanyard">
+                <img src="partner_clip.png" alt="smycz" class="lanyard-clip-img">
+            </div>
+            <div class="sponsor-card card-purple">
+                <img src="COLAB sygnet.png" alt="" class="card-watermark">
+                <div class="card-content">
+                    <div class="card-title">Stoisko<br>BUSINESS BOOST</div>
+                    <ul class="card-list">
+                        <li>AI</li>
+                        <li>Marketing</li>
+                        <li>Prawo i podatki</li>
+                    </ul>
+                    <p class="card-note">
+                        Tworzymy dla Ciebie stoisko do świadczenia 15 minutowych konsultacji dla naszych gości.<br><br>
+                        Jest to Twoja szansa na stworzenie lejka sprzedażowego do Twoich usług oraz promocję Twojej marki wśród najambitniejszych jednostek w Polsce.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+</div>
+
+<script>
+const hBtn = document.getElementById('hamburgerBtn');
+const hMenu = document.getElementById('mobileMenu');
+hBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    hBtn.classList.toggle('open');
+    hMenu.classList.toggle('open');
+});
+document.addEventListener('click', e => {
+    if (!hBtn.contains(e.target) && !hMenu.contains(e.target)) {
+        hBtn.classList.remove('open');
+        hMenu.classList.remove('open');
+    }
+});
+</script>
+
+
+
+
+<!-- STOPKA -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <!-- Branding -->
+        <div class="footer-brand">
+            <div class="footer-logo-row">
+                <img src="COLAB.png" alt="Colab Logo" class="footer-logo-img">
+            </div>
+            <p class="footer-tagline">Dom ambitnych jednostek. Największe eventy networkingowe dla młodych przedsiębiorców.</p>
+        </div>
+        <!-- Kontakt -->
+        <div>
+            <div class="footer-col-title">Kontakt</div>
+            <div class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span class="footer-contact-text">ul. Grzybowska 56, 00-844 Warszawa<br>ADN Centrum Konferencyjne</span>
+            </div>
+            <div class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.7 12.3 19.79 19.79 0 0 1 1.67 3.7a2 2 0 0 1 1.73-2H6.5a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.4a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span class="footer-contact-text">+48 500 123 456</span>
+            </div>
+            <div class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span class="footer-contact-text">kontakt@colabhub.pl</span>
+            </div>
+        </div>
+        <!-- CTA -->
+        <div class="footer-cta-col">
+            <div class="footer-cta-text">Gotowy na networking<br>nowego poziomu?</div>
+            <a href="event.html" class="footer-cta-btn">Kup bilet</a>
+        </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 Colab. Wszelkie prawa zastrzeżone.</span>
+        <span class="footer-event-badge">#1 Colab Business Networking Event</span>
+    </div>
+</footer>
+
+</body>
+</html>
