@@ -2433,48 +2433,13 @@
     position: relative;
     overflow: visible;
     padding: 48px 32px 48px;
-    border-right: none;
+    border-right: 1px solid rgba(255,255,255,0.1);
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   .about-section .panel:last-child { border-right: none; }
-
-  .about-section .orb {
-    position: absolute;
-    pointer-events: none;
-    filter: blur(80px);
-    aspect-ratio: 1;
-    z-index: 0;
-  }
-
-  .about-section .panel-1 .orb {
-    width: 130%;
-    background: radial-gradient(circle at center,
-      rgba(120,40,220,0.38) 0%, rgba(160,30,120,0.15) 50%, transparent 75%);
-    top: -30%;
-    left: -15%;
-    border-radius: 44% 56% 62% 38% / 52% 40% 60% 48%;
-  }
-
-  .about-section .panel-2 .orb {
-    width: 140%;
-    background: radial-gradient(circle at center,
-      rgba(0,60,200,0.50) 0%, rgba(0,30,100,0.18) 50%, transparent 75%);
-    top: -35%;
-    left: -20%;
-    border-radius: 58% 42% 38% 62% / 46% 60% 40% 54%;
-  }
-
-  .about-section .panel-3 .orb {
-    width: 130%;
-    background: radial-gradient(circle at center,
-      rgba(200,145,0,0.45) 0%, rgba(180,120,0,0.15) 50%, transparent 75%);
-    top: -25%;
-    left: -15%;
-    border-radius: 52% 48% 55% 45% / 60% 38% 62% 40%;
-  }
 
   .about-section .panel__icon {
     position: absolute;
@@ -2487,15 +2452,14 @@
     align-items: center;
     justify-content: center;
     pointer-events: none;
-    opacity: 0.07;
   }
   .about-section .panel__icon svg {
     width: 120px;
     height: 120px;
   }
-  .about-section .panel-1 .panel__icon svg { stroke: #c084fc; fill: none; }
-  .about-section .panel-2 .panel__icon svg { stroke: #93c5fd; fill: none; }
-  .about-section .panel-3 .panel__icon svg { stroke: #fbbf24; fill: none; }
+  .about-section .panel-1 .panel__icon svg { stroke: #2F1F59; fill: none; }
+  .about-section .panel-2 .panel__icon svg { stroke: #1F2E48; fill: none; }
+  .about-section .panel-3 .panel__icon svg { stroke: #34312A; fill: none; }
 
   .about-section .panel__text {
     position: relative;
@@ -2697,7 +2661,7 @@
 /* CTA nad sekcją partnerzy */
 .partners-cta-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
 }
 .partners-cta-title {
     font-family: 'DM Sans', sans-serif;
@@ -2706,6 +2670,39 @@
     color: white;
     margin-bottom: 24px;
     line-height: 1.2;
+}
+.cta-offer-wrapper {
+    display: inline-block;
+    position: relative;
+    border-radius: 9999px;
+    padding: 2px;
+    background: transparent;
+    filter: drop-shadow(0 0 6px rgba(246,198,67,0.0));
+}
+.cta-offer-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    padding: 2px;
+    background: conic-gradient(
+        from var(--cta-angle, 0deg),
+        transparent 0deg,
+        transparent 260deg,
+        rgba(246,198,67,0.08) 290deg,
+        rgba(255,224,100,0.35) 320deg,
+        rgba(255,235,130,0.75) 340deg,
+        #fffbe8 350deg,
+        rgba(255,235,130,0.75) 360deg,
+        rgba(255,224,100,0.35) 380deg,
+        rgba(246,198,67,0.08) 410deg,
+        transparent 440deg
+    );
+    filter: blur(1.5px);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
 }
 .cta-offer {
     display: inline-flex;
@@ -2721,9 +2718,10 @@
     text-decoration: none;
     position: relative;
     overflow: hidden;
-    transition: transform 180ms cubic-bezier(0.16,1,0.3,1), box-shadow 180ms cubic-bezier(0.16,1,0.3,1), background 180ms cubic-bezier(0.16,1,0.3,1);
+    transition: transform 180ms cubic-bezier(0.16,1,0.3,1), background 180ms cubic-bezier(0.16,1,0.3,1), box-shadow 180ms cubic-bezier(0.16,1,0.3,1);
     cursor: pointer;
     border: none;
+    z-index: 1;
 }
 .cta-offer::before {
     content: '';
@@ -2737,7 +2735,7 @@
 .cta-offer:hover {
     background: #ffd84a;
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(246,198,67,0.4), 0 0 0 3px rgba(246,198,67,0.2);
+    box-shadow: 0 8px 32px rgba(246,198,67,0.35);
 }
 .cta-offer:active { transform: translateY(0); }
 
@@ -2912,10 +2910,12 @@
 
     <div class="partners-cta-header">
         <h2 class="partners-cta-title">Chcesz zostać partnerem COLAB?</h2>
+        <div class="cta-offer-wrapper">
         <a href="sponsorzy.html" class="cta-offer">
             Poznaj naszą ofertę dla sponsorów
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
+    </div>
     </div>
 
     <div class="partner-section-group">
@@ -2970,7 +2970,6 @@
                 <div class="panels">
 
     <div class="panel panel-1">
-      <div class="orb"></div>
       <div class="panel__icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -2988,7 +2987,6 @@
     </div>
 
     <div class="panel panel-2">
-      <div class="orb"></div>
       <div class="panel__icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -3006,7 +3004,6 @@
     </div>
 
     <div class="panel panel-3">
-      <div class="orb"></div>
       <div class="panel__icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/>
@@ -3958,5 +3955,22 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </footer>
 
+
+<script>
+(function() {
+  const wrapper = document.querySelector('.cta-offer-wrapper');
+  if (!wrapper) return;
+  let start = null;
+  const duration = 7000;
+  function rotateCta(ts) {
+    if (!start) start = ts;
+    const elapsed = ts - start;
+    const angle = (elapsed / duration * 360) % 360;
+    wrapper.style.setProperty('--cta-angle', angle + 'deg');
+    requestAnimationFrame(rotateCta);
+  }
+  requestAnimationFrame(rotateCta);
+})();
+</script>
 </body>
 </html>
