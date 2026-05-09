@@ -1408,7 +1408,7 @@
 
 .agenda-cards-wrapper {
     position: relative;
-    height: 0px auto;  /* zmień na odpowiednią wysokość karty */
+    height: 480px auto;  /* zmień na odpowiednią wysokość karty */
     perspective: 1000px;
     margin-bottom: 20px;  /* mały odstęp od sceny */
 }
@@ -1535,14 +1535,7 @@
     margin: 0;
 }
 
-.agenda-stage {
-    margin-top: -150px;  /* przesunie scenę DO GÓRY */
-    text-align: center;
-    position: relative;
-    z-index: 0;
-    display: flex;
-    justify-content: center;
-}
+.agenda-stage { margin-top: -40px; text-align: center; position: relative; z-index: 1; display: flex; justify-content: center; }
 
 .agenda-stage img {
     width: 100%;
@@ -3352,9 +3345,9 @@
 
     <div class="agenda-container">
         <div class="agenda-left">
-            <span class="agenda-left-tag">JAK TO DZIAŁA?</span>
+            
             <h3 class="agenda-subtitle">Występy,<br>z których<br>korzystamy<br>konstruując<br><span class="highlight-gold-bg">agendę na event</span></h3>
-            <p class="agenda-left-desc">Każda karta to oddzielny punkt programu eventu. Klikaj strzałkę, by odkrywać kolejne aktywności zaplanowane na ten dzień.</p>
+            
         </div>
 
         <div class="agenda-right">
