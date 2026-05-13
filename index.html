@@ -2836,7 +2836,39 @@
     .event-partners-grid, .media-partners-grid { grid-template-columns: 1fr 1fr; }
 }
 
-</style>
+
+/* SEKCJA NEWSLETTER */
+.newsletter-section { max-width: 900px; margin: 0 auto; padding: 80px 40px; }
+.newsletter-box {
+    max-width: 720px; width: 100%; margin: 0 auto;
+    background: linear-gradient(135deg, #0C1A35 0%, #132D55 100%);
+    border: 1.2px solid rgba(50,92,170,.5); border-radius: 20px; padding: 48px 52px;
+}
+.newsletter-form-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.newsletter-form-group { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 180px; }
+.newsletter-form-group label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,.45); font-family: 'DM Sans', sans-serif; }
+.newsletter-form-group input { height: 52px; padding: 0 18px; background: rgba(255,255,255,.05); border: 1.5px solid rgba(246,198,67,.3); border-radius: 8px; color: white; font-family: 'DM Sans', sans-serif; font-size: 15px; outline: none; transition: border-color .3s; }
+.newsletter-form-group input:focus { border-color: #F6C643; }
+.newsletter-form-group input::placeholder { color: rgba(255,255,255,.2); }
+.newsletter-checkbox-group { display: flex; align-items: flex-start; gap: 12px; margin-top: 20px; cursor: pointer; }
+.newsletter-checkbox-group input[type="checkbox"] { display: none; }
+.newsletter-checkbox-box { width: 20px; height: 20px; border-radius: 5px; flex-shrink: 0; margin-top: 2px; border: 1.5px solid rgba(246,198,67,.4); background: rgba(255,255,255,.04); display: flex; align-items: center; justify-content: center; transition: all .2s; }
+.newsletter-checkbox-group input[type="checkbox"]:checked + .newsletter-checkbox-box { background: #F6C643; border-color: #F6C643; }
+.newsletter-checkbox-group input[type="checkbox"]:checked + .newsletter-checkbox-box::after { content: '✓'; color: #0B0F1A; font-size: 13px; font-weight: 900; line-height: 1; }
+.newsletter-checkbox-label { font-family: 'DM Sans', sans-serif; font-size: 12px; color: rgba(255,255,255,.45); line-height: 1.6; }
+.newsletter-checkbox-label a { color: rgba(246,198,67,.7); text-decoration: underline; }
+.newsletter-submit-btn { margin-top: 24px; width: 100%; height: 54px; background: #F6C643; border: none; border-radius: 8px; color: #0B0F1A; font-family: 'DM Sans', sans-serif; font-weight: 900; font-size: 16px; text-transform: uppercase; letter-spacing: .5px; cursor: pointer; transition: all .3s; position: relative; overflow: hidden; }
+.newsletter-submit-btn::before { content: ''; position: absolute; inset: 0; background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.25) 50%, transparent 70%); transform: translateX(-100%); transition: transform .5s; }
+.newsletter-submit-btn:hover::before { transform: translateX(100%); }
+.newsletter-submit-btn:hover { background: #ffd84a; transform: translateY(-2px); }
+.newsletter-form-note { margin-top: 14px; text-align: center; font-size: 12px; color: rgba(255,255,255,.25); font-family: 'DM Sans', sans-serif; }
+@media (max-width: 768px) {
+    .newsletter-section { padding: 60px 20px; }
+    .newsletter-box { padding: 32px 24px; }
+    .newsletter-form-row { flex-direction: column; }
+}
+
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -3574,7 +3606,8 @@
     <div class="edukacja-final-container">
         <!-- Środek - Cytat i tekst -->
         <div class="edukacja-center">
-            <p style="color: #F6C643; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 55px; margin: 0 0 20px 0;">Zrobimy z Ciebie profesjonalnego networkera</p>
+            <p style="color: #F6C643; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 55px; margin: 0 0 28px 0; line-height: 1.15;">Zrobimy z Ciebie profesjonalnego networkera</p>
+            <div style="width:100%;height:2px;background:linear-gradient(90deg,rgba(246,198,67,0.9) 0%,rgba(246,198,67,0.15) 100%);margin-bottom:20px;border-radius:2px;"></div>
             <div class="edukacja-divider"></div>
 
             <p class="edukacja-description">
@@ -3635,6 +3668,41 @@
                 </div>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- SEKCJA NEWSLETTER -->
+<section class="newsletter-section">
+    <div style="max-width:720px;margin:0 auto 32px auto;text-align:center;">
+        <h2 style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:clamp(5px,4vw,40px);line-height:1.15;color:#F6C643;margin-bottom:16px;text-align:center;">Ghosting na LinkedIn, wielka wizja<br>i 450 zł na koncie</h2>
+        <p style="font-family:'DM Sans',sans-serif;font-size:clamp(18px,2vw,24px);font-weight:700;color:white;line-height:1.5;margin-bottom:8px;">Zapisz się na nasz <span style="color:#FF2D95;">newsletter</span> i poznaj wszystkie błędy oraz lekcje biznesowe całej ekipy Colab</p>
+        <p style="font-family:'DM Sans',sans-serif;font-size:15px;color:rgba(255,255,255,.5);font-style:italic;">…oraz pozostań na bieżąco z naszymi wszystkimi ruchami</p>
+    </div>
+    <div class="newsletter-box">
+        <form onsubmit="return false;">
+            <div class="newsletter-form-row">
+                <div class="newsletter-form-group">
+                    <label>Imię</label>
+                    <input type="text" placeholder="Twoje imię">
+                </div>
+                <div class="newsletter-form-group">
+                    <label>E-mail</label>
+                    <input type="email" placeholder="twój@email.pl">
+                </div>
+            </div>
+            <label class="newsletter-checkbox-group">
+                <input type="checkbox" required>
+                <span class="newsletter-checkbox-box"></span>
+                <span class="newsletter-checkbox-label">Wyrażam zgodę na otrzymywanie drogą elektroniczną informacji marketingowych, w tym newslettera oraz powiadomień o zapisach na event Colab, na podany adres e-mail — zgodnie z ustawą z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną. Zgodę można wycofać w dowolnym momencie.</span>
+            </label>
+            <label class="newsletter-checkbox-group">
+                <input type="checkbox" required>
+                <span class="newsletter-checkbox-box"></span>
+                <span class="newsletter-checkbox-label">Zapoznałem/am się z <a href="#">Polityką Prywatności</a> i akceptuję przetwarzanie moich danych osobowych przez Colab w celu obsługi zapisu na newsletter.</span>
+            </label>
+            <button type="submit" class="newsletter-submit-btn">Zapisz się do newslettera →</button>
+        </form>
+        <p class="newsletter-form-note">Zero spamu. Tylko ważne informacje i lekcje biznesowe.</p>
     </div>
 </section>
 
