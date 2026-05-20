@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;700;900&display=swap" rel="stylesheet">
-<title>Sponsorzy – COLAB</title>
+<title>Partnerzy – COLAB</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -16,7 +16,6 @@ body {
     overflow-x: hidden;
 }
 
-/* WRAPPER + ORĒY GRADIENTOWE */
 .site-wrapper {
     position: relative;
     min-height: 100vh;
@@ -123,7 +122,7 @@ body {
 
 /* ══ STRONA ══ */
 .sponsor-page {
-    max-width: 1100px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 140px 40px 100px;
     text-align: center;
@@ -164,12 +163,13 @@ body {
 .sponsor-contact a { color: #F6C643; text-decoration: none; font-weight: 700; }
 .sponsor-contact a:hover { text-decoration: underline; }
 
-/* ══ KARTY ══ */
+/* ══ KARTY – badge konferencyjny ══ */
 .cards-row {
     display: flex;
-    gap: 24px;
+    gap: 20px;
     justify-content: center;
     align-items: flex-start;
+    flex-wrap: nowrap;
 }
 
 .card-wrap {
@@ -177,9 +177,11 @@ body {
     flex-direction: column;
     align-items: center;
     flex: 1;
-    max-width: 240px;
+    min-width: 0;
+    max-width: 320px;
 }
 
+/* smycz / linka */
 .lanyard {
     display: flex;
     flex-direction: column;
@@ -197,16 +199,16 @@ body {
     z-index: 3;
 }
 
+/* Karta – dopasowuje się do treści, bez min-height */
 .sponsor-card {
     width: 100%;
     border-radius: 22px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 34px 20px 28px;
+    padding: 34px 28px 28px;
     position: relative;
     overflow: hidden;
-    min-height: 500px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.55), 0 8px 20px rgba(0,0,0,0.3);
 }
 
@@ -265,18 +267,44 @@ body {
     align-items: center;
 }
 
+/* Pasek tytułowy – jak na badge konferencyjnym */
+.card-title-bar {
+    width: calc(100% + 56px);
+    margin-left: -28px;
+    margin-right: -28px;
+    margin-top: -34px;
+    margin-bottom: 18px;
+    padding: 16px 20px;
+    text-align: center;
+}
+
+.card-gold .card-title-bar {
+    background: rgba(0,0,0,0.18);
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+.card-blue .card-title-bar {
+    background: rgba(246,198,67,0.15);
+    border-bottom: 1px solid rgba(246,198,67,0.25);
+}
+
+.card-purple .card-title-bar {
+    background: rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
 .card-title {
     font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 1.35;
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    line-height: 1.4;
     text-align: center;
-    margin-bottom: 14px;
 }
 
 .card-gold .card-title   { color: #0B1631; }
 .card-blue .card-title   { color: #F6C643; }
-.card-media .card-title  { color: #fff !important; }
 .card-purple .card-title { color: #fff; }
 
 .card-list {
@@ -291,7 +319,7 @@ body {
     font-weight: 300;
     font-size: 12.5px;
     line-height: 1.6;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
     padding-left: 16px;
     position: relative;
 }
@@ -360,13 +388,14 @@ body {
 .footer-copy { font-family: Inter, sans-serif; font-size: 12px; color: rgba(255,255,255,0.28); }
 .footer-event-badge { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 12px; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 2px; }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .cards-row { flex-wrap: wrap; }
-    .card-wrap { max-width: calc(50% - 12px); }
+    .card-wrap { max-width: calc(50% - 12px); flex: 0 0 calc(50% - 12px); }
     .sponsor-title { font-size: 36px; }
 }
 @media (max-width: 560px) {
-    .card-wrap { max-width: 100%; }
+    .cards-row { flex-direction: column; align-items: center; }
+    .card-wrap { max-width: 100%; flex: 0 0 100%; }
     .sponsor-title { font-size: 26px; }
     .sponsor-page { padding: 120px 20px 80px; }
 }
@@ -411,7 +440,7 @@ body {
 
     <h1 class="sponsor-title">Budowanie Hubu Networkingowego<br>dla Młodych Przedsiębiorców</h1>
 
-    <p class="sponsor-desc">Jako firma chcemy współpracować z markami i usługodawcami, którzy podzie lają naszą wizję szerzenia kultury networkingu i budowania relacji wśród młodych wilków i wilczyc.</p>
+    <p class="sponsor-desc">Jako firma chcemy współpracować z markami i usługodawcami, którzy podzielają naszą wizję szerzenia kultury networkingu i budowania relacji wśród młodych wilków i wilczyc.</p>
     <p class="sponsor-desc">Goście na naszych eventach to młodzi przedsiębiorcy i entuzjaści biznesu nastawieni na rozwój i proaktywność biznesową. Chcesz, aby ta grupa poznała Twój produkt lub usługę?<br>To właśnie dla Ciebie tworzymy nasze pakiety sponsorskie.</p>
 
     <div class="sponsor-contact">
@@ -431,7 +460,9 @@ body {
             <div class="sponsor-card card-gold">
                 <img src="COLAB sygnet.png" alt="" class="card-watermark">
                 <div class="card-content">
-                    <div class="card-title">Builder Hubu<br>Sponsor Główny</div>
+                    <div class="card-title-bar">
+                        <div class="card-title">Builder Hubu<br>Sponsor Główny</div>
+                    </div>
                     <ul class="card-list">
                         <li>15 minutowe wystąpienie na scenie</li>
                         <li>Stoisko na evencie</li>
@@ -442,6 +473,7 @@ body {
                         <li>Miejscówki dla 3 Reprezentantów</li>
                         <li>Logotyp na stronie internetowej Colab</li>
                         <li>Ekspozycja marki podczas zapowiedzi wystąpień</li>
+                        <li>Promocja marki i kanałów na social media Colab</li>
                         <li>Pierwszeństwo przy współpracy w przyszłości</li>
                     </ul>
                 </div>
@@ -456,7 +488,17 @@ body {
             <div class="sponsor-card card-blue card-blue-left">
                 <img src="COLAB sygnet.png" alt="" class="card-watermark">
                 <div class="card-content">
-                    <div class="card-title">Partner Eventu</div>
+                    <div class="card-title-bar">
+                        <div class="card-title">Partner Eventu</div>
+                    </div>
+                    <ul class="card-list">
+                        <li>Stoisko na evencie</li>
+                        <li>Status "Partner Eventu Colab #1"</li>
+                        <li>Miejscówka dla 1 Reprezentanta</li>
+                        <li>Logotyp na stronie internetowej Colab</li>
+                        <li>Ekspozycja marki podczas zapowiedzi wystąpień</li>
+                        <li>Promocja marki i kanałów na social media Colab</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -466,10 +508,17 @@ body {
             <div class="lanyard">
                 <img src="partner_clip.png" alt="smycz" class="lanyard-clip-img">
             </div>
-            <div class="sponsor-card card-blue card-media card-blue-right">
+            <div class="sponsor-card card-blue card-blue-right">
                 <img src="COLAB sygnet.png" alt="" class="card-watermark">
                 <div class="card-content">
-                    <div class="card-title">Partner Medialny</div>
+                    <div class="card-title-bar">
+                        <div class="card-title">Partner Medialny</div>
+                    </div>
+                    <ul class="card-list">
+                        <li>Status "Partner Medialny Colab #1"</li>
+                        <li>Logotyp na stronie internetowej Colab</li>
+                        <li>Oznaczenie profili na social media Colab</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -482,7 +531,9 @@ body {
             <div class="sponsor-card card-purple">
                 <img src="COLAB sygnet.png" alt="" class="card-watermark">
                 <div class="card-content">
-                    <div class="card-title">Stoisko<br>BUSINESS BOOST</div>
+                    <div class="card-title-bar">
+                        <div class="card-title">Stoisko<br>Business Boost</div>
+                    </div>
                     <p style="font-size:12px;color:rgba(255,255,255,0.85);font-weight:300;text-align:left;width:100%;margin-bottom:10px;">Szukamy firm z branży:</p>
                     <ul class="card-list">
                         <li>AI</li>
