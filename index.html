@@ -2174,9 +2174,10 @@
 }
 
 .edukacja-divider {
-    width: 100%;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.3);
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 60px 0;
 }
 
 .edukacja-description {
@@ -2701,6 +2702,7 @@
     width: auto;
     position: relative;
     top: -0.1em;
+    margin-left: -6px;
 }
 
 /* CTA nad sekcją partnerzy */
@@ -2868,6 +2870,37 @@
     .newsletter-form-row { flex-direction: column; }
 }
 
+
+/* Przycisk "Poznaj naszą historię" - gradient border */
+.hero-history-btn-wrapper {
+    display: inline-block;
+    padding: 2px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #FF2D95 0%, #A845FF 50%, #6E3AFF 100%);
+    align-self: flex-start;
+    margin-top: 8px;
+}
+.hero-history-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: #0C1A35;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+.hero-history-btn:hover {
+    background: rgba(12, 26, 53, 0.7);
+}
     </style>
 </head>
 <body>
@@ -2925,12 +2958,22 @@
         <div id="hero" class="hero-content-box">
             <h1 class="hero-title">Dom ambitnych jednostek</h1>
             <p class="hero-description">Największe eventy networkingowe dla młodych przedsiębiorców</p>
-             <a href="event.html" class="cta-button">
-                <span>SPRAWDŹ EVENT</span>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M7 3L14 10L7 17" stroke="white" stroke-width="2"/>
-                </svg>
-            </a>
+             <div style="display:flex; flex-direction:row; align-items:center; gap:16px; flex-wrap:wrap;">
+                <a href="event.html" class="cta-button" style="align-self:auto;">
+                    <span>SPRAWDŹ EVENT</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7 3L14 10L7 17" stroke="white" stroke-width="2"/>
+                    </svg>
+                </a>
+                <div class="hero-history-btn-wrapper">
+                    <a href="#newsletter" class="hero-history-btn">
+                        POZNAJ NASZĄ HISTORIĘ
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M7 3L14 10L7 17" stroke="white" stroke-width="2"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -3608,7 +3651,6 @@
         <div class="edukacja-center">
             <p style="color: #F6C643; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 55px; margin: 0 0 28px 0; line-height: 1.15;">Zrobimy z Ciebie profesjonalnego networkera</p>
             <div style="width:100%;height:2px;background:linear-gradient(90deg,rgba(246,198,67,0.9) 0%,rgba(246,198,67,0.15) 100%);margin-bottom:20px;border-radius:2px;"></div>
-            <div class="edukacja-divider"></div>
 
             <p class="edukacja-description">
                 Z tego miejsca zapraszamy Cię do śledzenia naszych kanałów na social mediach, gdzie dzielimy się wiedzą jak dobrze korzystać z networkingu, jak radzić sobie w komunikacji oraz jak to wszystko wykorzystać w biznesie i samorozwoju.
@@ -3672,7 +3714,8 @@
 </section>
 
 <!-- SEKCJA NEWSLETTER -->
-<section class="newsletter-section">
+<section class="newsletter-section" id="newsletter">
+            <div class="edukacja-divider"></div>
     <div style="max-width:720px;margin:0 auto 32px auto;text-align:center;">
         <h2 style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:clamp(5px,4vw,40px);line-height:1.15;color:#F6C643;margin-bottom:16px;text-align:center;">Ghosting na LinkedIn, wielka wizja<br>i 450 zł na koncie</h2>
         <p style="font-family:'DM Sans',sans-serif;font-size:clamp(18px,2vw,24px);font-weight:700;color:white;line-height:1.5;margin-bottom:8px;">Zapisz się na nasz <span style="color:#FF2D95;">newsletter</span> i poznaj wszystkie błędy oraz lekcje biznesowe całej ekipy Colab</p>
